@@ -127,8 +127,46 @@ class UserController extends Controller
         ]);
     }
 
-    public function updateBiodataPost($user_id){
+    public function updateBiodataPost(Request $request,$user_id){
+        
+        Biodata::where('user_id','=',$user_id)->where('scholarship_id','=',$request->scholarship_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'name' => $request->full_name,
+            'nickname' => $request->nickname,
+            'gender' => $request->sex,
+            'birthplace' => $request->birthplace,
+            'birthdate' => $request->birthdate,
+            'telephone' => $request->telephone,
+            'email' => $request->email,
+            'idType' => $request->id_type,
+            'idNumber' => $request->id_number,
+            'addressID' => $request->address,
+            'postCodeID' => $request->code,
+            'districtID' => $request->district,
+            'cityID' => $request->city,
+            'provinceID' => $request->province,
+            'addressLiving' => $request->living_address,
+            'postCodeLiving' => $request->living_code,
+            'districtLiving' => $request->living_district,
+            'cityLiving' => $request->living_city,
+            'provinceLiving' => $request->living_province,
+            'entrance' => $request->entrance_type,
+            'entranceNumber' => $request->text_id,
+            'major' => $request->major,
+            'university' => $request->university,
+        ]);
 
+        SocialMedia::where('user_id','=',$user_id)->where('scholarship_id','=',$request->scholarship_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'instagram' => $request->instagram,
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'tiktok' => $request->tiktok,
+        ]);
+
+        return redirect()->route('familyForm');
     }
     // End Biodata
 

@@ -428,7 +428,7 @@
                     </div>
                 </form>
                 <div class="sm:mt-4 px-4 py-3 text-right sm:px-0">
-                    <a href="/pendaftaran/form-data-keluarga">
+                    <a href="{{route('familyForm')}}">
                         <button
                             class="inline-flex justify-center items-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-secondary-color bg-bg-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-color hover:bg-gray-100 hover:shadow">
                             Form Data Keluarga
