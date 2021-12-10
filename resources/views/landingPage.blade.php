@@ -42,7 +42,7 @@
             <h3 class="text-primary-color text-2xl font-medium">Pendaftaran</h3>
             <p class="text-secondary-color text-sm">Dashboard untuk melakukan pendaftaran beasiswa Kynesia Foundation
                 Scholarship</p>
-            <a href="/pendaftaran/masuk">
+            <a href="{{route('loginAccountForm')}}">
                 <button class="w-full bg-primary-color text-bg-color rounded py-0.5 px-2">
                     <p class="inline-block text-lg">Klik untuk mendaftar</p>
                     <svg class="inline-block text-lg" width="24" height="24" viewBox="0 0 24 24" fill="none"

@@ -44,21 +44,21 @@
                                     <td class="p-0.5 border border-gray-300">
                                         Pendaftaran Beasiswa (Administrasi dan Tes Online)
                                     </td>
-                                    <td class="p-0.5 border border-gray-300">15 - 25 Juli 2021</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->startStepOne))}} s/d {{date("d-M-Y", strtotime($scholarship->endStepOne))}}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">
                                         Pengumuman Beasiswa Tahap 1 (Adminisrasi dan Tes Online)</td>
-                                    <td class="p-0.5 border border-gray-300">4 Juli 2021</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->announceStepOne))}}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">Proses Seleksi Tahap 2 (Wawancara Online)
                                     </td>
-                                    <td class="p-0.5 border border-gray-300">7 - 14 Juli 2021</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->startStepTwo))}} s/d {{date("d-M-Y", strtotime($scholarship->endStepTwo))}}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">Pengumuman Penerima Beasiswa</td>
-                                    <td class="p-0.5 border border-gray-300">18 Juli 2021</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->announceStepTwo))}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -79,18 +79,34 @@
                                 </th>
                             </tr>
                         </thead>
+                        @if($registered == NULL)
                         <tbody class="text-secondary-color">
                             <tr>
                                 <td class="p-0.5 border border-gray-300">
                                     Tahap 1 (Administrasi dan Tes Online)
                                 </td>
-                                <td class="p-0.5 text-green-400 border border-gray-300">Lulus</td>
+                                <td class="p-0.5 text-green-400 border border-gray-300">-</td>
                             </tr>
                             <tr>
                                 <td class="p-0.5 border border-gray-300">Tahap 2 (Wawancara Online)</td>
-                                <td class="p-0.5 text-yellow-400 border border-gray-300">Dalam Proses Peninjauan</td>
+                                <td class="p-0.5 text-yellow-400 border border-gray-300">-</td>
                             </tr>
                         </tbody>
+                        @endif
+                        @if($registered != NULL)
+                        <tbody class="text-secondary-color">
+                            <tr>
+                                <td class="p-0.5 border border-gray-300">
+                                    Tahap 1 (Administrasi dan Tes Online)
+                                </td>
+                                <td class="p-0.5 text-green-400 border border-gray-300">{{$registered->statusOne}}</td>
+                            </tr>
+                            <tr>
+                                <td class="p-0.5 border border-gray-300">Tahap 2 (Wawancara Online)</td>
+                                <td class="p-0.5 text-yellow-400 border border-gray-300">{{$registered->statusTwo}}</td>
+                            </tr>
+                        </tbody>
+                        @endif
                     </table>
                 </div>
             </div>

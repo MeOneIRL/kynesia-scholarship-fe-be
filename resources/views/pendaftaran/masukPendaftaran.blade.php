@@ -11,7 +11,8 @@
         <h3 class="mb-8 md:mb-12 text-2xl md:text-3xl text-secondary-color text-center">
             Masuk Akun Pendaftaran
         </h3>
-        <form class="flex flex-col" action="#">
+        <form class="flex flex-col" action="{{route('loginAccountPost')}}" method="POST">
+            @csrf
             <div class="mb-5">
                 <label class="c" for="email">Email</label>
                 <input
@@ -42,7 +43,7 @@
             <div class="text-secondary-color text-center">
                 Belum memiliki akun?
                 <span class="text-primary-color hover:underline">
-                    <a href="/pendaftaran/daftar">Daftar</a>
+                    <a href="{{route('registerAccountForm')}}">Daftar</a>
                 </span>
             </div>
         </form>

@@ -55,7 +55,7 @@
                     </ol>
                 </div>
                 <div class="mb-8">
-                    <a class="text-lg text-primary-color underline" href="#">Link menuju halaman tes online</a>
+                    <a class="text-lg text-primary-color underline" href="{{$scholarship->onlineTest}}" target="_blank">Link menuju halaman tes online</a>
                 </div>
                 <div class="relative">
                     <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
