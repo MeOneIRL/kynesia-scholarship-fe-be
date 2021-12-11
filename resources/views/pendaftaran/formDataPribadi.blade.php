@@ -55,7 +55,7 @@
                                     <select id="sex" name="sex"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                         required>
-                                        <option name="sex" value="Laki-kali">Laki-laki</option>
+                                        <option name="sex" value="Laki-laki">Laki-laki</option>
                                         <option name="sex" value="Perempuan">Perempuan</option>
                                     </select>
                                 </div>

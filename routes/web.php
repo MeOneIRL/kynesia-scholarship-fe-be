@@ -102,8 +102,12 @@ Route::prefix('/registration')->group(function(){
     Route::post('/update/biodata/{user_id}', 'UserController@updateBiodataPost')->name('updateBiodataPost');
     // End Biodata
 
+    // Family
     Route::get('/family', 'UserController@familyForm')->name('familyForm');
     Route::post('/family', 'UserController@familyPost')->name('familyPost');
+    Route::get('/udpate/family/{user_id}', 'UserController@updateFamilyForm')->name('updateFamilyForm');
+    Route::post('/udpate/family/{user_id}', 'UserController@updateFamilyPost')->name('updateFamilyPost');
+    // Family
 
     Route::get('/education', 'UserController@educationForm')->name('educationForm');
     Route::post('/education', 'UserController@educationPost')->name('educationPost');

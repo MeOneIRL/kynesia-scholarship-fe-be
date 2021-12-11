@@ -7,6 +7,8 @@ use App\Scholarship;
 use App\Registered;
 use App\Biodata;
 use App\SocialMedia;
+use App\Networth;
+use App\Family;
 use Auth;
 
 class UserController extends Controller
@@ -173,13 +175,147 @@ class UserController extends Controller
     // Family
     public function familyForm(){
         $scholarship = Scholarship::where('status' , '=' , 1)->first();
+        if(Networth::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
+            return redirect()->route('updateFamilyForm',Auth::user()->id);
+        }
         return view('pendaftaran.formDataKeluarga')->with([
             'scholarship' => $scholarship
         ]);
     }
 
     public function familyPost(Request $request){
-        dd($request->all());
+        // Father
+        Family::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'status' => $request->father,
+            'name' => $request->father_name,
+            'gender' => $request->father_sex,
+            'birthplace' => $request->father_birthplace,
+            'birthdate' => $request->father_birthdate,
+            'education' => $request->father_education,
+            'job' => $request->father_job,
+        ]);
+        // End Father
+
+        // Mother
+        Family::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'status' => $request->mother,
+            'name' => $request->mother_name,
+            'gender' => $request->mother_sex,
+            'birthplace' => $request->mother_birthplace,
+            'birthdate' => $request->mother_birthdate,
+            'education' => $request->mother_education,
+            'job' => $request->mother_job,
+        ]);
+        // End Mother
+
+        // Child
+        $count = count($request->child_name);
+        for($i = 0; $i < $count; $i++){
+            Family::create([
+                'user_id' => Auth::user()->id,
+                'scholarship_id' => $request->scholarship_id,
+                'status' => "Anak ".strval($i+1),   
+                'name' => $request->child_name[$i],
+                'gender' => $request->child_sex[$i],
+                'birthplace' => $request->child_birthplace[$i],
+                'birthdate' => $request->child_birthdate[$i],
+                'education' => $request->child_education[$i],
+                'job' => $request->child_job[$i],
+            ]);
+        }
+        // End Child
+
+        Networth::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'networth' => $request->earnings,
+        ]);
+
+        return redirect()->route('educationForm');
+    }
+
+    public function updateFamilyForm($user_id){
+        $scholarship = Scholarship::where('status' , '=' , 1)->first();
+        $families = Family::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        $networth = Networth::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first();
+        return view('pendaftaran.update.formDataKeluarga')->with([
+            'families' => $families,
+            'networth' => $networth
+        ]);
+    }
+
+    public function updateFamilyPost(Request $request, $user_id){
+        // Father
+        Family::find($request->father_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'status' => $request->father,
+            'name' => $request->father_name,
+            'gender' => $request->father_sex,
+            'birthplace' => $request->father_birthplace,
+            'birthdate' => $request->father_birthdate,
+            'education' => $request->father_education,
+            'job' => $request->father_job,
+        ]);
+        // End Father
+
+        // Mother
+        Family::find($request->mother_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'status' => $request->mother,
+            'name' => $request->mother_name,
+            'gender' => $request->mother_sex,
+            'birthplace' => $request->mother_birthplace,
+            'birthdate' => $request->mother_birthdate,
+            'education' => $request->mother_education,
+            'job' => $request->mother_job,
+        ]);
+        // End Mother
+
+        // Child
+        $count = count($request->child_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->child_id[$i] != NULL){
+                Family::find($request->child_id[$i])->update([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id,
+                    'status' => "Anak ".strval($i+1),   
+                    'name' => $request->child_name[$i],
+                    'gender' => $request->child_sex[$i],
+                    'birthplace' => $request->child_birthplace[$i],
+                    'birthdate' => $request->child_birthdate[$i],
+                    'education' => $request->child_education[$i],
+                    'job' => $request->child_job[$i],
+                ]);
+            }
+            elseif($request->child_name[$i] != NULL){
+                Family::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id,
+                    'status' => "Anak ".strval($i+1),   
+                    'name' => $request->child_name[$i],
+                    'gender' => $request->child_sex[$i],
+                    'birthplace' => $request->child_birthplace[$i],
+                    'birthdate' => $request->child_birthdate[$i],
+                    'education' => $request->child_education[$i],
+                    'job' => $request->child_job[$i],
+                ]);
+            }
+        }
+        // End Child
+
+        Networth::find($request->networth_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'networth' => $request->earnings,
+        ]);
+
+        return redirect()->route('educationForm');
     }
     // End Family
 
