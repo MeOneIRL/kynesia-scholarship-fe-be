@@ -301,17 +301,19 @@ class UserController extends Controller
                 ]);
             }
             else{
-                Family::create([
-                    'user_id' => Auth::user()->id,
-                    'scholarship_id' => $request->scholarship_id,
-                    'status' => "Anak ".strval($i+1),   
-                    'name' => $request->child_name[$i],
-                    'gender' => $request->child_sex[$i],
-                    'birthplace' => $request->child_birthplace[$i],
-                    'birthdate' => $request->child_birthdate[$i],
-                    'education' => $request->child_education[$i],
-                    'job' => $request->child_job[$i],
-                ]);
+                if(isset($request->child_name[$i])){
+                    Family::create([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'status' => "Anak ".strval($i+1),   
+                        'name' => $request->child_name[$i],
+                        'gender' => $request->child_sex[$i],
+                        'birthplace' => $request->child_birthplace[$i],
+                        'birthdate' => $request->child_birthdate[$i],
+                        'education' => $request->child_education[$i],
+                        'job' => $request->child_job[$i],
+                    ]);
+                }
             }
         }
         // End Child

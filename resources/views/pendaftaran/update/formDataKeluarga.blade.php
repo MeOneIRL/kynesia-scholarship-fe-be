@@ -171,7 +171,7 @@
                                             <label for="mother_birthplace"
                                                 class="block text-sm font-medium text-secondary-color">Tempat
                                                 Lahir</label>
-                                            <input type="text" name="mother_birthplace" id="mother_birthplace" value = "{{$family->birthdate}}"
+                                            <input type="text" name="mother_birthplace" id="mother_birthplace" value = "{{$family->birthplace}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
