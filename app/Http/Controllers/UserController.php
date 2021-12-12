@@ -9,6 +9,12 @@ use App\Biodata;
 use App\SocialMedia;
 use App\Networth;
 use App\Family;
+use App\Achievement;
+use App\Education;
+use App\Language;
+use App\Organization;
+use App\Talent;
+use App\Training;
 use Auth;
 
 class UserController extends Controller
@@ -249,6 +255,7 @@ class UserController extends Controller
     }
 
     public function updateFamilyPost(Request $request, $user_id){
+        // dd($request->all());
         // Father
         Family::find($request->father_id)->update([
             'user_id' => Auth::user()->id,
@@ -280,7 +287,7 @@ class UserController extends Controller
         // Child
         $count = count($request->child_name);
         for($i = 0; $i < $count; $i++){
-            if($request->child_id[$i] != NULL){
+            if(isset($request->child_id[$i])){
                 Family::find($request->child_id[$i])->update([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id,
@@ -293,7 +300,7 @@ class UserController extends Controller
                     'job' => $request->child_job[$i],
                 ]);
             }
-            elseif($request->child_name[$i] != NULL){
+            else{
                 Family::create([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id,
@@ -322,13 +329,333 @@ class UserController extends Controller
     // Education
     public function educationForm(){
         $scholarship = Scholarship::where('status' , '=' , 1)->first();
+        if(Education::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
+            return redirect()->route('updateEducationForm',Auth::user()->id);
+        }
         return view('pendaftaran.formDataPendidikan')->with([
             'scholarship' => $scholarship
         ]);
     }
 
     public function educationPost(Request $request){
-        dd($request->all());
+        // dd($request->all());
+
+        // SD
+        Education::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'grade' => $request->elementary,
+            'name' => $request->elementary_name,
+            'province' => $request->elementary_province,
+            'city' => $request->elementary_city,
+            'enter' => $request->elementary_enter,
+            'graduate' => $request->elementary_graduate,
+        ]);
+        // End SD
+
+        // SMP
+        Education::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'grade' => $request->junior,
+            'name' => $request->junior_name,
+            'province' => $request->junior_province,
+            'city' => $request->junior_city,
+            'enter' => $request->junior_enter,
+            'graduate' => $request->junior_graduate,
+        ]);
+        // End SMP
+
+        // SMA
+        Education::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'grade' => $request->high,
+            'name' => $request->high_name,
+            'province' => $request->high_province,
+            'city' => $request->high_city,
+            'enter' => $request->high_enter,
+            'graduate' => $request->high_graduate,
+        ]);
+        // End SMA
+
+        // Training
+        $count = count($request->training_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->training_name[$i] != NULL){
+                Training::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id,
+                    'name' => $request->training_name[$i],
+                    'period' => $request->training_period[$i],
+                    'year' => $request->training_year[$i],
+                    'organizer' => $request->training_year[$i],
+                    'certificate' => $request->training_certificate[$i],
+                ]);
+            }
+        }
+        // End Training
+
+        // Achievement
+        $count = count($request->achievement_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->achievement_name[$i] != NULL){
+                Achievement::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id[$i],
+                    'name' => $request->achievement_name[$i],
+                    'organizer' => $request->achievement_organizer[$i],
+                    'level' => $request->achievement_level[$i],
+                ]);
+            }
+        }
+        // End Achievement
+
+        // Language
+        $count = count($request->language);
+        for($i = 0; $i < $count; $i++){
+            if($request->language[$i] != NULL){
+                Language::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id,
+                    'language' => $request->language[$i],
+                    'talk' => $request->language_talk[$i],
+                    'write' => $request->language_write[$i],
+                    'read' => $request->language_read[$i],
+                    'listen' => $request->language_listen[$i],
+                ]);
+            }
+        }
+        // End Language
+
+        // Organization
+        $count = count($request->organization_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->organization_name[$i] != NULL){
+                Organization::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id,
+                    'name' => $request->organization_name[$i],
+                    'period' => $request->organization_period[$i],
+                    'position' => $request->organization_period[$i],
+                    'detail' => $request->organization_period[$i],
+                ]);
+            }
+        }
+        // End Organization
+
+        // Talent
+        $count = count($request->talent_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->talent_name[$i] != NULL){
+                Talent::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $request->scholarship_id,
+                    'name' => $request->talent_name
+                ]);
+            }
+        }
+        // End Talent
+
+        return redirect()->route('downloadableForm');
+    }
+
+    public function updateEducationForm($user_id){
+        $scholarship = Scholarship::where('status' , '=' , 1)->first();
+        $educations = Education::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        $achievements = Achievement::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        $talents = Talent::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        $organizations = Organization::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        $trainings = Training::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        $languages = Language::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->get();
+        return view('pendaftaran.update.formDataPendidikan')->with([
+            'educations' => $educations,
+            'achievements' => $achievements,
+            'talents' => $talents,
+            'organizations' => $organizations,
+            'trainings' => $trainings,
+            'languages' => $languages,
+        ]);
+    }
+
+    public function updateEducationPost(Request $request, $user_id){
+        // dd($request->language_id[2]);
+        // SD
+        Education::find($request->elementary_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'grade' => $request->elementary,
+            'name' => $request->elementary_name,
+            'province' => $request->elementary_province,
+            'city' => $request->elementary_city,
+            'enter' => $request->elementary_enter,
+            'graduate' => $request->elementary_graduate,
+        ]);
+        // End SD
+
+        // SMP
+        Education::find($request->junior_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'grade' => $request->junior,
+            'name' => $request->junior_name,
+            'province' => $request->junior_province,
+            'city' => $request->junior_city,
+            'enter' => $request->junior_enter,
+            'graduate' => $request->junior_graduate,
+        ]);
+        // End SMP
+
+        // SMA
+        Education::find($request->high_id)->update([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'grade' => $request->high,
+            'name' => $request->high_name,
+            'province' => $request->high_province,
+            'city' => $request->high_city,
+            'enter' => $request->high_enter,
+            'graduate' => $request->high_graduate,
+        ]);
+        // End SMA
+
+        // Training
+        $count = count($request->training_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->training_name[$i] != NULL){
+                if(isset($request->id[$i])){
+                    Training::find($request->training_id[$i])->update([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'name' => $request->training_name[$i],
+                        'period' => $request->training_period[$i],
+                        'year' => $request->training_year[$i],
+                        'organizer' => $request->training_year[$i],
+                        'certificate' => $request->training_certificate[$i],
+                    ]);
+                }
+                else{
+                    Training::create([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'name' => $request->training_name[$i],
+                        'period' => $request->training_period[$i],
+                        'year' => $request->training_year[$i],
+                        'organizer' => $request->training_year[$i],
+                        'certificate' => $request->training_certificate[$i],
+                    ]);
+                }
+            }
+        }
+        // End Training
+
+        // Achievement
+        $count = count($request->achievement_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->achievement_name[$i] != NULL){
+                if(isset($request->achievement_id[$i])){
+                    Achievement::find($request->achievement_id[$i])->update([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id[$i],
+                        'name' => $request->achievement_name[$i],
+                        'organizer' => $request->achievement_organizer[$i],
+                        'level' => $request->achievement_level[$i],
+                    ]);
+                }
+                else{
+                    Achievement::create([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id[$i],
+                        'name' => $request->achievement_name[$i],
+                        'organizer' => $request->achievement_organizer[$i],
+                        'level' => $request->achievement_level[$i],
+                    ]);
+                }
+            }
+        }
+        // End Achievement
+
+        // Language
+        $count = count($request->language);
+        for($i = 0; $i < $count; $i++){
+            if($request->language[$i] != NULL){
+                if(isset($request->language_id[$i])){
+                    Language::find($request->language_id[$i])->update([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'language' => $request->language[$i],
+                        'talk' => $request->language_talk[$i],
+                        'write' => $request->language_write[$i],
+                        'read' => $request->language_read[$i],
+                        'listen' => $request->language_listen[$i],
+                    ]);
+                }
+                else{
+                    Language::create([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'language' => $request->language[$i],
+                        'talk' => $request->language_talk[$i],
+                        'write' => $request->language_write[$i],
+                        'read' => $request->language_read[$i],
+                        'listen' => $request->language_listen[$i],
+                    ]);
+                }
+            }
+        }
+        // End Language
+
+        // Organization
+        $count = count($request->organization_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->organization_name[$i] != NULL){
+                if(isset($request->organization_id[$i])){
+                    Organization::find($organization_id[$i])->update([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'name' => $request->organization_name[$i],
+                        'period' => $request->organization_period[$i],
+                        'position' => $request->organization_period[$i],
+                        'detail' => $request->organization_period[$i],
+                    ]);
+                }
+                else{
+                    Organization::create([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'name' => $request->organization_name[$i],
+                        'period' => $request->organization_period[$i],
+                        'position' => $request->organization_period[$i],
+                        'detail' => $request->organization_period[$i],
+                    ]);
+                }
+            }
+        }
+        // End Organization
+
+        // Talent
+        $count = count($request->talent_name);
+        for($i = 0; $i < $count; $i++){
+            if($request->talent_name[$i] != NULL){
+                if(isset($request->talent_id[$i])){
+                    Talent::find($request->talent_id[$i])->update([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'name' => $request->talent_name
+                    ]);
+                }
+                else{
+                    Talent::create([
+                        'user_id' => Auth::user()->id,
+                        'scholarship_id' => $request->scholarship_id,
+                        'name' => $request->talent_name
+                    ]);
+                }
+            }
+        }
+        // End Talent
+        
+        return redirect()->route('downloadableForm');
     }
     // End Education
 

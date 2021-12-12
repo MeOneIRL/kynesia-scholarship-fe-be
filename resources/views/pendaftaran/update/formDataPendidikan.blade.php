@@ -29,9 +29,9 @@
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
-                <form action="{{route('educationPost')}}" method= "POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
+                <form action="{{route('updateEducationPost',Auth::user()->id)}}" method= "POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                 @csrf
-                <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
+                <input type="hidden" name="scholarship_id" value="{{$educations[0]->scholarship_id}}">
                     <div class="overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
@@ -44,7 +44,7 @@
                                 </div>
 
                                 {{-- Riwayat Pendidikan --}}
-
+                                @foreach($educations as $education)
                                 <div class="col-span-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="pb-2.5 col-span-6 border-b border-gray-300">
@@ -53,16 +53,18 @@
                                         </div>
 
                                         {{-- SD --}}
+                                        @if($education->grade == "SD")
                                         <div class="col-span-6">
                                             <p class="text-secondary-color text-sm font-semibold">SD (Sekolah Dasar)</p>
                                             <p class="text-gray-300 text-xs">Isi data sekolah dasar anda</p>
                                         </div>
-                                        <input type="hidden" name="elementary" value="SD">
+                                        <input type="hidden" name="elementary" value= "{{$education->grade}}">
+                                        <input type="hidden" name="elementary_id" value= "{{$education->id}}">
                                         <div class="col-span-6">
                                             <label for="elementary_name"
                                                 class="block text-sm font-medium text-secondary-color">Nama
                                                 Sekolah</label>
-                                            <input type="text" name="elementary_name" id="elementary_name"
+                                            <input type="text" name="elementary_name" id="elementary_name" value= "{{$education->name}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -72,77 +74,77 @@
                                             <select id="elementary_province" name="elementary_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="elementary_province" value="Aceh">Aceh</option>
-                                                <option name="elementary_province" value="Bali">Bali</option>
-                                                <option name="elementary_province" value="Bangka Belitung">Bangka
+                                                <option name="elementary_province" value="Aceh" @if($education->province == "Aceh") selected = "selected" @endif>Aceh</option>
+                                                <option name="elementary_province" value="Bali" @if($education->province == "Bali") selected = "selected" @endif>Bali</option>
+                                                <option name="elementary_province" value="Bangka Belitung" @if($education->province == "Bangka Belitung") selected = "selected" @endif>Bangka
                                                     Belitung
                                                 </option>
-                                                <option name="elementary_province" value="Banten">Banten</option>
-                                                <option name="elementary_province" value="Bengkulu">Bengkulu</option>
-                                                <option name="elementary_province" value="DI Yogyakarta">DI Yogyakarta
+                                                <option name="elementary_province" value="Banten" @if($education->province == "Banten") selected = "selected" @endif>Banten</option>
+                                                <option name="elementary_province" value="Bengkulu" @if($education->province == "Bengkulu") selected = "selected" @endif>Bengkulu</option>
+                                                <option name="elementary_province" value="DI Yogyakarta" @if($education->province == "DI Yogyakarta") selected = "selected" @endif>DI Yogyakarta
                                                 </option>
-                                                <option name="elementary_province" value="DKI Jakarta">DKI Jakarta
+                                                <option name="elementary_province" value="DKI Jakarta" @if($education->province == "DKI Jakarta") selected = "selected" @endif>DKI Jakarta
                                                 </option>
-                                                <option name="elementary_province" value="Gorontalo">Gorontalo</option>
-                                                <option name="elementary_province" value="Jambi">Jambi</option>
-                                                <option name="elementary_province" value="Jawa Barat">Jawa Barat
+                                                <option name="elementary_province" value="Gorontalo" @if($education->province == "Gorontalo") selected = "selected" @endif>Gorontalo</option>
+                                                <option name="elementary_province" value="Jambi" @if($education->province == "Jambi") selected = "selected" @endif>Jambi</option>
+                                                <option name="elementary_province" value="Jawa Barat" @if($education->province == "Jawa Barat") selected = "selected" @endif>Jawa Barat
                                                 </option>
-                                                <option name="elementary_province" value="Jawa Tengah">Jawa Tengah
+                                                <option name="elementary_province" value="Jawa Tengah" @if($education->province == "Jawa Tengah") selected = "selected" @endif>Jawa Tengah
                                                 </option>
-                                                <option name="elementary_province" value="Jawa Timur">Jawa Timur
+                                                <option name="elementary_province" value="Jawa Timur" @if($education->province == "Jawa Timur") selected = "selected" @endif>Jawa Timur
                                                 </option>
-                                                <option name="elementary_province" value="Kalimantan Barat">Kalimantan
+                                                <option name="elementary_province" value="Kalimantan Barat" @if($education->province == "Kalimantan Barat") selected = "selected" @endif>Kalimantan
                                                     Barat
                                                 </option>
-                                                <option name="elementary_province" value="Kalimantan Selatan">Kalimantan
+                                                <option name="elementary_province" value="Kalimantan Selatan" @if($education->province == "Kalimantan Selatan") selected = "selected" @endif>Kalimantan
                                                     Selatan
                                                 </option>
-                                                <option name="elementary_province" value="Kalimantan Tengah">Kalimantan
+                                                <option name="elementary_province" value="Kalimantan Tengah" @if($education->province == "Kalimantan Tengah") selected = "selected" @endif>Kalimantan
                                                     Tengah
                                                 </option>
-                                                <option name="elementary_province" value="Kalimantan Timur">Kalimantan
+                                                <option name="elementary_province" value="Kalimantan Timur" @if($education->province == "Kalimantan Timur") selected = "selected" @endif>Kalimantan
                                                     Timur
                                                 </option>
-                                                <option name="elementary_province" value="Kalimantan Utara">Kalimantan
+                                                <option name="elementary_province" value="Kalimantan Utara" @if($education->province == "Kalimantan Utara") selected = "selected" @endif>Kalimantan
                                                     Utara
                                                 </option>
-                                                <option name="elementary_province" value="Kepulauan Riau">Kepulauan Riau
+                                                <option name="elementary_province" value="Kepulauan Riau" @if($education->province == "Kepulauan Riau") selected = "selected" @endif>Kepulauan Riau
                                                 </option>
-                                                <option name="elementary_province" value="Lampung">Lampung</option>
-                                                <option name="elementary_province" value="Maluku Utara">Maluku Utara
+                                                <option name="elementary_province" value="Lampung" @if($education->province == "Lampung") selected = "selected" @endif>Lampung</option>
+                                                <option name="elementary_province" value="Maluku Utara" @if($education->province == "Maluku Utara") selected = "selected" @endif>Maluku Utara
                                                 </option>
-                                                <option name="elementary_province" value="Maluku">Maluku</option>
-                                                <option name="elementary_province" value="Nusa Tenggara Barat">Nusa
+                                                <option name="elementary_province" value="Maluku" @if($education->province == "Maluku") selected = "selected" @endif>Maluku</option>
+                                                <option name="elementary_province" value="Nusa Tenggara Barat" @if($education->province == "Nusa Tenggara Barat") selected = "selected" @endif>Nusa
                                                     Tenggara
                                                     Barat
                                                 </option>
-                                                <option name="elementary_province" value="Nusa Tenggara Timur">Nusa
+                                                <option name="elementary_province" value="Nusa Tenggara Timur" @if($education->province == "Nusa Tenggara Timur") selected = "selected" @endif>Nusa
                                                     Tenggara
                                                     Timur
                                                 </option>
-                                                <option name="elementary_province" value="Papua Barat">Papua Barat
+                                                <option name="elementary_province" value="Papua Barat" @if($education->province == "Papua Barat") selected = "selected" @endif>Papua Barat
                                                 </option>
-                                                <option name="elementary_province" value="Papua">Papua</option>
-                                                <option name="elementary_province" value="Riau">Riau</option>
-                                                <option name="elementary_province" value="Sulawesi Barat">Sulawesi Barat
+                                                <option name="elementary_province" value="Papua" @if($education->province == "Papua") selected = "selected" @endif>Papua</option>
+                                                <option name="elementary_province" value="Riau" @if($education->province == "Riau") selected = "selected" @endif>Riau</option>
+                                                <option name="elementary_province" value="Sulawesi Barat" @if($education->province == "Sulawesi Barat") selected = "selected" @endif>Sulawesi Barat
                                                 </option>
-                                                <option name="elementary_province" value="Sulawesi Selatan">Sulawesi
+                                                <option name="elementary_province" value="Sulawesi Selatan" @if($education->province == "Sulawesi Selatan") selected = "selected" @endif>Sulawesi
                                                     Selatan
                                                 </option>
-                                                <option name="elementary_province" value="Sulawesi Tengah">Sulawesi
+                                                <option name="elementary_province" value="Sulawesi Tengah" @if($education->province == "Sulawesi Tengah") selected = "selected" @endif>Sulawesi
                                                     Tengah
                                                 </option>
-                                                <option name="elementary_province" value="Sulawesi Tenggara">Sulawesi
+                                                <option name="elementary_province" value="Sulawesi Tenggara" @if($education->province == "Sulawesi Tenggara") selected = "selected" @endif>Sulawesi
                                                     Tenggara
                                                 </option>
-                                                <option name="elementary_province" value="Sulawesi Utara">Sulawesi Utara
+                                                <option name="elementary_province" value="Sulawesi Utara" @if($education->province == "Sulawesi Utara") selected = "selected" @endif>Sulawesi Utara
                                                 </option>
-                                                <option name="elementary_province" value="Sumatra Barat">Sumatra Barat
+                                                <option name="elementary_province" value="Sumatra Barat" @if($education->province == "Sumatra Barat") selected = "selected" @endif>Sumatra Barat
                                                 </option>
-                                                <option name="elementary_province" value="Sumatra Selatan">Sumatra
+                                                <option name="elementary_province" value="Sumatra Selatan" @if($education->province == "Sumatra Selatan") selected = "selected" @endif>Sumatra
                                                     Selatan
                                                 </option>
-                                                <option name="elementary_province" value="Sumatra Utara">Sumatra Utara
+                                                <option name="elementary_province" value="Sumatra Utara" @if($education->province == "Sumatra Utara") selected = "selected" @endif>Sumatra Utara
                                                 </option>
                                             </select>
                                         </div>
@@ -150,7 +152,7 @@
                                             <label for="elementary_city"
                                                 class="block text-sm font-medium text-secondary-color">Kota/
                                                 Kabupaten</label>
-                                            <input type="text" name="elementary_city" id="elementary_city"
+                                            <input type="text" name="elementary_city" id="elementary_city" value= "{{$education->city}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -158,7 +160,7 @@
                                             <label for="elementary_enter"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Masuk</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="elementary_enter"
+                                            <input type="number" min="1990" max="2021" step="1" name="elementary_enter" value= "{{$education->enter}}"
                                                 id="elementary_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
@@ -168,23 +170,26 @@
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Keluar</label>
                                             <input type="number" min="1990" max="2021" step="1"
-                                                name="elementary_graduate" id="elementary_graduate"
+                                                name="elementary_graduate" id="elementary_graduate" value= "{{$education->graduate}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
+                                        @endif
 
                                         {{-- SMP --}}
+                                        @if($education->grade == "SMP")
                                         <div class="col-span-6 mt-2.5">
                                             <p class="text-secondary-color text-sm font-semibold">SMP (Sekolah Menengah
                                                 Pertama)</p>
                                             <p class="text-gray-300 text-xs">Isi data sekolah menengah pertama anda</p>
                                         </div>
-                                        <input type="hidden" name="junior" value="SMP">
+                                        <input type="hidden" name="junior" value= "{{$education->grade}}">
+                                        <input type="hidden" name="junior_id" value= "{{$education->id}}">
                                         <div class="col-span-6">
                                             <label for="junior_name"
                                                 class="block text-sm font-medium text-secondary-color">Nama
                                                 Sekolah</label>
-                                            <input type="text" name="junior_name" id="junior_name"
+                                            <input type="text" name="junior_name" id="junior_name" value= "{{$education->name}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -194,77 +199,77 @@
                                             <select id="junior_province" name="junior_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="junior_province" value="Aceh">Aceh</option>
-                                                <option name="junior_province" value="Bali">Bali</option>
-                                                <option name="junior_province" value="Bangka Belitung">Bangka
+                                                <option name="junior_province" value="Aceh" @if($education->province == "Aceh") selected = "selected" @endif>Aceh</option>
+                                                <option name="junior_province" value="Bali" @if($education->province == "Bali") selected = "selected" @endif>Bali</option>
+                                                <option name="junior_province" value="Bangka Belitung" @if($education->province == "Bangka Belitung") selected = "selected" @endif>Bangka
                                                     Belitung
                                                 </option>
-                                                <option name="junior_province" value="Banten">Banten</option>
-                                                <option name="junior_province" value="Bengkulu">Bengkulu</option>
-                                                <option name="junior_province" value="DI Yogyakarta">DI Yogyakarta
+                                                <option name="junior_province" value="Banten" @if($education->province == "Banten") selected = "selected" @endif>Banten</option>
+                                                <option name="junior_province" value="Bengkulu" @if($education->province == "Bengkulu") selected = "selected" @endif>Bengkulu</option>
+                                                <option name="junior_province" value="DI Yogyakarta" @if($education->province == "DI Yogyakarta") selected = "selected" @endif>DI Yogyakarta
                                                 </option>
-                                                <option name="junior_province" value="DKI Jakarta">DKI Jakarta
+                                                <option name="junior_province" value="DKI Jakarta" @if($education->province == "DKI Jakarta") selected = "selected" @endif>DKI Jakarta
                                                 </option>
-                                                <option name="junior_province" value="Gorontalo">Gorontalo</option>
-                                                <option name="junior_province" value="Jambi">Jambi</option>
-                                                <option name="junior_province" value="Jawa Barat">Jawa Barat
+                                                <option name="junior_province" value="Gorontalo" @if($education->province == "Gorontalo") selected = "selected" @endif>Gorontalo</option>
+                                                <option name="junior_province" value="Jambi" @if($education->province == "Jambi") selected = "selected" @endif>Jambi</option>
+                                                <option name="junior_province" value="Jawa Barat" @if($education->province == "Jawa Barat") selected = "selected" @endif>Jawa Barat
                                                 </option>
-                                                <option name="junior_province" value="Jawa Tengah">Jawa Tengah
+                                                <option name="junior_province" value="Jawa Tengah" @if($education->province == "Jawa Tengah") selected = "selected" @endif>Jawa Tengah
                                                 </option>
-                                                <option name="junior_province" value="Jawa Timur">Jawa Timur
+                                                <option name="junior_province" value="Jawa Timur" @if($education->province == "Jawa Timur") selected = "selected" @endif>Jawa Timur
                                                 </option>
-                                                <option name="junior_province" value="Kalimantan Barat">Kalimantan
+                                                <option name="junior_province" value="Kalimantan Barat" @if($education->province == "Kalimantan Barat") selected = "selected" @endif>Kalimantan
                                                     Barat
                                                 </option>
-                                                <option name="junior_province" value="Kalimantan Selatan">Kalimantan
+                                                <option name="junior_province" value="Kalimantan Selatan" @if($education->province == "Kalimantan Selatan") selected = "selected" @endif>Kalimantan
                                                     Selatan
                                                 </option>
-                                                <option name="junior_province" value="Kalimantan Tengah">Kalimantan
+                                                <option name="junior_province" value="Kalimantan Tengah" @if($education->province == "Kalimantan Tengah") selected = "selected" @endif>Kalimantan
                                                     Tengah
                                                 </option>
-                                                <option name="junior_province" value="Kalimantan Timur">Kalimantan
+                                                <option name="junior_province" value="Kalimantan Timur" @if($education->province == "Kalimantan Timur") selected = "selected" @endif>Kalimantan
                                                     Timur
                                                 </option>
-                                                <option name="junior_province" value="Kalimantan Utara">Kalimantan
+                                                <option name="junior_province" value="Kalimantan Utara" @if($education->province == "Kalimantan Utara") selected = "selected" @endif>Kalimantan
                                                     Utara
                                                 </option>
-                                                <option name="junior_province" value="Kepulauan Riau">Kepulauan Riau
+                                                <option name="junior_province" value="Kepulauan Riau" @if($education->province == "Kepulauan Riau") selected = "selected" @endif>Kepulauan Riau
                                                 </option>
-                                                <option name="junior_province" value="Lampung">Lampung</option>
-                                                <option name="junior_province" value="Maluku Utara">Maluku Utara
+                                                <option name="junior_province" value="Lampung" @if($education->province == "Lampung") selected = "selected" @endif>Lampung</option>
+                                                <option name="junior_province" value="Maluku Utara" @if($education->province == "Maluku Utara") selected = "selected" @endif>Maluku Utara
                                                 </option>
-                                                <option name="junior_province" value="Maluku">Maluku</option>
-                                                <option name="junior_province" value="Nusa Tenggara Barat">Nusa
+                                                <option name="junior_province" value="Maluku" @if($education->province == "Maluku") selected = "selected" @endif>Maluku</option>
+                                                <option name="junior_province" value="Nusa Tenggara Barat" @if($education->province == "Nusa Tenggara Barat") selected = "selected" @endif>Nusa
                                                     Tenggara
                                                     Barat
                                                 </option>
-                                                <option name="junior_province" value="Nusa Tenggara Timur">Nusa
+                                                <option name="junior_province" value="Nusa Tenggara Timur" @if($education->province == "Nusa Tenggara Timur") selected = "selected" @endif>Nusa
                                                     Tenggara
                                                     Timur
                                                 </option>
-                                                <option name="junior_province" value="Papua Barat">Papua Barat
+                                                <option name="junior_province" value="Papua Barat" @if($education->province == "Papua Barat") selected = "selected" @endif>Papua Barat
                                                 </option>
-                                                <option name="junior_province" value="Papua">Papua</option>
-                                                <option name="junior_province" value="Riau">Riau</option>
-                                                <option name="junior_province" value="Sulawesi Barat">Sulawesi Barat
+                                                <option name="junior_province" value="Papua" @if($education->province == "Papua") selected = "selected" @endif>Papua</option>
+                                                <option name="junior_province" value="Riau" @if($education->province == "Riau") selected = "selected" @endif>Riau</option>
+                                                <option name="junior_province" value="Sulawesi Barat" @if($education->province == "Sulawesi Barat") selected = "selected" @endif>Sulawesi Barat
                                                 </option>
-                                                <option name="junior_province" value="Sulawesi Selatan">Sulawesi
+                                                <option name="junior_province" value="Sulawesi Selatan" @if($education->province == "Sulawesi Selatan") selected = "selected" @endif>Sulawesi
                                                     Selatan
                                                 </option>
-                                                <option name="junior_province" value="Sulawesi Tengah">Sulawesi
+                                                <option name="junior_province" value="Sulawesi Tengah" @if($education->province == "Sulawesi Tengah") selected = "selected" @endif>Sulawesi
                                                     Tengah
                                                 </option>
-                                                <option name="junior_province" value="Sulawesi Tenggara">Sulawesi
+                                                <option name="junior_province" value="Sulawesi Tenggara" @if($education->province == "Sulawesi Tenggara") selected = "selected" @endif>Sulawesi
                                                     Tenggara
                                                 </option>
-                                                <option name="junior_province" value="Sulawesi Utara">Sulawesi Utara
+                                                <option name="junior_province" value="Sulawesi Utara" @if($education->province == "Sulawesi Utara") selected = "selected" @endif>Sulawesi Utara
                                                 </option>
-                                                <option name="junior_province" value="Sumatra Barat">Sumatra Barat
+                                                <option name="junior_province" value="Sumatra Barat" @if($education->province == "Sumatra Barat") selected = "selected" @endif>Sumatra Barat
                                                 </option>
-                                                <option name="junior_province" value="Sumatra Selatan">Sumatra
+                                                <option name="junior_province" value="Sumatra Selatan" @if($education->province == "Sumatra Selatan") selected = "selected" @endif>Sumatra
                                                     Selatan
                                                 </option>
-                                                <option name="junior_province" value="Sumatra Utara">Sumatra Utara
+                                                <option name="junior_province" value="Sumatra Utara" @if($education->province == "Sumatra Utara") selected = "selected" @endif>Sumatra Utara
                                                 </option>
                                             </select>
                                         </div>
@@ -272,7 +277,7 @@
                                             <label for="junior_city"
                                                 class="block text-sm font-medium text-secondary-color">Kota/
                                                 Kabupaten</label>
-                                            <input type="text" name="junior_city" id="junior_city"
+                                            <input type="text" name="junior_city" id="junior_city" value= "{{$education->city}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -280,7 +285,7 @@
                                             <label for="junior_enter"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Masuk</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="junior_enter"
+                                            <input type="number" min="1990" max="2021" step="1" name="junior_enter" value= "{{$education->enter}}"
                                                 id="junior_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
@@ -289,24 +294,27 @@
                                             <label for="junior_graduate"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Keluar</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="junior_graduate"
+                                            <input type="number" min="1990" max="2021" step="1" name="junior_graduate" value= "{{$education->graduate}}"
                                                 id="junior_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
+                                        @endif
 
                                         {{-- SMA --}}
+                                        @if($education->grade == "SMA")
                                         <div class="col-span-6 mt-2.5">
                                             <p class="text-secondary-color text-sm font-semibold">SMA (Sekolah Menengah
                                                 Atas)</p>
                                             <p class="text-gray-300 text-xs">Isi data sekolah menengah atas anda</p>
                                         </div>
-                                        <input type="hidden" name="high" value="SMA">
+                                        <input type="hidden" name="high" value= "{{$education->grade}}">
+                                        <input type="hidden" name="high_id" value= "{{$education->id}}">
                                         <div class="col-span-6">
                                             <label for="high_name"
                                                 class="block text-sm font-medium text-secondary-color">Nama
                                                 Sekolah</label>
-                                            <input type="text" name="high_name" id="high_name"
+                                            <input type="text" name="high_name" id="high_name" value= "{{$education->name}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -316,77 +324,77 @@
                                             <select id="high_province" name="high_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="high_province" value="Aceh">Aceh</option>
-                                                <option name="high_province" value="Bali">Bali</option>
-                                                <option name="high_province" value="Bangka Belitung">Bangka
+                                                <option name="high_province" value="Aceh" @if($education->province == "Aceh") selected = "selected" @endif>Aceh</option>
+                                                <option name="high_province" value="Bali" @if($education->province == "Bali") selected = "selected" @endif>Bali</option>
+                                                <option name="high_province" value="Bangka Belitung" @if($education->province == "Bangka Belitung") selected = "selected" @endif>Bangka
                                                     Belitung
                                                 </option>
-                                                <option name="high_province" value="Banten">Banten</option>
-                                                <option name="high_province" value="Bengkulu">Bengkulu</option>
-                                                <option name="high_province" value="DI Yogyakarta">DI Yogyakarta
+                                                <option name="high_province" value="Banten" @if($education->province == "Banten") selected = "selected" @endif>Banten</option>
+                                                <option name="high_province" value="Bengkulu" @if($education->province == "Bengkulu") selected = "selected" @endif>Bengkulu</option>
+                                                <option name="high_province" value="DI Yogyakarta" @if($education->province == "DI Yogyakarta") selected = "selected" @endif>DI Yogyakarta
                                                 </option>
-                                                <option name="high_province" value="DKI Jakarta">DKI Jakarta
+                                                <option name="high_province" value="DKI Jakarta" @if($education->province == "DKI Jakarta") selected = "selected" @endif>DKI Jakarta
                                                 </option>
-                                                <option name="high_province" value="Gorontalo">Gorontalo</option>
-                                                <option name="high_province" value="Jambi">Jambi</option>
-                                                <option name="high_province" value="Jawa Barat">Jawa Barat
+                                                <option name="high_province" value="Gorontalo" @if($education->province == "Gorontalo") selected = "selected" @endif>Gorontalo</option>
+                                                <option name="high_province" value="Jambi" @if($education->province == "Jambi") selected = "selected" @endif>Jambi</option>
+                                                <option name="high_province" value="Jawa Barat" @if($education->province == "Jawa Barat") selected = "selected" @endif>Jawa Barat
                                                 </option>
-                                                <option name="high_province" value="Jawa Tengah">Jawa Tengah
+                                                <option name="high_province" value="Jawa Tengah" @if($education->province == "Jawa Tengah") selected = "selected" @endif>Jawa Tengah
                                                 </option>
-                                                <option name="high_province" value="Jawa Timur">Jawa Timur
+                                                <option name="high_province" value="Jawa Timur" @if($education->province == "Jawa Timur") selected = "selected" @endif>Jawa Timur
                                                 </option>
-                                                <option name="high_province" value="Kalimantan Barat">Kalimantan
+                                                <option name="high_province" value="Kalimantan Barat" @if($education->province == "Kalimantan Barat") selected = "selected" @endif>Kalimantan
                                                     Barat
                                                 </option>
-                                                <option name="high_province" value="Kalimantan Selatan">Kalimantan
+                                                <option name="high_province" value="Kalimantan Selatan" @if($education->province == "Kalimantan Selatan") selected = "selected" @endif>Kalimantan
                                                     Selatan
                                                 </option>
-                                                <option name="high_province" value="Kalimantan Tengah">Kalimantan
+                                                <option name="high_province" value="Kalimantan Tengah" @if($education->province == "Kalimantan Tengah") selected = "selected" @endif>Kalimantan
                                                     Tengah
                                                 </option>
-                                                <option name="high_province" value="Kalimantan Timur">Kalimantan
+                                                <option name="high_province" value="Kalimantan Timur" @if($education->province == "Kalimantan Timur") selected = "selected" @endif>Kalimantan
                                                     Timur
                                                 </option>
-                                                <option name="high_province" value="Kalimantan Utara">Kalimantan
+                                                <option name="high_province" value="Kalimantan Utara" @if($education->province == "Kalimantan Utara") selected = "selected" @endif>Kalimantan
                                                     Utara
                                                 </option>
-                                                <option name="high_province" value="Kepulauan Riau">Kepulauan Riau
+                                                <option name="high_province" value="Kepulauan Riau" @if($education->province == "Kepulauan Riau") selected = "selected" @endif>Kepulauan Riau
                                                 </option>
-                                                <option name="high_province" value="Lampung">Lampung</option>
-                                                <option name="high_province" value="Maluku Utara">Maluku Utara
+                                                <option name="high_province" value="Lampung" @if($education->province == "Lampung") selected = "selected" @endif>Lampung</option>
+                                                <option name="high_province" value="Maluku Utara" @if($education->province == "Maluku Utara") selected = "selected" @endif>Maluku Utara
                                                 </option>
-                                                <option name="high_province" value="Maluku">Maluku</option>
-                                                <option name="high_province" value="Nusa Tenggara Barat">Nusa
+                                                <option name="high_province" value="Maluku" @if($education->province == "Maluku") selected = "selected" @endif>Maluku</option>
+                                                <option name="high_province" value="Nusa Tenggara Barat" @if($education->province == "Nusa Tenggara Barat") selected = "selected" @endif>Nusa
                                                     Tenggara
                                                     Barat
                                                 </option>
-                                                <option name="high_province" value="Nusa Tenggara Timur">Nusa
+                                                <option name="high_province" value="Nusa Tenggara Timur" @if($education->province == "Nusa Tenggara Timur") selected = "selected" @endif>Nusa
                                                     Tenggara
                                                     Timur
                                                 </option>
-                                                <option name="high_province" value="Papua Barat">Papua Barat
+                                                <option name="high_province" value="Papua Barat" @if($education->province == "Papua Barat") selected = "selected" @endif>Papua Barat
                                                 </option>
-                                                <option name="high_province" value="Papua">Papua</option>
-                                                <option name="high_province" value="Riau">Riau</option>
-                                                <option name="high_province" value="Sulawesi Barat">Sulawesi Barat
+                                                <option name="high_province" value="Papua" @if($education->province == "Papua") selected = "selected" @endif>Papua</option>
+                                                <option name="high_province" value="Riau" @if($education->province == "Riau") selected = "selected" @endif>Riau</option>
+                                                <option name="high_province" value="Sulawesi Barat" @if($education->province == "Sulawesi Barat") selected = "selected" @endif>Sulawesi Barat
                                                 </option>
-                                                <option name="high_province" value="Sulawesi Selatan">Sulawesi
+                                                <option name="high_province" value="Sulawesi Selatan" @if($education->province == "Sulawesi Selatan") selected = "selected" @endif>Sulawesi
                                                     Selatan
                                                 </option>
-                                                <option name="high_province" value="Sulawesi Tengah">Sulawesi
+                                                <option name="high_province" value="Sulawesi Tengah" @if($education->province == "Sulawesi Tengah") selected = "selected" @endif>Sulawesi
                                                     Tengah
                                                 </option>
-                                                <option name="high_province" value="Sulawesi Tenggara">Sulawesi
+                                                <option name="high_province" value="Sulawesi Tenggara" @if($education->province == "Sulawesi Tenggara") selected = "selected" @endif>Sulawesi
                                                     Tenggara
                                                 </option>
-                                                <option name="high_province" value="Sulawesi Utara">Sulawesi Utara
+                                                <option name="high_province" value="Sulawesi Utara" @if($education->province == "Sulawesi Utara") selected = "selected" @endif>Sulawesi Utara
                                                 </option>
-                                                <option name="high_province" value="Sumatra Barat">Sumatra Barat
+                                                <option name="high_province" value="Sumatra Barat" @if($education->province == "Sumatra Barat") selected = "selected" @endif>Sumatra Barat
                                                 </option>
-                                                <option name="high_province" value="Sumatra Selatan">Sumatra
+                                                <option name="high_province" value="Sumatra Selatan" @if($education->province == "Sumatra Selatan") selected = "selected" @endif>Sumatra
                                                     Selatan
                                                 </option>
-                                                <option name="high_province" value="Sumatra Utara">Sumatra Utara
+                                                <option name="high_province" value="Sumatra Utara" @if($education->province == "Sumatra Utara") selected = "selected" @endif>Sumatra Utara
                                                 </option>
                                             </select>
                                         </div>
@@ -394,7 +402,7 @@
                                             <label for="high_city"
                                                 class="block text-sm font-medium text-secondary-color">Kota/
                                                 Kabupaten</label>
-                                            <input type="text" name="high_city" id="high_city"
+                                            <input type="text" name="high_city" id="high_city" value= "{{$education->city}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -402,7 +410,7 @@
                                             <label for="high_enter"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Masuk</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="high_enter"
+                                            <input type="number" min="1990" max="2021" step="1" name="high_enter" value= "{{$education->enter}}"
                                                 id="high_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
@@ -411,21 +419,76 @@
                                             <label for="high_graduate"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Keluar</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="high_graduate"
+                                            <input type="number" min="1990" max="2021" step="1" name="high_graduate" value= "{{$education->graduate}}"
                                                 id="high_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
+                                @endforeach
 
                                 {{-- Pendidikan Non-Formal --}}
-
                                 <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
                                     <p class="text-primary-color font-bold">Pendidikan Non-Formal</p>
                                     <p class="text-seconndary-color text-sm">Isi informasi terkait pendidikan non formal
                                         anda (opsional)</p>
                                 </div>
+                                @foreach($trainings as $training)
+                                <div class="col-span-6">
+                                    <div class="grid grid-cols-6 gap-6">
+                                        <div class="col-span-6">
+                                            <p class="text-secondary-color text-sm font-semibold">Pendidikan Non-Formal</p>
+                                            <p class="text-gray-300 text-xs">Isi informasi pendidikan non-formal anda</p>
+                                        </div>
+                                        <div class="col-span-6">
+                                            <label for="training_name"
+                                                class="block text-sm font-medium text-secondary-color">Nama
+                                                Pendidikan Non-Formal</label>
+                                            <input type="hidden" name="training_id[]" value = "{{$training->id}}">
+                                            <input type="text" name="training_name[]" value = "{{$training->name}}"
+                                                id="training_name"
+                                                class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="training_period"
+                                                class="block text-sm font-medium text-secondary-color">Lama
+                                                Pendidikan</label>
+                                            <input type="text"
+                                                name="training_period[]" id="training_period" value = "{{$training->period}}"
+                                                class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="training_year"
+                                                class="block text-sm font-medium text-secondary-color">Tahun
+                                                Diselenggarakan</label>
+                                            <input type="number"
+                                                name="training_year[]" id="training_year" value = "{{$training->year}}"
+                                                class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="training_organizer"
+                                                class="block text-sm font-medium text-secondary-color">Penyelenggara</label>
+                                            <input type="text"
+                                                name="training_organizer[]" id="training_organizer" value = "{{$training->organizer}}"
+                                                class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="training_certificate"
+                                                class="block text-sm font-medium text-secondary-color">Sertifikat</label>
+                                            <select id="training_certificate"
+                                                name="training_certificate[]"
+                                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                <option name="training_certificate[]" value="Ya" @if($training->certificate == "Ya") selected = "selected"@endif>
+                                                    Ya</option>
+                                                <option name="training_certificate[]" value="Tidak" @if($training->certificate == "Tidak") selected = "selected"@endif>
+                                                    Tidak</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                                 <template x-for="(field, index) in trainingForm" :key="index">
                                     <div class="col-span-6">
                                         <div class="grid grid-cols-6 gap-6">
@@ -506,6 +569,47 @@
                                     <p class="text-secondary-color text-sm">Isi informasi terkait prestasi akademik anda
                                         (opsional)</p>
                                 </div>
+                                @foreach($achievements as $achievement)
+                                <div class="col-span-6">
+                                    <div class="grid grid-cols-6 gap-6">
+                                        <div class="col-span-6">
+                                            <p class="text-secondary-color text-sm font-semibold">Prestasi Akademik</p>
+                                            <p class="text-gray-300 text-xs">Isi informasi prestasi akademik anda</p>
+                                        </div>
+                                        <div class="col-span-6">
+                                            <label for="achievement_name"
+                                                class="block text-sm font-medium text-secondary-color">Nama
+                                                Prestasi Akademik</label>
+                                            <input type="hidden" name="achievement_id[]" value = "{{$achievement->id}}">
+                                            <input type="text"
+                                                name="achievement_name[]" id="achievement_name" value = "{{$achievement->name}}"
+                                                class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="achievement_organizer"
+                                                class="block text-sm font-medium text-secondary-color">Istitusi
+                                                Penyelenggara</label>
+                                            <input type="text"
+                                                name="achievement_organizer[]" id="achievement_organizer" value = "{{$achievement->organizer}}"
+                                                class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="achievement_level"
+                                                class="block text-sm font-medium text-secondary-color">Tingkat</label>
+                                            <select id="achievement_level"
+                                                name="achievement_level[]"
+                                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                <option name="achievement_level[]" value="Regional" @if($achievement->level == "Regional") selected = "selected" @endif>
+                                                    Regional</option>
+                                                <option name="achievement_level[]" value="Nasional" @if($achievement->level == "Nasional") selected = "selected" @endif>
+                                                    Nasional</option>
+                                                <option name="achievement_level[]" value="Internasional" @if($achievement->level == "Internasional") selected = "selected" @endif>
+                                                    Internasional</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                                 <template x-for="(field, index) in achievementForm" :key="index">
                                     <div class="col-span-6">
                                         <div class="grid grid-cols-6 gap-6">
@@ -573,6 +677,89 @@
                                     <p class="text-secondary-color text-sm">Isi informasi terkait bahasa asing yang anda
                                         kuasai (opsional)</p>
                                 </div>
+                                @foreach($languages as $language)
+                                <input type="hidden" name="language_id[]" value = "{{$language->id}}">
+                                    <div class="col-span-6">
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6">
+                                                <p class="text-secondary-color text-sm font-semibold">Bahasa Asing
+                                                </p>
+                                                <p class="text-gray-300 text-xs">Isi tingkat kemampuan bahasa asing anda
+                                                </p>
+                                            </div>
+                                            <div class="col-span-6">
+                                                <label for="language"
+                                                    class="block text-sm font-medium text-secondary-color">Bahasa
+                                                    Asing</label>
+                                                <select x-model="field.language" id="language" name="language[]"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language[]" value="Inggris" @if($language->language == "Inggris") selected = "selected" @endif>Inggris</option>
+                                                    <option name="language[]" value="Mandarin" @if($language->language == "Mandarin") selected = "selected" @endif>Mandarin</option>
+                                                    <option name="language[]" value="Jepang" @if($language->language == "Jepang") selected = "selected" @endif>Jepang</option>
+                                                    <option name="language[]" value="Korea" @if($language->language == "Korea") selected = "selected" @endif>Korea</option>
+                                                    <option name="language[]" value="India" @if($language->language == "India") selected = "selected" @endif>India</option>
+                                                    <option name="language[]" value="Perancis" @if($language->language == "Perancis") selected = "selected" @endif>Perancis</option>
+                                                    <option name="language[]" value="Belanda" @if($language->language == "Belanda") selected = "selected" @endif>Belanda</option>
+                                                    <option name="language[]" value="Jerman" @if($language->language == "Jerman") selected = "selected" @endif>Jerman</option>
+                                                    <option name="language[]" value="Rusia" @if($language->language == "Rusia") selected = "selected" @endif>Rusia</option>
+                                                    <option name="language[]" value="Arab" @if($language->language == "Arab") selected = "selected" @endif>Arab</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="language_talk"
+                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
+                                                    Berbicara</label>
+                                                <select x-model="field.language_talk" id="language_talk"
+                                                    name="language_talk[]"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_talk[]" value="Beginner" @if($language->talk == "Beginner") selected = "selected" @endif>Beginner</option>
+                                                    <option name="language_talk[]" value="Intermediate" @if($language->talk == "Intermediate") selected = "selected" @endif>Intermediate
+                                                    </option>
+                                                    <option name="language_talk[]" value="Advance" @if($language->talk == "Advance") selected = "selected" @endif>Advance</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="language_write"
+                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
+                                                    Menulis</label>
+                                                <select x-model="field.language_write" id="language_write"
+                                                    name="language_write[]"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_write[]" value="Beginner" @if($language->write == "Beginner") selected = "selected" @endif>Beginner</option>
+                                                    <option name="language_write[]" value="Intermediate" @if($language->write == "Intermediate") selected = "selected" @endif>Intermediate
+                                                    </option>
+                                                    <option name="language_write[]" value="Advance" @if($language->write == "Advance") selected = "selected" @endif>Advance</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="language_read"
+                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
+                                                    Membaca</label>
+                                                <select x-model="field.language_read" id="language_read"
+                                                    name="language_read[]"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_read[]" value="Beginner" @if($language->read == "Beginner") selected = "selected" @endif>Beginner</option>
+                                                    <option name="language_read[]" value="Intermediate" @if($language->read == "Intermediate") selected = "selected" @endif>Intermediate
+                                                    </option>
+                                                    <option name="language_read[]" value="Advance" @if($language->read == "Advance") selected = "selected" @endif>Advance</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="language_listen"
+                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
+                                                    Mendengarkan</label>
+                                                <select x-model="field.language_listen" id="language_listen"
+                                                    name="language_listen[]"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_listen[]" value="Beginner" @if($language->listen == "Beginner") selected = "selected" @endif>Beginner</option>
+                                                    <option name="language_listen[]" value="Intermediate" @if($language->listen == "Intermediate") selected = "selected" @endif>Intermediate
+                                                    </option>
+                                                    <option name="language_listen[]" value="Advance" @if($language->listen == "Advance") selected = "selected" @endif>Advance</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 <template x-for="(field, index) in languageForm" :key="index">
                                     <div class="col-span-6">
                                         <div class="grid grid-cols-6 gap-6">
@@ -588,7 +775,7 @@
                                                 <label for="language"
                                                     class="block text-sm font-medium text-secondary-color">Bahasa
                                                     Asing</label>
-                                                <select x-model="field.language" id="language" name="language[]"
+                                                <select id="language" name="language[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="language[]" value="Inggris">Inggris</option>
                                                     <option name="language[]" value="Mandarin">Mandarin</option>
@@ -606,7 +793,7 @@
                                                 <label for="language_talk"
                                                     class="block text-sm font-medium text-secondary-color">Kemampuan
                                                     Berbicara</label>
-                                                <select x-model="field.language_talk" id="language_talk"
+                                                <select id="language_talk"
                                                     name="language_talk[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="language_talk[]" value="Beginner">Beginner</option>
@@ -619,7 +806,7 @@
                                                 <label for="language_write"
                                                     class="block text-sm font-medium text-secondary-color">Kemampuan
                                                     Menulis</label>
-                                                <select x-model="field.language_write" id="language_write"
+                                                <select id="language_write"
                                                     name="language_write[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="language_write[]" value="Beginner">Beginner</option>
@@ -632,7 +819,7 @@
                                                 <label for="language_read"
                                                     class="block text-sm font-medium text-secondary-color">Kemampuan
                                                     Membaca</label>
-                                                <select x-model="field.language_read" id="language_read"
+                                                <select id="language_read"
                                                     name="language_read[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="language_read[]" value="Beginner">Beginner</option>
@@ -645,7 +832,7 @@
                                                 <label for="language_listen"
                                                     class="block text-sm font-medium text-secondary-color">Kemampuan
                                                     Mendengarkan</label>
-                                                <select x-model="field.language_listen" id="language_listen"
+                                                <select id="language_listen"
                                                     name="language_listen[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="language_listen[]" value="Beginner">Beginner</option>
@@ -680,6 +867,54 @@
                                     <p class="text-secondary-color text-sm">Isi informasi terkait pengalaman organisai
                                         anda (opsional)</p>
                                 </div>
+                                @foreach($organizations as $organization)
+                                <input type="hidden" name="organization_id[]" value = "{{$organization->id}}">
+                                    <div class="col-span-6">
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6">
+                                                <p class="text-secondary-color text-sm font-semibold">Pengalaman
+                                                    Organisasi
+                                                </p>
+                                                <p class="text-gray-300 text-xs">Isi informasi pengalaman organisasi anda
+                                                </p>
+                                            </div>
+                                            <div class="col-span-6">
+                                                <label for="organization_name"
+                                                    class="block text-sm font-medium text-secondary-color">Nama
+                                                    Organisasi</label>
+                                                <input type="text"
+                                                    name="organization_name[]" id="organization_name" value = "{{$organization->name}}"
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="organization_period"
+                                                    class="block text-sm font-medium text-secondary-color">Periode
+                                                    Mengurus</label>
+                                                <input type="text"
+                                                    name="organization_period[]" id="organization_period" value = "{{$organization->period}}"
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    placeholder="e.g. 2020-2021">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="organization_position"
+                                                    class="block text-sm font-medium text-secondary-color">Posisi
+                                                    Mengurus</label>
+                                                <input type="text"
+                                                    name="organization_position[]" id="organization_position" value = "{{$organization->position}}"
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+                                            <div class="col-span-6">
+                                                <label for="organization_detail"
+                                                    class="block text-sm font-medium text-secondary-color">Keterangan</label>
+                                                <p class="text-xs text-gray-300">Maksimal 100 kata</p>
+                                                <textarea
+                                                    name="organization_detail[]" id="organization_detail" cols="30" value = "{{$organization->name}}"
+                                                    rows="5"
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 <template x-for="(field, index) in organizationForm" :key="index">
                                     <div class="col-span-6">
                                         <div class="grid grid-cols-6 gap-6">
@@ -752,6 +987,27 @@
                                     <p class="text-secondary-color text-sm">Isi informasi terkait bakat yang anda miliki
                                         (opsional)</p>
                                 </div>
+                                @foreach($talents as $talent)
+                                <input type="hidden" name="talent_id[]" value = "{{$talent->id}}">
+                                    <div class="col-span-6">
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6">
+                                                <p class="text-secondary-color text-sm font-semibold">Special Talent
+                                                </p>
+                                                <p class="text-gray-300 text-xs">Isi informasi kemampuan bakat anda
+                                                </p>
+                                            </div>
+                                            <div class="col-span-6">
+                                                <label for="talent_name"
+                                                    class="block text-sm font-medium text-secondary-color">Nama
+                                                    Bakat</label>
+                                                <input type="text" name="talent_name[]" value = "{{$talent->name}}"
+                                                    id="talent_name"
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 <template x-for="(field, index) in talentForm" :key="index">
                                     <div class="col-span-6">
                                         <div class="grid grid-cols-6 gap-6">
@@ -791,10 +1047,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <div class="sm:mt-4 px-4 py-3 text-right sm:px-0">
                             <button type="submit"
                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color">
-                                Simpan
+                                Update
                             </button>
                         </div>
                     </div>

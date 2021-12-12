@@ -332,8 +332,8 @@
                                                 <label for="child_education"
                                                     class="block text-sm font-medium text-secondary-color">Pendidikan
                                                     Terakhir</label>
-                                                <select x-model="field.child_education" id="child_education[]"
-                                                    name="child_education"
+                                                <select x-model="field.child_education" id="child_education"
+                                                    name="child_education[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="child_education[]" value="SD">SD</option>
                                                     <option name="child_education[]" value="SMP">SMP</option>

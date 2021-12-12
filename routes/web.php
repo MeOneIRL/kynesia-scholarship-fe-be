@@ -105,14 +105,20 @@ Route::prefix('/registration')->group(function(){
     // Family
     Route::get('/family', 'UserController@familyForm')->name('familyForm');
     Route::post('/family', 'UserController@familyPost')->name('familyPost');
-    Route::get('/udpate/family/{user_id}', 'UserController@updateFamilyForm')->name('updateFamilyForm');
-    Route::post('/udpate/family/{user_id}', 'UserController@updateFamilyPost')->name('updateFamilyPost');
-    // Family
+    Route::get('/update/family/{user_id}', 'UserController@updateFamilyForm')->name('updateFamilyForm');
+    Route::post('/update/family/{user_id}', 'UserController@updateFamilyPost')->name('updateFamilyPost');
+    // End Family
 
+    // Education
     Route::get('/education', 'UserController@educationForm')->name('educationForm');
     Route::post('/education', 'UserController@educationPost')->name('educationPost');
+    Route::get('/update/education/{user_id}', 'UserController@updateEducationForm')->name('updateEducationForm');
+    Route::post('/update/education/{user_id}', 'UserController@updateEducationPost')->name('updateEducationPost');
+    // End Education
 
+    // Downloadable
     Route::get('/downloadable', 'UserController@downloadableForm')->name('downloadableForm');
     Route::post('/downloadable', 'UserController@downloadablePost')->name('downloadablePost');
+    // End Downloadable
 
 });
