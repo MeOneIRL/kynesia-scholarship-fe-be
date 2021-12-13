@@ -15,6 +15,7 @@ use App\Language;
 use App\Organization;
 use App\Talent;
 use App\Training;
+use App\Downloadable;
 use Auth;
 
 class UserController extends Controller
@@ -670,7 +671,40 @@ class UserController extends Controller
     }
 
     public function downloadablePost(Request $request){
-        dd($request->all());
+        // dd($request->all());
+
+                // ID
+                $id = Auth::user()->id.'-'.'.'.$request->id->extension();
+                $path_id =  $request->id->move(public_path('/document/id/'.$request->scholarship_id.'/'),$id);
+        
+                // Ijazah
+                $graduate_pass = Auth::user()->id.'-'.'.'.$request->graduate_pass->extension();
+                $path_graduate =  $request->graduate_pass->move(public_path('/document/graduate/'.$request->scholarship_id.'/'),$graduate_pass);
+        
+                // Diterima Univ
+                $university = Auth::user()->id.'-'.'.'.$request->university_pass->extension();
+                $path_university =  $request->university_pass->move(public_path('/document/university/'.$request->scholarship_id.'/'),$university);
+
+                // Motivation Letter
+                $motivation_letter = Auth::user()->id.'-'.'.'.$request->motivation_letter->extension();
+                $path_motivation =  $request->motivation_letter->move(public_path('/document/motivation/'.$request->scholarship_id.'/'),$motivation_letter);
+
+        Downloadable::create([
+            'user_id' => Auth::user()->id,
+            'scholarship_id' => $request->scholarship_id,
+            'idPath' => '/document/id/'.$request->scholarship_id.'/'.$path_id->getFileName(),
+            'motivationLetterPath' => '/document/motivation/'.$request->scholarship_id.'/'.$path_motivation->getFileName(),
+            'universityPassPath' => '/document/university/'.$request->scholarship_id.'/'.$path_university->getFileName(),
+            'graduatePassPath' => '/document/graduate/'.$request->scholarship_id.'/'.$path_graduate->getFileName(),
+        ]);
+
+        $registered = Registered::where('scholarship_id','=',$request->scholarship_id)->where('user_id','=',Auth::user()->id)->first();
+
+        $registered->statusOne = "Melakukan Test";
+        $registered->save();
+
+        return redirect()->route('homeAccount');
+
     }
     // End Downloadable
 
@@ -682,6 +716,8 @@ class UserController extends Controller
     }
 
     public function onlineInterview(){
+        $scholarship = Scholarship::where('status','=',1)->first();
+        $registered = Registered::where('scholarship_id','=',$scholarship->id)->where('user_id','=',Auth::user()->id)->first();
         return view('pendaftaran.wawancara');
     }
 
