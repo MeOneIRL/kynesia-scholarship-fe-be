@@ -21,7 +21,8 @@
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
-                <form action="{{route('biodataPost')}}" method= "POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
+                <form action="{{route('biodataPost')}}" method="POST"
+                    onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                     @csrf
                     <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
                     <div class="overflow-hidden">
@@ -224,8 +225,7 @@
                                                     Ini</label>
                                                 <input type="text" name="living_address" id="living_address"
                                                     autocomplete="living_address"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    required>
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
@@ -233,32 +233,28 @@
                                                     class="block text-sm font-medium text-secondary-color">Kode
                                                     Pos</label>
                                                 <input type="text" name="living_code" id="living_code"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    required>
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="living_district"
                                                     class="block text-sm font-medium text-secondary-color">Kecamatan</label>
                                                 <input type="text" name="living_district" id="living_district"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    required>
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="living_city"
                                                     class="block text-sm font-medium text-secondary-color">Kota/Kabupaten</label>
                                                 <input type="text" name="living_city" id="living_city"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    required>
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="living_province"
                                                     class="block text-sm font-medium text-secondary-color">Provinsi</label>
                                                 <select id="living_province" name="living_province"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                                    required>
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                                     <option name="living_province" value="Aceh">Aceh</option>
                                                     <option name="living_province" value="Bali">Bali</option>
                                                     <option name="living_province" value="Bangka Belitung">Bangka

@@ -42,7 +42,7 @@
                 });
             },
             removeField(index) {
-                this.childForm.splice(index, 1);
+                this.childForm.pop();
             },
         }
     }
@@ -54,9 +54,10 @@
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
-                <form action="{{route('familyPost')}}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
-                @csrf
-                <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
+                <form action="{{route('familyPost')}}" method="POST"
+                    onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
+                    @csrf
+                    <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
                     <div class="overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
@@ -280,7 +281,7 @@
                                                 <button
                                                     class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
                                                     type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeField()">
+                                                    @click="removeField(index)">
                                                     Hapus Anak
                                                 </button>
                                             </div>

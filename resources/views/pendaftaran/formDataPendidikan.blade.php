@@ -29,9 +29,10 @@
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
-                <form action="{{route('educationPost')}}" method= "POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
-                @csrf
-                <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
+                <form action="{{route('educationPost')}}" method="POST"
+                    onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
+                    @csrf
+                    <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
                     <div class="overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
@@ -483,7 +484,7 @@
                                                 <button
                                                     class="float-right inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
                                                     type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldTraining()">
+                                                    @click="removeFieldTraining(index)">
                                                     Hapus Pendidikan Non-Formal
                                                 </button>
                                             </div>
@@ -551,7 +552,7 @@
                                                 <button
                                                     class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
                                                     type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldAchievement()">
+                                                    @click="removeFieldAchievement(index)">
                                                     Hapus Prestasi Akademik
                                                 </button>
                                             </div>
@@ -658,7 +659,7 @@
                                                 <button
                                                     class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
                                                     type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldLanguage()">
+                                                    @click="removeFieldLanguage(index)">
                                                     Hapus Bahasa Asing
                                                 </button>
                                             </div>
@@ -730,7 +731,7 @@
                                                 <button
                                                     class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
                                                     type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldOrganization()">
+                                                    @click="removeFieldOrganization(index)">
                                                     Hapus Pengalaman Organisasi
                                                 </button>
                                             </div>
@@ -775,7 +776,7 @@
                                                 <button
                                                     class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
                                                     type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldSpecial()">
+                                                    @click="removeFieldSpecial(index)">
                                                     Hapus Talent
                                                 </button>
                                             </div>
