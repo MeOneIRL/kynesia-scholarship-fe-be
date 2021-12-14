@@ -85,6 +85,7 @@
                                             <input type="text" name="father_name" id="father_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('father_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="father_sex"
@@ -94,6 +95,7 @@
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
                                                 <option name="father_sex" value="Laki-laki">Laki-laki</option>
+                                                <div class="error">@error('father_sex'){{$message}}@enderror</div>
                                             </select>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -103,6 +105,7 @@
                                             <input type="text" name="father_birthplace" id="father_birthplace"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('father_birthplace'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="father_birthdate"
@@ -111,6 +114,7 @@
                                             <input type="date" name="father_birthdate" id="father_birthdate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('father_birthdate'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="father_education"
@@ -128,6 +132,7 @@
                                                 <option name="father_education" value="S2">S2</option>
                                                 <option name="father_education" value="S3">S3</option>
                                             </select>
+                                            <div class="error">@error('father_education'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="father_job"
@@ -135,6 +140,7 @@
                                             <input type="text" name="father_job" id="father_job"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('father_job'){{$message}}@enderror</div>
                                         </div>
                                     </div>
                                 </div>
@@ -155,6 +161,7 @@
                                             <input type="text" name="mother_name" id="mother_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('father_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mother_sex"
@@ -165,6 +172,7 @@
                                                 required>
                                                 <option name="mother_sex" value="Perempuan">Perempuan</option>
                                             </select>
+                                            <div class="error">@error('mother_sex'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mother_birthplace"
@@ -173,6 +181,7 @@
                                             <input type="text" name="mother_birthplace" id="mother_birthplace"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('mother_birthplace'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mother_birthdate"
@@ -181,6 +190,7 @@
                                             <input type="date" name="mother_birthdate" id="mother_birthdate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('mother_birthdate'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mother_education"
@@ -198,6 +208,7 @@
                                                 <option name="mother_education" value="S2">S2</option>
                                                 <option name="mother_education" value="S3">S3</option>
                                             </select>
+                                            <div class="error">@error('mother_education'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mother_job"
@@ -205,6 +216,7 @@
                                             <input type="text" name="mother_job" id="mother_job"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                                <div class="error">@error('mother_job'){{$message}}@enderror</div>
                                         </div>
                                     </div>
                                 </div>
