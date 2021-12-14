@@ -7,6 +7,7 @@
 @include('layouts.headerLandingPage')
 
 <section>
+    <div class="message">{{Session::get('message')}}</div>
     <div class="container mx-auto px-8 md:px-28 py-12 max-w-screen-sm border-0 md:border border-gray-300 rounded-md">
         <h3 class="mb-8 md:mb-12 text-2xl md:text-3xl text-secondary-color text-center">
             Masuk Akun Pendaftaran

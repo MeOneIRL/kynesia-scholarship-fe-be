@@ -17,6 +17,7 @@ use App\Talent;
 use App\Training;
 use App\Downloadable;
 use Auth;
+use Validator;
 
 class UserController extends Controller
 {
@@ -33,6 +34,40 @@ class UserController extends Controller
 
     public function biodataPost(Request $request){
         if($request->checking_address == "same"){
+
+            $message = ([
+                "required" => "Bagian Ini Perlu Diisi",
+                "numeric" => "Data Harus Berupa Angka",
+                "min" => "Data Minimal 5 Digit",
+                "max" => "Data Maksimal 16 Digit",
+                "digits_between" => "Nomor Telephone Minimal 10 dan Maksimal 13 Angka",
+            ]);
+
+            $validator = Validator::make($request->all(),[
+                'full_name' => ('required'),
+                'nickname' => ('required'),
+                'sex' => ('required'),
+                'birthplace' => ('required'),
+                'birthdate' => ('required'),
+                'telephone' => ('required|numeric|digits_between:10,13'),
+                'email' => ('required'),
+                'id_type' => ('required'),
+                'id_number' => ('required|min:5|max:16'),
+                'address' => ('required'),
+                'code' => ('required|numeric|digits:5'),
+                'district' => ('required'),
+                'city' => ('required'),
+                'province' => ('required'),
+                'entrance_type' => ('required'),
+                'text_id' => ('required'),
+                'major' => ('required'),
+                'university' => ('required'),
+            ],$message);
+
+            if($validator->fails()){
+                return back()->withErrors($validator)->withInput();
+            }
+
             Biodata::create([
                 'user_id' => Auth::user()->id,
                 'scholarship_id' => $request->scholarship_id,
@@ -77,6 +112,44 @@ class UserController extends Controller
             ]);
 
             return redirect()->route('familyForm');
+        }
+
+        $message = ([
+            "required" => "Bagian Ini Perlu Diisi",
+            "numeric" => "Data Harus Berupa Angka",
+            "min" => "Data Minimal 5 Digit",
+            "max" => "Data Maksimal 16 Digit",
+            "digits_between" => "Nomor Telephone Minimal 10 dan Maksimal 13 Angka",
+        ]);
+
+        $validator = Validator::make($request->all(),[
+            'full_name' => ('required'),
+            'nickname' => ('required'),
+            'sex' => ('required'),
+            'birthplace' => ('required'),
+            'birthdate' => ('required'),
+            'telephone' => ('required|numeric|digits_between:10,13'),
+            'email' => ('required'),
+            'id_type' => ('required'),
+            'id_number' => ('required|min:5|max:16'),
+            'address' => ('required'),
+            'code' => ('required|numeric|digits:5'),
+            'district' => ('required'),
+            'city' => ('required'),
+            'province' => ('required'),
+            'living_address' => ('required'),
+            'living_code' => ('required|numeric|digits:5'),
+            'living_district' => ('required'),
+            'living_city' => ('required'),
+            'living_province' => ('required'),
+            'entrance_type' => ('required'),
+            'text_id' => ('required'),
+            'major' => ('required'),
+            'university' => ('required'),
+        ],$message);
+
+        if($validator->fails()){
+            return back()->withErrors($validator)->withInput();
         }
 
         Biodata::create([
@@ -482,7 +555,6 @@ class UserController extends Controller
     }
 
     public function updateEducationPost(Request $request, $user_id){
-        // dd($request->language_id[2]);
         // SD
         Education::find($request->elementary_id)->update([
             'user_id' => Auth::user()->id,
@@ -671,23 +743,32 @@ class UserController extends Controller
     }
 
     public function downloadablePost(Request $request){
-        // dd($request->all());
 
-                // ID
-                $id = Auth::user()->id.'-'.'.'.$request->id->extension();
-                $path_id =  $request->id->move(public_path('/document/id/'.$request->scholarship_id.'/'),$id);
-        
-                // Ijazah
-                $graduate_pass = Auth::user()->id.'-'.'.'.$request->graduate_pass->extension();
-                $path_graduate =  $request->graduate_pass->move(public_path('/document/graduate/'.$request->scholarship_id.'/'),$graduate_pass);
-        
-                // Diterima Univ
-                $university = Auth::user()->id.'-'.'.'.$request->university_pass->extension();
-                $path_university =  $request->university_pass->move(public_path('/document/university/'.$request->scholarship_id.'/'),$university);
+        if(Biodata::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->exist() == NULL){
+            return redirect()->route('biodataForm')->with(['message' => "Anda Belum Mengisi Biodata Diri"]);
+        }
+        elseif(Family::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->exist() == NULL){
+            return redirect()->route('familyForm')->with(['message' => "Anda Belum Mengisi Data Keluarga"]);
+        }
+        elseif(Education::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->exist() == NULL){
+            return redirect()->route('educationForm')->with(['message' => "Anda Belum Mengisi Data Pendidikan"]);
+        }
 
-                // Motivation Letter
-                $motivation_letter = Auth::user()->id.'-'.'.'.$request->motivation_letter->extension();
-                $path_motivation =  $request->motivation_letter->move(public_path('/document/motivation/'.$request->scholarship_id.'/'),$motivation_letter);
+        // ID
+        $id = Auth::user()->id.'-'.'.'.$request->id->extension();
+        $path_id =  $request->id->move(public_path('/document/id/'.$request->scholarship_id.'/'),$id);
+
+        // Ijazah
+        $graduate_pass = Auth::user()->id.'-'.'.'.$request->graduate_pass->extension();
+        $path_graduate =  $request->graduate_pass->move(public_path('/document/graduate/'.$request->scholarship_id.'/'),$graduate_pass);
+
+        // Diterima Univ
+        $university = Auth::user()->id.'-'.'.'.$request->university_pass->extension();
+        $path_university =  $request->university_pass->move(public_path('/document/university/'.$request->scholarship_id.'/'),$university);
+
+        // Motivation Letter
+        $motivation_letter = Auth::user()->id.'-'.'.'.$request->motivation_letter->extension();
+        $path_motivation =  $request->motivation_letter->move(public_path('/document/motivation/'.$request->scholarship_id.'/'),$motivation_letter);
 
         Downloadable::create([
             'user_id' => Auth::user()->id,

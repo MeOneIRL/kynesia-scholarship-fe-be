@@ -92,6 +92,7 @@ Route::prefix('/registration')->group(function(){
     Route::get('/login', 'AuthController@loginAccountForm')->name('loginAccountForm');
     Route::post('/login', 'AuthController@loginAccountPost')->name('loginAccountPost');
     Route::get('/logout', 'AuthController@logoutAccount')->name('logoutAccount');
+    
     Route::get('/test', 'UserController@onlineTest')->name('onlineTest');
     Route::get('/interview', 'UserController@onlineInterview')->name('onlineInterview');
 
