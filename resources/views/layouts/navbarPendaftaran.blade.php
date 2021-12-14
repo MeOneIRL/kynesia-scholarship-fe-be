@@ -60,9 +60,12 @@
                             class="bg-bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-color focus:ring-white"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
-                            <img class="h-8 w-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="" />
+                            <svg class="h-8 w-8 rounded-full border-2 border-secondary-color" width="100" height="100"
+                                viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M50 25C54.5833 25 58.3333 28.75 58.3333 33.3333C58.3333 37.9167 54.5833 41.6667 50 41.6667C45.4167 41.6667 41.6667 37.9167 41.6667 33.3333C41.6667 28.75 45.4167 25 50 25ZM50 62.5C61.25 62.5 74.1667 67.875 75 70.8333V75H25V70.875C25.8333 67.875 38.75 62.5 50 62.5ZM50 16.6667C40.7917 16.6667 33.3333 24.125 33.3333 33.3333C33.3333 42.5417 40.7917 50 50 50C59.2083 50 66.6667 42.5417 66.6667 33.3333C66.6667 24.125 59.2083 16.6667 50 16.6667ZM50 54.1666C38.875 54.1666 16.6667 59.75 16.6667 70.8333V83.3333H83.3333V70.8333C83.3333 59.75 61.125 54.1666 50 54.1666Z"
+                                    fill="#1E335F" />
+                            </svg>
                         </button>
                     </div>
                     <div x-show="open" x-transition:enter="transition ease-out duration-100"
@@ -78,8 +81,8 @@
                             Anda Masuk Sebagai</p>
                         <p class="block px-4 py-2 text-sm text-gray-700 border-b broder-gray-300">
                             {{Auth::user()->email}}</p>
-                        <a href="{{route('logoutAccount')}}" class="block px-4 py-2 text-sm text-red-500 font-semibold" role="menuitem"
-                            tabindex="-1" id="user-menu-item-2">Keluar</a>
+                        <a href="{{route('logoutAccount')}}" class="block px-4 py-2 text-sm text-red-500 font-semibold"
+                            role="menuitem" tabindex="-1" id="user-menu-item-2">Keluar</a>
                     </div>
                 </div>
             </div>
