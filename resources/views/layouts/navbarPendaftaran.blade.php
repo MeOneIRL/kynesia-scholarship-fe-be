@@ -55,13 +55,14 @@
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <!-- Profile dropdown -->
                 <div @click.away="open = false" x-data="{ open: false }" class="ml-3 relative">
-                    <div>
+                    <div class="bg-primary-color rounded-full p-1">
                         <button @click="open = !open" type="button"
-                            class="bg-bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-color focus:ring-white"
+                            class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-color"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
-                            <svg class="h-8 w-8 rounded-full border-2 border-secondary-color" width="100" height="100"
-                                viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-8 w-8 rounded-full border-2 border-bg-color filter brightness-0 invert"
+                                width="100" height="100" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M50 25C54.5833 25 58.3333 28.75 58.3333 33.3333C58.3333 37.9167 54.5833 41.6667 50 41.6667C45.4167 41.6667 41.6667 37.9167 41.6667 33.3333C41.6667 28.75 45.4167 25 50 25ZM50 62.5C61.25 62.5 74.1667 67.875 75 70.8333V75H25V70.875C25.8333 67.875 38.75 62.5 50 62.5ZM50 16.6667C40.7917 16.6667 33.3333 24.125 33.3333 33.3333C33.3333 42.5417 40.7917 50 50 50C59.2083 50 66.6667 42.5417 66.6667 33.3333C66.6667 24.125 59.2083 16.6667 50 16.6667ZM50 54.1666C38.875 54.1666 16.6667 59.75 16.6667 70.8333V83.3333H83.3333V70.8333C83.3333 59.75 61.125 54.1666 50 54.1666Z"
                                     fill="#1E335F" />
