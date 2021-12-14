@@ -264,6 +264,31 @@ class UserController extends Controller
     }
 
     public function familyPost(Request $request){
+
+        $message = [
+            'required' => 'Data Diatas Harus Diisi'
+        ];
+
+        $validator = Validator::make($request->all(),[
+            'father_name' => ('required'),
+            'father_sex' => ('required'),
+            'father_birthplace' => ('required'),
+            'father_birthdate' => ('required'),
+            'father_education' => ('required'),
+            'father_job' => ('required'),
+            'mother_name' => ('required'),
+            'mother_sex' => ('required'),
+            'mother_birthplace' => ('required'),
+            'mother_birthdate' => ('required'),
+            'mother_education' => ('required'),
+            'mother_job' => ('required'),   
+            'earnings' => ('required'),   
+        ],$message);
+
+        if($validator->fails()){
+            return back()->withErrors($validator)->withInput();
+        }
+
         // Father
         Family::create([
             'user_id' => Auth::user()->id,

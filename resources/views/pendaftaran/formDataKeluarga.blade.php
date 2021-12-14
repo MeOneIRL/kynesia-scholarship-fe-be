@@ -53,6 +53,7 @@
         @include('layouts.sidebarPendaftaran')
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
+            <div class="message">{{Session::get('message')}}</div>
             <div class="px-5 md:px-12 py-12">
                 <form action="{{route('familyPost')}}" method="POST"
                     onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
@@ -118,6 +119,7 @@
                                             <select id="father_education" name="father_education"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
+                                                <option name="father_education" disabled selected hidden>Pilih</option>
                                                 <option name="father_education" value="SD">SD</option>
                                                 <option name="father_education" value="SMP">SMP</option>
                                                 <option name="father_education" value="SMA">SMA</option>
@@ -187,6 +189,7 @@
                                             <select id="mother_education" name="mother_education"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
+                                                <option name="mother_education" disabled selected hidden>Pilih</option>
                                                 <option name="mother_education" value="SD">SD</option>
                                                 <option name="mother_education" value="SMP">SMP</option>
                                                 <option name="mother_education" value="SMA">SMA</option>
@@ -232,6 +235,7 @@
                                                     Kelamin</label>
                                                 <select x-model="field.child_sex" id="child_sex" name="child_sex[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="child_sex" disabled selected hidden>Pilih</option>
                                                     <option name="child_sex[]" value="Laki-laki">
                                                         Laki-laki</option>
                                                     <option name="child_sex[]" value="Perempuan">
@@ -261,6 +265,7 @@
                                                 <select x-model="field.child_education" id="child_education[]"
                                                     name="child_education"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="child_education" disabled selected hidden>Pilih</option>
                                                     <option name="child_education[]" value="SD">SD</option>
                                                     <option name="child_education[]" value="SMP">SMP</option>
                                                     <option name="child_education[]" value="SMA">SMA</option>
