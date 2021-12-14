@@ -28,6 +28,7 @@
         @include('layouts.sidebarPendaftaran')
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
+            <div class="message">{{Session::get('message')}}</div>
             <div class="px-5 md:px-12 py-12">
                 <form action="{{route('educationPost')}}" method="POST"
                     onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
@@ -66,6 +67,7 @@
                                             <input type="text" name="elementary_name" id="elementary_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('elementary_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_province"
@@ -73,6 +75,7 @@
                                             <select id="elementary_province" name="elementary_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
+                                                <option name="elementary_province" disabled selected hidden>Pilih</option>
                                                 <option name="elementary_province" value="Aceh">Aceh</option>
                                                 <option name="elementary_province" value="Bali">Bali</option>
                                                 <option name="elementary_province" value="Bangka Belitung">Bangka
@@ -146,6 +149,7 @@
                                                 <option name="elementary_province" value="Sumatra Utara">Sumatra Utara
                                                 </option>
                                             </select>
+                                            <div class="error">@error('elementary_province'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_city"
@@ -154,6 +158,7 @@
                                             <input type="text" name="elementary_city" id="elementary_city"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('elementary_city'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_enter"
@@ -163,6 +168,7 @@
                                                 id="elementary_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('elementary_enter'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_graduate"
@@ -172,6 +178,7 @@
                                                 name="elementary_graduate" id="elementary_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('elementary_graduate'){{$message}}@enderror</div>
                                         </div>
 
                                         {{-- SMP --}}
@@ -188,6 +195,7 @@
                                             <input type="text" name="junior_name" id="junior_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('junior_grade'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_province"
@@ -195,6 +203,7 @@
                                             <select id="junior_province" name="junior_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
+                                                <option name="junior_province" disabled selected hidden>Pilih</option>
                                                 <option name="junior_province" value="Aceh">Aceh</option>
                                                 <option name="junior_province" value="Bali">Bali</option>
                                                 <option name="junior_province" value="Bangka Belitung">Bangka
@@ -268,6 +277,7 @@
                                                 <option name="junior_province" value="Sumatra Utara">Sumatra Utara
                                                 </option>
                                             </select>
+                                            <div class="error">@error('junior_province'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_city"
@@ -276,6 +286,7 @@
                                             <input type="text" name="junior_city" id="junior_city"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('junior_city'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_enter"
@@ -285,6 +296,7 @@
                                                 id="junior_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('junior_enter'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_graduate"
@@ -294,6 +306,7 @@
                                                 id="junior_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('junior_graduate'){{$message}}@enderror</div>
                                         </div>
 
                                         {{-- SMA --}}
@@ -310,6 +323,7 @@
                                             <input type="text" name="high_name" id="high_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('high_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_province"
@@ -317,6 +331,7 @@
                                             <select id="high_province" name="high_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
+                                                <option name="high_province" disabled selected hidden>Pilih</option>
                                                 <option name="high_province" value="Aceh">Aceh</option>
                                                 <option name="high_province" value="Bali">Bali</option>
                                                 <option name="high_province" value="Bangka Belitung">Bangka
@@ -390,6 +405,7 @@
                                                 <option name="high_province" value="Sumatra Utara">Sumatra Utara
                                                 </option>
                                             </select>
+                                            <div class="error">@error('high_province'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_city"
@@ -398,6 +414,7 @@
                                             <input type="text" name="high_city" id="high_city"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('high_city'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_enter"
@@ -407,6 +424,7 @@
                                                 id="high_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('high_enter'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_graduate"
@@ -416,6 +434,7 @@
                                                 id="high_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                            <div class="error">@error('high_graduate'){{$message}}@enderror</div>
                                         </div>
                                     </div>
                                 </div>
@@ -452,6 +471,7 @@
                                                 <input x-model="field.training_period" type="text"
                                                     name="training_period[]" id="training_period"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="error">@error('training_period'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_year"
@@ -460,6 +480,7 @@
                                                 <input x-model="field.training_year" type="number"
                                                     name="training_year[]" id="training_year"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="error">@error('training_year'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_organizer"
@@ -467,6 +488,7 @@
                                                 <input x-model="field.training_organizer" type="text"
                                                     name="training_organizer[]" id="training_organizer"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="error">@error('training_organizer'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_certificate"
@@ -474,11 +496,13 @@
                                                 <select x-model="field.training_certificate" id="training_certificate"
                                                     name="training_certificate[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="training_certificate[]" >Pilih</option>
                                                     <option name="training_certificate[]" value="Ya">
                                                         Ya</option>
                                                     <option name="training_certificate[]" value="Tidak">
                                                         Tidak</option>
                                                 </select>
+                                                <div class="error">@error('training_certificate'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6">
                                                 <button
@@ -533,6 +557,7 @@
                                                 <input x-model="field.achievement_organizer" type="text"
                                                     name="achievement_organizer[]" id="achievement_organizer"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="error">@error('achievement_organizer'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="achievement_level"
@@ -540,6 +565,7 @@
                                                 <select x-model="field.achievement_level" id="achievement_level"
                                                     name="achievement_level[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="achievement_level[]">Pilih</option>
                                                     <option name="achievement_level[]" value="Regional">
                                                         Regional</option>
                                                     <option name="achievement_level[]" value="Nasional">
@@ -547,6 +573,7 @@
                                                     <option name="achievement_level[]" value="Internasional">
                                                         Internasional</option>
                                                 </select>
+                                                <div class="error">@error('achivement_level'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6">
                                                 <button
@@ -591,6 +618,7 @@
                                                     Asing</label>
                                                 <select x-model="field.language" id="language" name="language[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language[]">Pilih</option>
                                                     <option name="language[]" value="Inggris">Inggris</option>
                                                     <option name="language[]" value="Mandarin">Mandarin</option>
                                                     <option name="language[]" value="Jepang">Jepang</option>
@@ -610,11 +638,13 @@
                                                 <select x-model="field.language_talk" id="language_talk"
                                                     name="language_talk[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_talk[]">Pilih</option>
                                                     <option name="language_talk[]" value="Beginner">Beginner</option>
                                                     <option name="language_talk[]" value="Intermediate">Intermediate
                                                     </option>
                                                     <option name="language_talk[]" value="Advance">Advance</option>
                                                 </select>
+                                                <div class="error">@error('language_talk'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="language_write"
@@ -623,11 +653,13 @@
                                                 <select x-model="field.language_write" id="language_write"
                                                     name="language_write[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_write[]">Pilih</option>
                                                     <option name="language_write[]" value="Beginner">Beginner</option>
                                                     <option name="language_write[]" value="Intermediate">Intermediate
                                                     </option>
                                                     <option name="language_write[]" value="Advance">Advance</option>
                                                 </select>
+                                                <div class="error">@error('language_write'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="language_read"
@@ -636,11 +668,13 @@
                                                 <select x-model="field.language_read" id="language_read"
                                                     name="language_read[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="language_read[]">Pilih</option>
                                                     <option name="language_read[]" value="Beginner">Beginner</option>
                                                     <option name="language_read[]" value="Intermediate">Intermediate
                                                     </option>
                                                     <option name="language_read[]" value="Advance">Advance</option>
                                                 </select>
+                                                <div class="error">@error('language_read'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="language_listen"
@@ -654,6 +688,7 @@
                                                     </option>
                                                     <option name="language_listen[]" value="Advance">Advance</option>
                                                 </select>
+                                                <div class="error">@error('language_listen'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6">
                                                 <button
@@ -709,6 +744,7 @@
                                                     name="organization_period[]" id="organization_period"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     placeholder="e.g. 2020-2021">
+                                                    <div class="error">@error('organization_period'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="organization_position"
@@ -717,6 +753,7 @@
                                                 <input x-model="field.organization_position" type="text"
                                                     name="organization_position[]" id="organization_position"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="error">@error('organization_position'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6">
                                                 <label for="organization_detail"
@@ -726,6 +763,7 @@
                                                     name="organization_detail[]" id="organization_detail" cols="30"
                                                     rows="5"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                                    <div class="error">@error('organization_detail'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6">
                                                 <button

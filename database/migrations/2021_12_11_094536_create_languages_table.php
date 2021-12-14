@@ -17,11 +17,11 @@ class CreateLanguagesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('scholarship_id')->references('id')->on('scholarships')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('language');
-            $table->string('talk');
-            $table->string('write');
-            $table->string('read');
-            $table->string('listen');
+            $table->string('language')->nullable();
+            $table->string('talk')->nullable();
+            $table->string('write')->nullable();
+            $table->string('read')->nullable();
+            $table->string('listen')->nullable();
             $table->timestamps();
         });
     }

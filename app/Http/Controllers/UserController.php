@@ -440,6 +440,31 @@ class UserController extends Controller
 
     public function educationPost(Request $request){
         // dd($request->all());
+        $message = [
+            'required' => "Data Ini Harus Diisi",
+        ];
+
+        $validator = Validator::make($request->all(),[
+            'elementary_name' => ('required'),
+            'elementary_province' => ('required'),
+            'elementary_city' => ('required'),
+            'elementary_enter' => ('required'),
+            'elementary_graduate' => ('required'),
+            'junior_name' => ('required'),
+            'junior_province' => ('required'),
+            'junior_city' => ('required'),
+            'junior_enter' => ('required'),
+            'junior_graduate' => ('required'),
+            'high_name' => ('required'),
+            'high_province' => ('required'),
+            'high_city' => ('required'),
+            'high_enter' => ('required'),
+            'high_graduate' => ('required'),
+        ],$message);
+
+        if($validator->fails()){
+            return back()->withErrors($validator)->withInput();
+        }
 
         // SD
         Education::create([
@@ -484,6 +509,21 @@ class UserController extends Controller
         $count = count($request->training_name);
         for($i = 0; $i < $count; $i++){
             if($request->training_name[$i] != NULL){
+                $message = [
+                    'required' => "Data Ini Harus Diisi",
+                ];
+        
+                $validator = Validator::make($request->all(),[
+                    'training_period' => ('required'),
+                    'training_year' => ('required'),
+                    'training_year' => ('required'),
+                    'training_certificate' => ('required'),
+                ],$message);
+        
+                if($validator->fails()){
+                    return back()->withErrors($validator)->withInput();
+                }
+
                 Training::create([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id,
@@ -501,6 +541,19 @@ class UserController extends Controller
         $count = count($request->achievement_name);
         for($i = 0; $i < $count; $i++){
             if($request->achievement_name[$i] != NULL){
+                $message = [
+                    'required' => "Data Ini Harus Diisi",
+                ];
+        
+                $validator = Validator::make($request->all(),[
+                    'achievement_organizer' => ('required'),
+                    'achievement_level' => ('required'),
+                ],$message);
+        
+                if($validator->fails()){
+                    return back()->withErrors($validator)->withInput();
+                }
+
                 Achievement::create([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id[$i],
@@ -516,6 +569,21 @@ class UserController extends Controller
         $count = count($request->language);
         for($i = 0; $i < $count; $i++){
             if($request->language[$i] != NULL){
+                $message = [
+                    'required' => "Data Ini Harus Diisi",
+                ];
+        
+                $validator = Validator::make($request->all(),[
+                    'language_talk' => ('required'),
+                    'language_write' => ('required'),
+                    'language_read' => ('required'),
+                    'language_listen' => ('required'),
+                ],$message);
+        
+                if($validator->fails()){
+                    return back()->withErrors($validator)->withInput();
+                }
+
                 Language::create([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id,
@@ -533,13 +601,28 @@ class UserController extends Controller
         $count = count($request->organization_name);
         for($i = 0; $i < $count; $i++){
             if($request->organization_name[$i] != NULL){
+                $message = [
+                    'required' => "Data Ini Harus Diisi",
+                ];
+        
+                $validator = Validator::make($request->all(),[
+                    'organization_period' => ('required'),
+                    'language_write' => ('required'),
+                    'language_read' => ('required'),
+                    'language_listen' => ('required'),
+                ],$message);
+        
+                if($validator->fails()){
+                    return back()->withErrors($validator)->withInput();
+                }
+
                 Organization::create([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id,
                     'name' => $request->organization_name[$i],
                     'period' => $request->organization_period[$i],
-                    'position' => $request->organization_period[$i],
-                    'detail' => $request->organization_period[$i],
+                    'position' => $request->organization_position[$i],
+                    'detail' => $request->organization_detail[$i],
                 ]);
             }
         }
@@ -768,14 +851,31 @@ class UserController extends Controller
     }
 
     public function downloadablePost(Request $request){
-        if(Biodata::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
-            return redirect()->route('biodataForm')->with(['message' => "Anda Belum Mengisi Biodata Diri"]);
-        }
-        elseif(Family::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
-            return redirect()->route('familyForm')->with(['message' => "Anda Belum Mengisi Data Keluarga"]);
-        }
-        elseif(Education::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
-            return redirect()->route('educationForm')->with(['message' => "Anda Belum Mengisi Data Pendidikan"]);
+        // if(Biodata::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
+        //     return redirect()->route('biodataForm')->with(['message' => "Anda Belum Mengisi Biodata Diri"]);
+        // }
+        // elseif(Family::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
+        //     return redirect()->route('familyForm')->with(['message' => "Anda Belum Mengisi Data Keluarga"]);
+        // }
+        // elseif(Education::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
+        //     return redirect()->route('educationForm')->with(['message' => "Anda Belum Mengisi Data Pendidikan"]);
+        // }
+
+        $messages = [
+            'required' => "File belum terupload",
+            'mimes' => "Format file salah",
+            'max' => "File melebihi 1 MB"
+        ];
+
+        $validator = Validator::make($request->all(),[
+            'id'=>('required|mimes:jpg,jpeg,png|max:1000'),
+            'graduate_pass'=>('required|mimes:pdf|max:1000'),
+            'university'=>('required|mimes:jpg,jpeg,png|max:1000'),
+            'motivation_letter'=>('required|mimes:pdf|max:1000'),
+        ], $messages);
+
+        if($validator->fails()){
+            return back()->withErrors($validator)->withInput();
         }
 
         // ID

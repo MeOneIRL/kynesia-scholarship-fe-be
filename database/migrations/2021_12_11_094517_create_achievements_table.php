@@ -17,9 +17,9 @@ class CreateAchievementsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('scholarship_id')->references('id')->on('scholarships')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('name');
-            $table->string('organizer');
-            $table->string('level');
+            $table->string('name')->nullable();
+            $table->string('organizer')->nullable();
+            $table->string('level')->nullable();
             $table->timestamps();
         });
     }

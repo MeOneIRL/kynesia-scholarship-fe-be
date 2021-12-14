@@ -17,11 +17,11 @@ class CreateTrainingsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('scholarship_id')->references('id')->on('scholarships')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('name');
-            $table->string('period');
-            $table->string('year');
-            $table->string('organizer');
-            $table->string('certificate');
+            $table->string('name')->nullable();
+            $table->string('period')->nullable();
+            $table->string('year')->nullable();
+            $table->string('organizer')->nullable();
+            $table->string('certificate')->nullable();
             $table->timestamps();
         });
     }

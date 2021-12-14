@@ -17,10 +17,10 @@ class CreateOrganizationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('scholarship_id')->references('id')->on('scholarships')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('name');
-            $table->string('period');
-            $table->string('position');
-            $table->longText('detail');
+            $table->string('name')->nullable();
+            $table->string('period')->nullable();
+            $table->string('position')->nullable();
+            $table->longText('detail')->nullable();
             $table->timestamps();
         });
     }
