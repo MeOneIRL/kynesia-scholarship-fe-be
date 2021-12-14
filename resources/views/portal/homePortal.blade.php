@@ -21,26 +21,38 @@
                     </p>
                 </div>
                 <div class="mb-8">
-                    <h3 class="text-3xl text-accent-color mb-4">
+                    <h3 class="text-3xl text-accent-color mb-2">
                         Informasi Beasiswa
                     </h3>
-                    <div>
-                        <div
-                            class="py-3 md:py-6 px-4 md:px-8 flex flex-row flex-wrap border border-gray-300 rounded-md">
-                            <div class="w-full md:w-1/4 mb-2.5 md:mb-0">
-                                <img class="w-full h-full mx-auto bg-cover"
-                                    src="https://dummyimage.com/250x200/000/fff.png" alt="">
+                    <div class="mx-auto flex flex-col">
+                        <div class="flex flex-col md:flex-row overflow-hidden bg-white rounded-lg shadow-xl mt-4 w-100">
+                            <div class="h-52 w-auto md:w-1/2">
+                                <img class="inset-0 h-full w-full object-cover object-center"
+                                    src="https://picsum.photos/640/360" />
                             </div>
-                            <div class="w-full md:w-3/4 md:pl-5">
-                                <h5 class="text-xl md:text-2xl text-primary-color">Pengumaman Kynesia Scholarship 2021
-                                </h5>
-                                <p class="text-xs md:text-sm text-accent-color">Sunday, 18 July 2021</p>
-                                <p class="text-sm md:text-base text-secondary-color text-justify mb-5 md:mb-10">Lorem
-                                    ipsum dolor sit amet consectetur adipisicing elit. Magni, labore explicabo itaque
-                                    reiciendis vitae minima a ex possimus harum velit.</p>
-                                <div class="">
-                                    <a class="float-right bg-primary-color text-bg-color px-8 py-1.5 rounded"
-                                        href="">Selengkapnya</a>
+                            <div class="w-full py-4 px-6 text-gray-800 flex flex-col space-y-2">
+                                <div>
+                                    <a href="">
+                                        <h3 class="font-semibold text-base md:text-lg text-primary-color leading-tight">
+                                            Pengumuman Kynesia Scholarship
+                                        </h3>
+                                    </a>
+                                    <p
+                                        class="text-xs md:text-sm text-gray-700 text-accent-color uppercase tracking-wide font-semibold">
+                                        Sunday, 18 July 2021
+                                    </p>
+                                </div>
+                                <p class="text-sm md:text-base text-secondary-color">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Aut, blanditiis? Eveniet distinctio et placeat sint
+                                    nisi praesentium ab at nulla.
+                                </p>
+                                <div class="text-right">
+                                    <a class="inline-block" href="/portal/detail-post">
+                                        <button
+                                            class="p-1 bg-transparent border-2 border-primary-color text-primary-color text-xs md:text-sm rounded-lg hover:bg-primary-color hover:text-bg-color focus:border-4 focus:border-primary-color">
+                                            Selengkapnya
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
