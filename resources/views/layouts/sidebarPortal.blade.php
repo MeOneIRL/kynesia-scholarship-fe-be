@@ -15,7 +15,7 @@
         </a>
     </div>
     <div>
-        <a href="">
+        <a href="/portal/home">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full rounded-full {{ request()->is('portal/home') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
                 <svg class="mr-5 inline-block {{ request()->is('portal/home') ? 'filter brightness-0 invert' : ''}}"
@@ -29,7 +29,7 @@
                 </p>
             </button>
         </a>
-        <a class="mb-5" href="">
+        <a class="mb-5" href="/portal/profile">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full rounded-full {{ request()->is('portal/profile') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
                 <svg class="mr-5 inline-block {{ request()->is('portal/profile') ? 'filter brightness-0 invert' : ''}}"
@@ -43,7 +43,7 @@
                 </p>
             </button>
         </a>
-        <a class="mb-5" href="">
+        <a class="mb-5" href="/portal/riwayat-pencairan-dana">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full rounded-full {{ request()->is('portal/riwayat-pencairan-dana') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
                 <svg class="mr-5 inline-block {{ request()->is('portal/riwayat-pencairan-dana') ? 'filter brightness-0 invert' : ''}}"
@@ -57,7 +57,7 @@
                 </p>
             </button>
         </a>
-        <a class="absolute bottom-0 left-0 right-4 mb-5" href="">
+        <a class="absolute bottom-0 left-0 right-4 mb-5" href="/bantuan">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full text-secondary-color bg-accent-color rounded-full hover:bg-gray-200">
                 <svg class="inline-block mr-5" width="30" height="30" viewBox="0 0 100 100" fill="none"
