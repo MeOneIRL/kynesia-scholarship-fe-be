@@ -20,6 +20,7 @@
         @include('layouts.sidebarPendaftaran')
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
+            <div class="message">{{Session::get('message')}}</div>
             <div class="px-5 md:px-12 py-12">
                 <form action="{{route('biodataPost')}}" method="POST"
                     onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
@@ -40,6 +41,7 @@
                                     <input type="text" name="full_name" id="full_name"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('full_name'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -48,6 +50,7 @@
                                     <input type="text" name="nickname" id="nickname"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                        <div class="error">@error('nickname'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -56,9 +59,11 @@
                                     <select id="sex" name="sex"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                         required>
+                                        <option name="sex" disabled selected hidden>Pilih</option>
                                         <option name="sex" value="Laki-laki">Laki-laki</option>
                                         <option name="sex" value="Perempuan">Perempuan</option>
                                     </select>
+                                    <div class="error">@error('sex'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -68,6 +73,7 @@
                                     <input type="text" name="birthplace" id="birthplace"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                        <div class="error">@error('birthplace'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -77,6 +83,7 @@
                                     <input type="date" name="birthdate" id="birthdate"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('birthdate'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -85,6 +92,7 @@
                                     <input type="number" name="telephone" id="telephone"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('telephone'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -93,6 +101,7 @@
                                     <input type="text" name="email" id="email"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('email'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -102,9 +111,11 @@
                                     <select id="id_type" name="id_type"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                         required>
+                                        <option name="id_type" disabled selected hidden>Pilih</option>
                                         <option name="id_type" value="KTP">KTP</option>
                                         <option name="id_type" value="Passport">Passport</option>
                                     </select>
+                                    <div class="error">@error('id_type'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -113,6 +124,7 @@
                                     <input type="number" name="id_number" id="id_number"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('id_number'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6">
@@ -122,6 +134,7 @@
                                     <input type="text" name="address" id="address" autocomplete="address"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('address'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -130,6 +143,7 @@
                                     <input type="text" name="code" id="postal-code"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('code'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -138,6 +152,7 @@
                                     <input type="text" name="district" id="district"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('dsitrict'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -146,6 +161,7 @@
                                     <input type="text" name="city" id="city"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('city'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -154,6 +170,7 @@
                                     <select id="province" name="province"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                         required>
+                                        <option name="province" disabled selected hidden>Pilih</option>
                                         <option name="province" value="Aceh">Aceh</option>
                                         <option name="province" value="Bali">Bali</option>
                                         <option name="province" value="Bangka Belitung">Bangka Belitung</option>
@@ -193,6 +210,7 @@
                                         <option name="province" value="Sumatra Utara">Sumatra Utara
                                         </option>
                                     </select>
+                                    <div class="error">@error('province'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 text-secondary-color font-bold">
@@ -225,7 +243,8 @@
                                                     Ini</label>
                                                 <input type="text" name="living_address" id="living_address"
                                                     autocomplete="living_address"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="error">@error('living_address'){{$message}}@enderror</div>
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
@@ -234,6 +253,7 @@
                                                     Pos</label>
                                                 <input type="text" name="living_code" id="living_code"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <div class="error">@error('living_code'){{$message}}@enderror</div>
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
@@ -241,6 +261,7 @@
                                                     class="block text-sm font-medium text-secondary-color">Kecamatan</label>
                                                 <input type="text" name="living_district" id="living_district"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <div class="error">@error('living_district'){{$message}}@enderror</div>
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
@@ -248,6 +269,7 @@
                                                     class="block text-sm font-medium text-secondary-color">Kota/Kabupaten</label>
                                                 <input type="text" name="living_city" id="living_city"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <div class="error">@error('living_city'){{$message}}@enderror</div>
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
@@ -255,6 +277,7 @@
                                                     class="block text-sm font-medium text-secondary-color">Provinsi</label>
                                                 <select id="living_province" name="living_province"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                    <option name="living_province" disabled selected hidden>Pilih</option>
                                                     <option name="living_province" value="Aceh">Aceh</option>
                                                     <option name="living_province" value="Bali">Bali</option>
                                                     <option name="living_province" value="Bangka Belitung">Bangka
@@ -328,6 +351,7 @@
                                                     <option name="living_province" value="Sumatra Utara">Sumatra Utara
                                                     </option>
                                                 </select>
+                                                <div class="error">@error('living_province'){{$message}}@enderror</div>
                                             </div>
                                         </div>
                                     </div>
@@ -378,6 +402,7 @@
                                     <input type="number" name="text_id" id="text_id"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('text_id'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -386,9 +411,11 @@
                                     <select id="entrance_type" name="entrance_type"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                         required>
+                                        <option name="entrance_type" disabled selected hidden>Pilih</option>
                                         <option name="entrance_type" value="SNPMTN">SNPMTN</option>
                                         <option name="entrance_type" value="SBMPTN">SBMPTN</option>
                                     </select>
+                                    <div class="error">@error('entrance_type'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -397,6 +424,7 @@
                                     <input type="text" name="major" id="major"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         required>
+                                    <div class="error">@error('major'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -405,6 +433,7 @@
                                     <select id="university" name="university"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                         required>
+                                        <option name="university" disabled selected hidden>Pilih</option>
                                         <option name="university" value="Universitas Indonesia">Universitas Indonesia
                                         </option>
                                         <option name="university" value="Universitas Padjadjaran">Universitas
@@ -412,6 +441,7 @@
                                         <option name="university" value="Institut Teknologi Bandung">Institut Teknologi
                                             Bandung</option>
                                     </select>
+                                    <div class="error">@error('university'){{$message}}@enderror</div>
                                 </div>
                             </div>
                         </div>

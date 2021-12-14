@@ -743,14 +743,13 @@ class UserController extends Controller
     }
 
     public function downloadablePost(Request $request){
-
-        if(Biodata::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->exist() == NULL){
+        if(Biodata::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
             return redirect()->route('biodataForm')->with(['message' => "Anda Belum Mengisi Biodata Diri"]);
         }
-        elseif(Family::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->exist() == NULL){
+        elseif(Family::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
             return redirect()->route('familyForm')->with(['message' => "Anda Belum Mengisi Data Keluarga"]);
         }
-        elseif(Education::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->exist() == NULL){
+        elseif(Education::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
             return redirect()->route('educationForm')->with(['message' => "Anda Belum Mengisi Data Pendidikan"]);
         }
 

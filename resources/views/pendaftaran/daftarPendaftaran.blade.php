@@ -18,8 +18,8 @@
                 <input
                     class="p-1 w-full text-secondary-color border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary-color focus:border-primary-color transition duration-500 rounded"
                     type="email" name="email" id="email">
+                    <div class="error">@error('email'){{$message}}@enderror</div>
             </div>
-            <div class="error">@error('email'){{$message}}@enderror</div>
             <div class="mb-5">
                 <label class="block text-lg text-secondary-color" for="password">Password</label>
                 <input
@@ -31,8 +31,8 @@
                 <input
                     class="p-1 w-full text-secondary-color border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary-color focus:border-primary-color transition duration-500 rounded"
                     type="password" name="password_confirmation" id="ulangPassword">
+                    <div class="error">@error('password'){{$message}}@enderror</div>
             </div>
-            <div class="error">@error('password'){{$message}}@enderror</div>
             <div class="w-full mx-auto mb-5">
                 <button class="w-full p-1 bg-primary-color text-bg-color rounded" type="submit">
                     Daftar
