@@ -35,30 +35,28 @@
                                     </p>
                                 </div>
 
-                                <div class="col-span-6">
+                                <div x-data="{checking_name: ''}" class="col-span-6">
                                     <label for="full_name" class="block text-sm font-medium text-secondary-color">Nama
                                         lengkap</label>
-                                    <input type="text" name="full_name" id="full_name"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
-                                    <div class="error">@error('full_name'){{$message}}@enderror</div>
+                                    <input x-model="checking_name" type="text" name="full_name" id="full_name"
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <div :class="{'block': !checking_name, 'hidden': checking_name}" class="error">
+                                        @error('full_name'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="nickname" class="block text-sm font-medium text-secondary-color">Nama
                                         Panggilan</label>
                                     <input type="text" name="nickname" id="nickname"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
-                                        <div class="error">@error('nickname'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <div class="error">@error('nickname'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="sex" class="block text-sm font-medium text-secondary-color">Jenis
                                         Kelamin</label>
                                     <select id="sex" name="sex"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                        required>
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                         <option name="sex" disabled selected hidden>Pilih</option>
                                         <option name="sex" value="Laki-laki">Laki-laki</option>
                                         <option name="sex" value="Perempuan">Perempuan</option>
@@ -71,9 +69,8 @@
                                         class="block text-sm font-medium text-secondary-color">Tempat
                                         Lahir</label>
                                     <input type="text" name="birthplace" id="birthplace"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
-                                        <div class="error">@error('birthplace'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <div class="error">@error('birthplace'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -81,8 +78,7 @@
                                         class="block text-sm font-medium text-secondary-color">Tanggal
                                         Lahir</label>
                                     <input type="date" name="birthdate" id="birthdate"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('birthdate'){{$message}}@enderror</div>
                                 </div>
 
@@ -90,8 +86,7 @@
                                     <label for="telephone" class="block text-sm font-medium text-secondary-color">
                                         Telephone</label>
                                     <input type="number" name="telephone" id="telephone"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('telephone'){{$message}}@enderror</div>
                                 </div>
 
@@ -99,8 +94,7 @@
                                     <label for="email" class="block text-sm font-medium text-secondary-color">Alamat
                                         Email</label>
                                     <input type="text" name="email" id="email"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('email'){{$message}}@enderror</div>
                                 </div>
 
@@ -109,8 +103,7 @@
                                         class="block text-sm font-medium text-secondary-color">Identitas Yang
                                         Digunakan</label>
                                     <select id="id_type" name="id_type"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                        required>
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                         <option name="id_type" disabled selected hidden>Pilih</option>
                                         <option name="id_type" value="KTP">KTP</option>
                                         <option name="id_type" value="Passport">Passport</option>
@@ -122,8 +115,7 @@
                                     <label for="id_number" class="block text-sm font-medium text-secondary-color">Nomor
                                         Identitas</label>
                                     <input type="number" name="id_number" id="id_number"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('id_number'){{$message}}@enderror</div>
                                 </div>
 
@@ -132,8 +124,7 @@
                                         class="block text-sm font-medium text-secondary-color">Alamat</label>
                                     <p class="text-xs text-gray-300">Sesuai Identitas</p>
                                     <input type="text" name="address" id="address" autocomplete="address"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('address'){{$message}}@enderror</div>
                                 </div>
 
@@ -141,8 +132,7 @@
                                     <label for="postal-code" class="block text-sm font-medium text-secondary-color">Kode
                                         Pos</label>
                                     <input type="text" name="code" id="postal-code"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('code'){{$message}}@enderror</div>
                                 </div>
 
@@ -150,8 +140,7 @@
                                     <label for="district"
                                         class="block text-sm font-medium text-secondary-color">Kecamatan</label>
                                     <input type="text" name="district" id="district"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('dsitrict'){{$message}}@enderror</div>
                                 </div>
 
@@ -159,8 +148,7 @@
                                     <label for="city"
                                         class="block text-sm font-medium text-secondary-color">Kota/Kabupaten</label>
                                     <input type="text" name="city" id="city"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('city'){{$message}}@enderror</div>
                                 </div>
 
@@ -168,8 +156,7 @@
                                     <label for="province"
                                         class="block text-sm font-medium text-secondary-color">Provinsi</label>
                                     <select id="province" name="province"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                        required>
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                         <option name="province" disabled selected hidden>Pilih</option>
                                         <option name="province" value="Aceh">Aceh</option>
                                         <option name="province" value="Bali">Bali</option>
@@ -243,8 +230,8 @@
                                                     Ini</label>
                                                 <input type="text" name="living_address" id="living_address"
                                                     autocomplete="living_address"
-                                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                    <div class="error">@error('living_address'){{$message}}@enderror</div>
+                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <div class="error">@error('living_address'){{$message}}@enderror</div>
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
@@ -277,7 +264,8 @@
                                                     class="block text-sm font-medium text-secondary-color">Provinsi</label>
                                                 <select id="living_province" name="living_province"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="living_province" disabled selected hidden>Pilih</option>
+                                                    <option name="living_province" disabled selected hidden>Pilih
+                                                    </option>
                                                     <option name="living_province" value="Aceh">Aceh</option>
                                                     <option name="living_province" value="Bali">Bali</option>
                                                     <option name="living_province" value="Bangka Belitung">Bangka
@@ -400,8 +388,7 @@
                                     <label for="text_id" class="block text-sm font-medium text-secondary-color">
                                         Nomor Peserta</label>
                                     <input type="number" name="text_id" id="text_id"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('text_id'){{$message}}@enderror</div>
                                 </div>
 
@@ -409,8 +396,7 @@
                                     <label for="entrance_type"
                                         class="block text-sm font-medium text-secondary-color">Jalur Masuk</label>
                                     <select id="entrance_type" name="entrance_type"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                        required>
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                         <option name="entrance_type" disabled selected hidden>Pilih</option>
                                         <option name="entrance_type" value="SNPMTN">SNPMTN</option>
                                         <option name="entrance_type" value="SBMPTN">SBMPTN</option>
@@ -422,8 +408,7 @@
                                     <label for="major" class="block text-sm font-medium text-secondary-color">
                                         Program Studi</label>
                                     <input type="text" name="major" id="major"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('major'){{$message}}@enderror</div>
                                 </div>
 
@@ -431,8 +416,7 @@
                                     <label for="university"
                                         class="block text-sm font-medium text-secondary-color">Perguruan Tinggi</label>
                                     <select id="university" name="university"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                        required>
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
                                         <option name="university" disabled selected hidden>Pilih</option>
                                         <option name="university" value="Universitas Indonesia">Universitas Indonesia
                                         </option>
