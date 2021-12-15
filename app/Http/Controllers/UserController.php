@@ -16,6 +16,7 @@ use App\Organization;
 use App\Talent;
 use App\Training;
 use App\Downloadable;
+use App\User;
 use Auth;
 use Validator;
 

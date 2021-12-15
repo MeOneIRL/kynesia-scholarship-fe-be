@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Scholarship;
+use App\User;
+use App\Registered;
+use DB;
 
 class AdminController extends Controller
 {
@@ -97,9 +100,87 @@ class AdminController extends Controller
     }
     // Scholarship End
 
+    // Selection
     public function registeredAdmin(){
-        return view('admin.page.registeredAdmin');
+        $scholarship = Scholarship::where('status' , '=' , 1)->first();
+
+        // Tahap 1
+        $stepOne = DB::table('registereds')->where([['scholarship_id','=',$scholarship->id]
+                                                    ,['statusOne','=',"Proses Seleksi"]])
+                    ->join('users','registereds.user_id','=','users.id')
+                    ->select('registereds.*','users.*','registereds.id')->get();
+        // End Tahap 1
+
+        // Tahap 2
+        $stepTwo = DB::table('registereds')->where([['scholarship_id','=',$scholarship->id]
+                                                    ,['statusTwo','=',"Proses Seleksi"]])
+                    ->join('users','registereds.user_id','=','users.id')
+                    ->select('registereds.*','users.*','registereds.id')->get();
+        // End Tahap 2
+
+        // Ditolak
+        $denied = DB::table('registereds')->where([['scholarship_id','=',$scholarship->id]
+                                                    ,['statusOne','=',"Tidak Lolos"]])
+                                            ->orWhere([['scholarship_id','=',$scholarship->id]
+                                                    ,['statusTwo','=',"Tidak Lolos"]])
+                    ->join('users','registereds.user_id','=','users.id')
+                    ->select('registereds.*','users.*','registereds.id')->get();
+        // End Ditolak
+
+        return view('admin.page.registeredAdmin')->with(['stepOne' => $stepOne,
+                                                         'stepTwo' => $stepTwo,
+                                                         'denied' => $denied]);
     }
+
+    public function stepOneAdminForm($id){
+        $user = DB::table('registereds')->find($id);
+        // dd($user);
+        return view('admin.page.stepOneForm')->with(['user' => $user]);
+    }
+
+    public function stepOneAdminAccept(Request $request,$id){
+        if(strpos($request->onlineTest,'https://') !== false){
+            $link = $request->onlineInterview;
+        }
+        else{
+            $link = "https://".$request->onlineInterview;
+        }
+
+        Registered::find($id)->update([
+            'onlineInterview' => $link,
+            'interviewDate' => $request->interviewDate,
+            'interviewTime' => $request->interviewTime,
+            'statusOne' => "Lolos",
+            'statusTwo' => "Proses Seleksi",
+        ]);
+
+        return redirect()->route('registeredAdmin');
+    }
+
+    public function stepOneAdminDeny($id){
+        Registered::find($id)->update([
+            'statusOne' => "Tidak Lolos"
+        ]);
+
+        return redirect()->route('registeredAdmin');
+    }
+
+    public function stepTwoAdminAccept($id){
+        Registered::find($id)->update([
+            'statusTwo' => "Lolos"
+        ]);
+
+        return redirect()->route('registeredAdmin');
+    }
+
+    public function stepTwoAdminDeny($id){
+        Registered::find($id)->update([
+            'statusTwo' => "Tidak Lolos"
+        ]);
+
+        return redirect()->route('registeredAdmin');
+    }
+    // Selection End
 
     public function fundingAdmin(){
         return view('admin.page.fundingAdmin');

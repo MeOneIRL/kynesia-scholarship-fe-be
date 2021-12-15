@@ -139,7 +139,14 @@ Route::prefix('/admin')->group(function(){
     Route::delete('/scholarship/delete/{id}', 'AdminController@scholarshipAdminDelete')->name('scholarshipAdminDelete');
     // Scholarship End
 
+    // Seleksi
     Route::get('/registered', 'AdminController@registeredAdmin')->name('registeredAdmin');
+    Route::get('/registered/stepOne/accept/{id}', 'AdminController@stepOneAdminForm')->name('stepOneAdminForm');
+    Route::post('/registered/stepOne/accept/{id}', 'AdminController@stepOneAdminAccept')->name('stepOneAdminAccept');
+    Route::post('/registered/stepOne/deny/{id}', 'AdminController@stepOneAdminDeny')->name('stepOneAdminDeny');
+    Route::post('/registered/stepTwo/accept/{id}', 'AdminController@stepTwoAdminAccept')->name('stepTwoAdminAccept');
+    Route::post('/registered/stepTwo/deny/{id}', 'AdminController@stepTwoAdminDeny')->name('stepTwoAdminDeny');
+    // Seleksi End
     Route::get('/funding', 'AdminController@fundingAdmin')->name('fundingAdmin');
     Route::get('/post', 'AdminController@postAdmin')->name('postAdmin');
 });
