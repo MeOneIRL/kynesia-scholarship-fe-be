@@ -20,35 +20,7 @@
 
 @section('content')
 
-<script>
-    function handler() {
-        return {
-            childForm: [{
-                child: '',
-                child_id: '',
-                child_name: '',
-                child_birthplace: '',
-                child_birthdate: '',
-                child_education: '',
-                child_job: '',
-            }],
-            addNewField() {
-                this.childForm.push({
-                    child_name: '',
-                    child_id: '',
-                    child_sex: '',
-                    child_birthplace: '',
-                    child_birthdate: '',
-                    child_education: '',
-                    child_job: '',
-                });
-            },
-            removeField(index) {
-                this.childForm.splice(index, 1);
-            },
-        }
-    }
-</script>
+<script src="{{ asset('js/dataKeluarga.js')}}"></script>
 
 <section>
     <div class="md:mx-24 md:flex" x-data="handler()">
@@ -56,9 +28,10 @@
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
-                <form action="{{route('updateFamilyPost',$networth->user_id)}}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
-                @csrf
-                <input type="hidden" name="scholarship_id" value="{{$networth->scholarship_id}}">
+                <form action="{{route('updateFamilyPost',$networth->user_id)}}" method="POST"
+                    onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
+                    @csrf
+                    <input type="hidden" name="scholarship_id" value="{{$networth->scholarship_id}}">
                     <div class="overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
@@ -71,7 +44,7 @@
                                 @foreach($families as $family)
                                 {{-- Ayah --}}
                                 @if($family->status == "Ayah")
-                                <input type="hidden" name="father_id" value = "{{$family->id}}">
+                                <input type="hidden" name="father_id" value="{{$family->id}}">
                                 <div class="col-span-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
@@ -83,7 +56,8 @@
                                             <label for="father_name"
                                                 class="block text-sm font-medium text-secondary-color">Nama
                                                 lengkap</label>
-                                            <input type="text" name="father_name" id="father_name" value = "{{$family->name}}"
+                                            <input type="text" name="father_name" id="father_name"
+                                                value="{{$family->name}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -101,7 +75,8 @@
                                             <label for="father_birthplace"
                                                 class="block text-sm font-medium text-secondary-color">Tempat
                                                 Lahir</label>
-                                            <input type="text" name="father_birthplace" id="father_birthplace" value = "{{$family->birthplace}}"
+                                            <input type="text" name="father_birthplace" id="father_birthplace"
+                                                value="{{$family->birthplace}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -109,7 +84,8 @@
                                             <label for="father_birthdate"
                                                 class="block text-sm font-medium text-secondary-color">Tanggal
                                                 Lahir</label>
-                                            <input type="date" name="father_birthdate" id="father_birthdate" value = "{{$family->birthdate}}"
+                                            <input type="date" name="father_birthdate" id="father_birthdate"
+                                                value="{{$family->birthdate}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -120,19 +96,27 @@
                                             <select id="father_education" name="father_education"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="father_education" value="SD" @if($family->education == "SD") selected = "selected" @endif>SD</option>
-                                                <option name="father_education" value="SMP" @if($family->education == "SMP") selected = "selected" @endif>SMP</option>
-                                                <option name="father_education" value="SMA" @if($family->education == "SMA") selected = "selected" @endif>SMA</option>
-                                                <option name="father_education" value="D3" @if($family->education == "D3") selected = "selected" @endif>D3</option>
-                                                <option name="father_education" value="S1" @if($family->education == "S1") selected = "selected" @endif>S1</option>
-                                                <option name="father_education" value="S2" @if($family->education == "S2") selected = "selected" @endif>S2</option>
-                                                <option name="father_education" value="S3" @if($family->education == "S3") selected = "selected" @endif>S3</option>
+                                                <option name="father_education" value="SD" @if($family->education ==
+                                                    "SD") selected = "selected" @endif>SD</option>
+                                                <option name="father_education" value="SMP" @if($family->education ==
+                                                    "SMP") selected = "selected" @endif>SMP</option>
+                                                <option name="father_education" value="SMA" @if($family->education ==
+                                                    "SMA") selected = "selected" @endif>SMA</option>
+                                                <option name="father_education" value="D3" @if($family->education ==
+                                                    "D3") selected = "selected" @endif>D3</option>
+                                                <option name="father_education" value="S1" @if($family->education ==
+                                                    "S1") selected = "selected" @endif>S1</option>
+                                                <option name="father_education" value="S2" @if($family->education ==
+                                                    "S2") selected = "selected" @endif>S2</option>
+                                                <option name="father_education" value="S3" @if($family->education ==
+                                                    "S3") selected = "selected" @endif>S3</option>
                                             </select>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="father_job"
                                                 class="block text-sm font-medium text-secondary-color">Pekerjaan</label>
-                                            <input type="text" name="father_job" id="father_job" value = "{{$family->job}}"
+                                            <input type="text" name="father_job" id="father_job"
+                                                value="{{$family->job}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -141,7 +125,7 @@
 
                                 {{-- Ibu --}}
                                 @elseif($family->status == "Ibu")
-                                <input type="hidden" name="mother_id" value = "{{$family->id}}">
+                                <input type="hidden" name="mother_id" value="{{$family->id}}">
                                 <div class="col-span-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
@@ -153,7 +137,8 @@
                                             <label for="mother_name"
                                                 class="block text-sm font-medium text-secondary-color">Nama
                                                 lengkap</label>
-                                            <input type="text" name="mother_name" id="mother_name" value = "{{$family->name}}"
+                                            <input type="text" name="mother_name" id="mother_name"
+                                                value="{{$family->name}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -171,7 +156,8 @@
                                             <label for="mother_birthplace"
                                                 class="block text-sm font-medium text-secondary-color">Tempat
                                                 Lahir</label>
-                                            <input type="text" name="mother_birthplace" id="mother_birthplace" value = "{{$family->birthplace}}"
+                                            <input type="text" name="mother_birthplace" id="mother_birthplace"
+                                                value="{{$family->birthplace}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -179,7 +165,8 @@
                                             <label for="mother_birthdate"
                                                 class="block text-sm font-medium text-secondary-color">Tanggal
                                                 Lahir</label>
-                                            <input type="date" name="mother_birthdate" id="mother_birthdate" value = "{{$family->birthdate}}"
+                                            <input type="date" name="mother_birthdate" id="mother_birthdate"
+                                                value="{{$family->birthdate}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -190,19 +177,27 @@
                                             <select id="mother_education" name="mother_education"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="mother_education" value="SD" @if($family->education == "SD") selected = "selected" @endif>SD</option>
-                                                <option name="mother_education" value="SMP" @if($family->education == "SMP") selected = "selected" @endif>SMP</option>
-                                                <option name="mother_education" value="SMA" @if($family->education == "SMA") selected = "selected" @endif>SMA</option>
-                                                <option name="mother_education" value="D3" @if($family->education == "D3") selected = "selected" @endif>D3</option>
-                                                <option name="mother_education" value="S1" @if($family->education == "S1") selected = "selected" @endif>S1</option>
-                                                <option name="mother_education" value="S2" @if($family->education == "S2") selected = "selected" @endif>S2</option>
-                                                <option name="mother_education" value="S3" @if($family->education == "S3") selected = "selected" @endif>S3</option>
+                                                <option name="mother_education" value="SD" @if($family->education ==
+                                                    "SD") selected = "selected" @endif>SD</option>
+                                                <option name="mother_education" value="SMP" @if($family->education ==
+                                                    "SMP") selected = "selected" @endif>SMP</option>
+                                                <option name="mother_education" value="SMA" @if($family->education ==
+                                                    "SMA") selected = "selected" @endif>SMA</option>
+                                                <option name="mother_education" value="D3" @if($family->education ==
+                                                    "D3") selected = "selected" @endif>D3</option>
+                                                <option name="mother_education" value="S1" @if($family->education ==
+                                                    "S1") selected = "selected" @endif>S1</option>
+                                                <option name="mother_education" value="S2" @if($family->education ==
+                                                    "S2") selected = "selected" @endif>S2</option>
+                                                <option name="mother_education" value="S3" @if($family->education ==
+                                                    "S3") selected = "selected" @endif>S3</option>
                                             </select>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mother_job"
                                                 class="block text-sm font-medium text-secondary-color">Pekerjaan</label>
-                                            <input type="text" name="mother_job" id="mother_job" value = "{{$family->job}}"
+                                            <input type="text" name="mother_job" id="mother_job"
+                                                value="{{$family->job}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -211,7 +206,7 @@
 
                                 {{-- Anak --}}
                                 @elseif($family->status != "Ayah" && $family->status != "Ibu")
-                                <input type="hidden" name="child_id[]" value = "{{$family->id}}">
+                                <input type="hidden" name="child_id[]" value="{{$family->id}}">
                                 <div class="col-span-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
@@ -223,7 +218,8 @@
                                             <label for="child_name"
                                                 class="block text-sm font-medium text-secondary-color">Nama
                                                 lengkap</label>
-                                            <input type="text" name="child_name[]" id="child_name" value = "{{$family->name}}"
+                                            <input type="text" name="child_name[]" id="child_name"
+                                                value="{{$family->name}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -234,15 +230,18 @@
                                             <select id="child_sex" name="child_sex[]"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="child_sex[]" value="Laki-laki"@if($family->gender == "Laki-laki") selected = "selected" @endif>Laki-laki</option>
-                                                <option name="child_sex[]" value="Perempuan" @if($family->gender == "Perempuan") selected = "selected" @endif>Perempuan</option>
+                                                <option name="child_sex[]" value="Laki-laki" @if($family->gender ==
+                                                    "Laki-laki") selected = "selected" @endif>Laki-laki</option>
+                                                <option name="child_sex[]" value="Perempuan" @if($family->gender ==
+                                                    "Perempuan") selected = "selected" @endif>Perempuan</option>
                                             </select>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="child_birthplace"
                                                 class="block text-sm font-medium text-secondary-color">Tempat
                                                 Lahir</label>
-                                            <input type="text" name="child_birthplace[]" id="child_birthplace" value = "{{$family->birthplace}}"
+                                            <input type="text" name="child_birthplace[]" id="child_birthplace"
+                                                value="{{$family->birthplace}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -250,7 +249,8 @@
                                             <label for="child_birthdate"
                                                 class="block text-sm font-medium text-secondary-color">Tanggal
                                                 Lahir</label>
-                                            <input type="date" name="child_birthdate[]" id="child_birthdate" value = "{{$family->birthdate}}"
+                                            <input type="date" name="child_birthdate[]" id="child_birthdate"
+                                                value="{{$family->birthdate}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
                                         </div>
@@ -261,21 +261,36 @@
                                             <select id="child_education" name="child_education[]"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="child_education[]" value="SD" @if($family->education == "SD") selected = "selected" @endif>SD</option>
-                                                <option name="child_education[]" value="SMP" @if($family->education == "SMP") selected = "selected" @endif>SMP</option>
-                                                <option name="child_education[]" value="SMA" @if($family->education == "SMA") selected = "selected" @endif>SMA</option>
-                                                <option name="child_education[]" value="D3" @if($family->education == "D3") selected = "selected" @endif>D3</option>
-                                                <option name="child_education[]" value="S1" @if($family->education == "S1") selected = "selected" @endif>S1</option>
-                                                <option name="child_education[]" value="S2" @if($family->education == "S2") selected = "selected" @endif>S2</option>
-                                                <option name="child_education[]" value="S3" @if($family->education == "S3") selected = "selected" @endif>S3</option>
+                                                <option name="child_education[]" value="SD" @if($family->education ==
+                                                    "SD") selected = "selected" @endif>SD</option>
+                                                <option name="child_education[]" value="SMP" @if($family->education ==
+                                                    "SMP") selected = "selected" @endif>SMP</option>
+                                                <option name="child_education[]" value="SMA" @if($family->education ==
+                                                    "SMA") selected = "selected" @endif>SMA</option>
+                                                <option name="child_education[]" value="D3" @if($family->education ==
+                                                    "D3") selected = "selected" @endif>D3</option>
+                                                <option name="child_education[]" value="S1" @if($family->education ==
+                                                    "S1") selected = "selected" @endif>S1</option>
+                                                <option name="child_education[]" value="S2" @if($family->education ==
+                                                    "S2") selected = "selected" @endif>S2</option>
+                                                <option name="child_education[]" value="S3" @if($family->education ==
+                                                    "S3") selected = "selected" @endif>S3</option>
                                             </select>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="child_job"
                                                 class="block text-sm font-medium text-secondary-color">Pekerjaan</label>
-                                            <input type="text" name="child_job[]" id="child_job" value = "{{$family->job}}"
+                                            <input type="text" name="child_job[]" id="child_job"
+                                                value="{{$family->job}}"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 required>
+                                        </div>
+                                        <div class="col-span-6">
+                                            <button
+                                                class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                type="button">
+                                                Hapus Anak
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -290,8 +305,7 @@
                                             </div>
                                             <input x-model="field.child" type="hidden" name="child[]"
                                                 value="Anak Pertama">
-                                            <input x-model="field.child" type="hidden" name="child_id[]"
-                                                value=NULL>
+                                            <input x-model="field.child" type="hidden" name="child_id[]" value=NULL>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="child_name"
                                                     class="block text-sm font-medium text-secondary-color">Nama
@@ -375,13 +389,14 @@
                                     </p>
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
-                                    <input type="hidden" name="networth_id" value = "{{$networth->id}}">
+                                    <input type="hidden" name="networth_id" value="{{$networth->id}}">
                                     <label for="earnings"
                                         class="block text-sm font-medium text-secondary-color">Pendapatan Orang
                                         Tua</label>
                                     <div class="flex flex-row items-center space-x-1">
                                         <span class="text-sm text-secondary-color fotn-medium">Rp.</span>
-                                        <input type="number" name="earnings" id="earnings" value = "{{$networth->networth}}"
+                                        <input type="number" name="earnings" id="earnings"
+                                            value="{{$networth->networth}}"
                                             class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                             required>
                                         <span class="text-sm text-secondary-color fotn-medium">/Bulan</span>
