@@ -25,12 +25,12 @@
         @include('layouts.sidebarPendaftaran')
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
-            <div class="message">{{Session::get('message')}}</div>
             <div class="px-5 md:px-12 py-12">
-                <form action="{{route('downloadablePost')}}" method= "POST" enctype="multipart/form-data"
+                @include('layouts.sessionFlashMessage')
+                <form action="{{route('downloadablePost')}}" method="POST" enctype="multipart/form-data"
                     onsubmit="return confirm('Setelah dikirim formulir tidak dapat diubah, kamu yakin ingin mengumpulkan?');">
                     @csrf
-                    <input type="hidden" name="scholarship_id" value = "{{$scholarship->id}}">
+                    <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
                     <div class="overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
@@ -47,9 +47,9 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="id" id="id"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
-                                    <div class="error">@error('id'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <div class="error">
+                                        @error('id'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -59,8 +59,7 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="graduate_pass" id="graduate_pass"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('graduate_pass'){{$message}}@enderror</div>
                                 </div>
 
@@ -71,8 +70,7 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="university_pass" id="university_pass"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('university_pass'){{$message}}@enderror</div>
                                 </div>
 
@@ -82,8 +80,7 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="motivation_letter" id="motivation_letter"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                        required>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <div class="error">@error('motivation_letter'){{$message}}@enderror</div>
                                 </div>
                             </div>

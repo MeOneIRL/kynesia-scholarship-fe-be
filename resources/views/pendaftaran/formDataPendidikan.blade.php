@@ -22,14 +22,13 @@
 
 <script src="{{ asset('js/dataPendidikan.js')}}"></script>
 
-
 <section>
     <div class="md:mx-24 md:flex" x-data="handler()">
         @include('layouts.sidebarPendaftaran')
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
-            <div class="message">{{Session::get('message')}}</div>
             <div class="px-5 md:px-12 py-12">
+                @include('layouts.sessionFlashMessage')
                 <form action="{{route('educationPost')}}" method="POST"
                     onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                     @csrf
@@ -75,7 +74,8 @@
                                             <select id="elementary_province" name="elementary_province"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
                                                 required>
-                                                <option name="elementary_province" disabled selected hidden>Pilih</option>
+                                                <option name="elementary_province" disabled selected hidden>Pilih
+                                                </option>
                                                 <option name="elementary_province" value="Aceh">Aceh</option>
                                                 <option name="elementary_province" value="Bali">Bali</option>
                                                 <option name="elementary_province" value="Bangka Belitung">Bangka
@@ -471,7 +471,7 @@
                                                 <input x-model="field.training_period" type="text"
                                                     name="training_period[]" id="training_period"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                    <div class="error">@error('training_period'){{$message}}@enderror</div>
+                                                <div class="error">@error('training_period'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_year"
@@ -480,7 +480,7 @@
                                                 <input x-model="field.training_year" type="number"
                                                     name="training_year[]" id="training_year"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                    <div class="error">@error('training_year'){{$message}}@enderror</div>
+                                                <div class="error">@error('training_year'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_organizer"
@@ -488,7 +488,8 @@
                                                 <input x-model="field.training_organizer" type="text"
                                                     name="training_organizer[]" id="training_organizer"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                    <div class="error">@error('training_organizer'){{$message}}@enderror</div>
+                                                <div class="error">@error('training_organizer'){{$message}}@enderror
+                                                </div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_certificate"
@@ -496,13 +497,14 @@
                                                 <select x-model="field.training_certificate" id="training_certificate"
                                                     name="training_certificate[]"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="training_certificate[]" >Pilih</option>
+                                                    <option name="training_certificate[]">Pilih</option>
                                                     <option name="training_certificate[]" value="Ya">
                                                         Ya</option>
                                                     <option name="training_certificate[]" value="Tidak">
                                                         Tidak</option>
                                                 </select>
-                                                <div class="error">@error('training_certificate'){{$message}}@enderror</div>
+                                                <div class="error">@error('training_certificate'){{$message}}@enderror
+                                                </div>
                                             </div>
                                             <div class="col-span-6">
                                                 <button
@@ -557,7 +559,8 @@
                                                 <input x-model="field.achievement_organizer" type="text"
                                                     name="achievement_organizer[]" id="achievement_organizer"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                    <div class="error">@error('achievement_organizer'){{$message}}@enderror</div>
+                                                <div class="error">@error('achievement_organizer'){{$message}}@enderror
+                                                </div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="achievement_level"
@@ -744,7 +747,8 @@
                                                     name="organization_period[]" id="organization_period"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     placeholder="e.g. 2020-2021">
-                                                    <div class="error">@error('organization_period'){{$message}}@enderror</div>
+                                                <div class="error">@error('organization_period'){{$message}}@enderror
+                                                </div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="organization_position"
@@ -753,7 +757,8 @@
                                                 <input x-model="field.organization_position" type="text"
                                                     name="organization_position[]" id="organization_position"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                    <div class="error">@error('organization_position'){{$message}}@enderror</div>
+                                                <div class="error">@error('organization_position'){{$message}}@enderror
+                                                </div>
                                             </div>
                                             <div class="col-span-6">
                                                 <label for="organization_detail"
@@ -763,7 +768,8 @@
                                                     name="organization_detail[]" id="organization_detail" cols="30"
                                                     rows="5"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
-                                                    <div class="error">@error('organization_detail'){{$message}}@enderror</div>
+                                                <div class="error">@error('organization_detail'){{$message}}@enderror
+                                                </div>
                                             </div>
                                             <div class="col-span-6">
                                                 <button

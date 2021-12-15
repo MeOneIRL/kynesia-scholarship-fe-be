@@ -20,8 +20,8 @@
         @include('layouts.sidebarPendaftaran')
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
-            <div class="message">{{Session::get('message')}}</div>
             <div class="px-5 md:px-12 py-12">
+                @include('layouts.sessionFlashMessage')
                 <form action="{{route('biodataPost')}}" method="POST"
                     onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                     @csrf
@@ -35,12 +35,12 @@
                                     </p>
                                 </div>
 
-                                <div x-data="{checking_name: ''}" class="col-span-6">
+                                <div class="col-span-6">
                                     <label for="full_name" class="block text-sm font-medium text-secondary-color">Nama
                                         lengkap</label>
-                                    <input x-model="checking_name" type="text" name="full_name" id="full_name"
+                                    <input type="text" name="full_name" id="full_name"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    <div :class="{'block': !checking_name, 'hidden': checking_name}" class="error">
+                                    <div class="error">
                                         @error('full_name'){{$message}}@enderror</div>
                                 </div>
 
