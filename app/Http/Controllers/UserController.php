@@ -111,6 +111,10 @@ class UserController extends Controller
                 'statusOne' => "Proses Pendaftaran",
             ]);
 
+            $user = User::find(Auth::user()->id);
+            $user->name = $request->full_name;
+            $user->save();
+
             return redirect()->route('familyForm');
         }
 
@@ -194,6 +198,10 @@ class UserController extends Controller
             'scholarship_id' => $request->scholarship_id,
             'statusOne' => "Proses Pendaftaran",
         ]);
+
+        $user = User::find(Auth::user()->id);
+        $user->name = $request->full_name;
+        $user->save();
 
         return redirect()->route('familyForm');
 

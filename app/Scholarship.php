@@ -11,10 +11,10 @@ class Scholarship extends Model
         'name',
         'startStepOne',
         'endStepOne',
-        'announeStepOne',
+        'announceStepOne',
         'startStepTwo',
         'endStepTwo',
-        'announeStepTwo',
+        'announceStepTwo',
         'onlineTest',
         'status',
     ];

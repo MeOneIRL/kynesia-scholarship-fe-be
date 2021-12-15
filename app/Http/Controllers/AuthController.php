@@ -21,6 +21,10 @@ class AuthController extends Controller
                 'registered' => $registered,
             ]);
         }
+
+        elseif(Auth::user()->role == 1){
+            return redirect()->route('homeAdmin');
+        }
     }
 
     // register
@@ -91,6 +95,7 @@ class AuthController extends Controller
                 Auth::logout();
                 return redirect()->back()->with(['message' => "Akun Belum Terverifikasi"]);
             }
+
             return redirect()->route('homeAccount');
         }
 

@@ -123,3 +123,27 @@ Route::prefix('/registration')->group(function(){
     // End Downloadable
 
 });
+
+// Admin
+Route::prefix('/admin')->group(function(){
+    Route::get('/home', 'AdminController@homeAdmin')->name('homeAdmin');
+
+    // Scholarship
+    Route::get('/scholarship', 'AdminController@scholarshipAdmin')->name('scholarshipAdmin');
+    Route::get('/scholarship/create', 'AdminController@scholarshipAdminForm')->name('scholarshipAdminForm');
+    Route::post('/scholarship/create', 'AdminController@scholarshipAdminPost')->name('scholarshipAdminPost');
+    Route::get('/scholarship/activate/{id}', 'AdminController@scholarshipAdminActivate')->name('scholarshipAdminActivate');
+    Route::get('/scholarship/deactivate/{id}', 'AdminController@scholarshipAdminDeactivate')->name('scholarshipAdminDeactivate');
+    Route::get('/scholarship/update/{id}', 'AdminController@scholarshipAdminUpdateForm')->name('scholarshipAdminUpdateForm');
+    Route::post('/scholarship/update/{id}', 'AdminController@scholarshipAdminUpdatePost')->name('scholarshipAdminUpdatePost');
+    Route::delete('/scholarship/delete/{id}', 'AdminController@scholarshipAdminDelete')->name('scholarshipAdminDelete');
+    // Scholarship End
+
+    Route::get('/registered', 'AdminController@registeredAdmin')->name('registeredAdmin');
+    Route::get('/funding', 'AdminController@fundingAdmin')->name('fundingAdmin');
+    Route::get('/post', 'AdminController@postAdmin')->name('postAdmin');
+});
+
+Route::get('testing', function(){
+    return view('admin.pendaftaran.wawancara');
+});

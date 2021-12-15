@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Scholarship;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +23,14 @@ class DatabaseSeeder extends Seeder
             'endStepTwo' => date("2021-12-05"),
             'announceStepTwo' => date("2021-12-06"),
             'onlineTest' => "https://facebook.com",
+            'status' => 1,
+        ]);
+
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@kynesia.com',
+            'password' => Hash::make("superadmin123"),
+            'role' => 1,
             'status' => 1,
         ]);
     }
