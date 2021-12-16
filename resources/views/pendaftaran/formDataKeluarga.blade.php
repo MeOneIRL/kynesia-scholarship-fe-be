@@ -21,6 +21,7 @@
 @section('content')
 
 <script src="{{ asset('js/dataKeluarga.js')}}"></script>
+<script src="{{ asset('js/validationIodine.js')}}"></script>
 
 <section>
     <div class="md:mx-24 md:flex" x-data="handler()">
@@ -29,8 +30,8 @@
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
                 @include('layouts.sessionFlashMessage')
-                <form action="{{route('familyPost')}}" method="POST"
-                    onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
+                <form x-data="form" @focusout="change" @input="change" @submit="submit" action="{{route('familyPost')}}"
+                    method="POST" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                     @csrf
                     <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
                     <div class="overflow-hidden">
@@ -39,8 +40,7 @@
                                 <div class="col-span-6">
                                     <h3 class="text-primary-color text-lg font-bold ">Form Data Keluarga</h3>
                                     <p class="text-secondary-color text-sm">Berisikan form informasi data keluarga anda
-                                        beserta
-                                        pendapatan total orang tua</p>
+                                        beserta pendapatan total orang tua</p>
                                 </div>
 
                                 {{-- Ayah --}}
@@ -58,7 +58,13 @@
                                                 lengkap</label>
                                             <input type="text" name="father_name" id="father_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': father_name.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="father_name.errorMessage"
+                                                    x-text="father_name.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('father_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -78,7 +84,13 @@
                                                 Lahir</label>
                                             <input type="text" name="father_birthplace" id="father_birthplace"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': father_birthplace.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="father_birthplace.errorMessage"
+                                                    x-text="father_birthplace.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('father_birthplace'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -87,7 +99,13 @@
                                                 Lahir</label>
                                             <input type="date" name="father_birthdate" id="father_birthdate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': father_birthdate.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="father_birthdate.errorMessage"
+                                                    x-text="father_birthdate.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('father_birthdate'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -113,7 +131,13 @@
                                                 class="block text-sm font-medium text-secondary-color">Pekerjaan</label>
                                             <input type="text" name="father_job" id="father_job"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': father_job.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="father_job.errorMessage"
+                                                    x-text="father_job.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('father_job'){{$message}}@enderror</div>
                                         </div>
                                     </div>
@@ -134,7 +158,13 @@
                                                 lengkap</label>
                                             <input type="text" name="mother_name" id="mother_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': mother_name.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="mother_name.errorMessage"
+                                                    x-text="mother_name.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('father_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -154,7 +184,13 @@
                                                 Lahir</label>
                                             <input type="text" name="mother_birthplace" id="mother_birthplace"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': mother_birthplace.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="mother_birthplace.errorMessage"
+                                                    x-text="mother_birthplace.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('mother_birthplace'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -163,7 +199,13 @@
                                                 Lahir</label>
                                             <input type="date" name="mother_birthdate" id="mother_birthdate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': mother_birthdate.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="mother_birthdate.errorMessage"
+                                                    x-text="mother_birthdate.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('mother_birthdate'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
@@ -189,7 +231,13 @@
                                                 class="block text-sm font-medium text-secondary-color">Pekerjaan</label>
                                             <input type="text" name="mother_job" id="mother_job"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': mother_job.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="mother_job.errorMessage"
+                                                    x-text="mother_job.errorMessage" x-transition>
+                                                </p>
+                                            </div>
                                             <div class="error">@error('mother_job'){{$message}}@enderror</div>
                                         </div>
                                     </div>
@@ -300,8 +348,14 @@
                                         <span class="text-sm text-secondary-color fotn-medium">Rp.</span>
                                         <input type="number" name="earnings" id="earnings"
                                             class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            required>
+                                            :class="{'border border-primary-color ring-1 ring-primary-color': earnings.errorMessage}"
+                                            data-rules='["required"]'>
                                         <span class="text-sm text-secondary-color fotn-medium">/Bulan</span>
+                                    </div>
+                                    <div class="h-3 pl-7">
+                                        <p class="text-xs text-red-500" x-show="earnings.errorMessage"
+                                            x-text="earnings.errorMessage" x-transition>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
