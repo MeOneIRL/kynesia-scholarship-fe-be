@@ -59,6 +59,7 @@ class AdminController extends Controller
 
     public function scholarshipAdminDeactivate($id){
         Scholarship::find($id)->update(['status' => 0]);
+
         return redirect()->route('scholarshipAdmin');
     }
 
@@ -168,6 +169,12 @@ class AdminController extends Controller
     public function stepTwoAdminAccept($id){
         Registered::find($id)->update([
             'statusTwo' => "Lolos"
+        ]);
+
+        $user = Registered::find($id);
+
+        User::find($user->id)->update([
+            'role' => 2
         ]);
 
         return redirect()->route('registeredAdmin');
