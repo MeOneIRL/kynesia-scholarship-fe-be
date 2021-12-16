@@ -39,8 +39,7 @@
                                 <div class="col-span-6">
                                     <h3 class="text-primary-color text-lg font-bold ">Form Data Pendidikan</h3>
                                     <p class="text-secondary-color text-sm">Berisikan form informasi riwayat pendidikan
-                                        yang
-                                        pernah dilalui
+                                        yang pernah dilalui
                                     </p>
                                 </div>
 
