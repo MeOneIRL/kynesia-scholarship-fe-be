@@ -20,6 +20,8 @@
 
 @section('content')
 
+<script src="{{ asset('js/validationIodine.js')}}"></script>
+
 <section>
     <div class="md:mx-24 md:flex">
         @include('layouts.sidebarPendaftaran')
@@ -27,7 +29,8 @@
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
                 @include('layouts.sessionFlashMessage')
-                <form action="{{route('downloadablePost')}}" method="POST" enctype="multipart/form-data"
+                <form x-data="form" @focusout="change" @input="change" @submit="submit"
+                    action="{{route('downloadablePost')}}" method="POST" enctype="multipart/form-data"
                     onsubmit="return confirm('Setelah dikirim formulir tidak dapat diubah, kamu yakin ingin mengumpulkan?');">
                     @csrf
                     <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
@@ -47,9 +50,17 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="id" id="id"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    <div class="error">
-                                        @error('id'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                        :class="{'border border-primary-color ring-1 ring-primary-color': id.errorMessage}"
+                                        data-rules='["required"]'>
+                                    <div class="h-3">
+                                        <p class="text-xs text-red-500" x-show="id.errorMessage"
+                                            x-text="id.errorMessage" x-transition>
+                                        </p>
+                                    </div>
+                                    <div class="error text-xs text-red-500">
+                                        @error('id'){{$message}}@enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -59,8 +70,16 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="graduate_pass" id="graduate_pass"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    <div class="error">@error('graduate_pass'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                        :class="{'border border-primary-color ring-1 ring-primary-color': graduate_pass.errorMessage}"
+                                        data-rules='["required"]'>
+                                    <div class="h-3">
+                                        <p class="text-xs text-red-500" x-show="graduate_pass.errorMessage"
+                                            x-text="graduate_pass.errorMessage" x-transition>
+                                        </p>
+                                    </div>
+                                    <div class="error text-xs text-red-500">@error('graduate_pass'){{$message}}@enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -70,8 +89,16 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="university_pass" id="university_pass"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    <div class="error">@error('university_pass'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                        :class="{'border border-primary-color ring-1 ring-primary-color': university_pass.errorMessage}"
+                                        data-rules='["required"]'>
+                                    <div class="h-3">
+                                        <p class="text-xs text-red-500" x-show="university_pass.errorMessage"
+                                            x-text="university_pass.errorMessage" x-transition>
+                                        </p>
+                                    </div>
+                                    <div class="error text-xs text-red-500">
+                                        @error('university_pass'){{$message}}@enderror</div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -80,8 +107,16 @@
                                     <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="motivation_letter" id="motivation_letter"
-                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    <div class="error">@error('motivation_letter'){{$message}}@enderror</div>
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                        :class="{'border border-primary-color ring-1 ring-primary-color': motivation_letter.errorMessage}"
+                                        data-rules='["required"]'>
+                                    <div class="h-3">
+                                        <p class="text-xs text-red-500" x-show="motivation_letter.errorMessage"
+                                            x-text="motivation_letter.errorMessage" x-transition>
+                                        </p>
+                                    </div>
+                                    <div class="error text-xs text-red-500">
+                                        @error('motivation_letter'){{$message}}@enderror</div>
                                 </div>
                             </div>
                         </div>
