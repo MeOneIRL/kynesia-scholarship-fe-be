@@ -21,6 +21,7 @@
 @section('content')
 
 <script src="{{ asset('js/dataPendidikan.js')}}"></script>
+<script src="{{ asset('js/validationIodine.js')}}"></script>
 
 <section>
     <div class="md:mx-24 md:flex" x-data="handler()">
@@ -29,7 +30,8 @@
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
                 @include('layouts.sessionFlashMessage')
-                <form action="{{route('educationPost')}}" method="POST"
+                <form x-data="form" @focusout="change" @input="change" @submit="submit"
+                    action="{{route('educationPost')}}" method="POST"
                     onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                     @csrf
                     <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
@@ -64,8 +66,15 @@
                                                 Sekolah</label>
                                             <input type="text" name="elementary_name" id="elementary_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('elementary_name'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': elementary_name.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="elementary_name.errorMessage"
+                                                    x-text="elementary_name.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('elementary_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_province"
@@ -148,7 +157,8 @@
                                                 <option name="elementary_province" value="Sumatra Utara">Sumatra Utara
                                                 </option>
                                             </select>
-                                            <div class="error">@error('elementary_province'){{$message}}@enderror</div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('elementary_province'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_city"
@@ -156,8 +166,15 @@
                                                 Kabupaten</label>
                                             <input type="text" name="elementary_city" id="elementary_city"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('elementary_city'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': elementary_city.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="elementary_city.errorMessage"
+                                                    x-text="elementary_city.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('elementary_city'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_enter"
@@ -166,8 +183,15 @@
                                             <input type="number" min="1990" max="2021" step="1" name="elementary_enter"
                                                 id="elementary_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('elementary_enter'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': elementary_enter.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="elementary_enter.errorMessage"
+                                                    x-text="elementary_enter.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('elementary_enter'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="elementary_graduate"
@@ -176,8 +200,16 @@
                                             <input type="number" min="1990" max="2021" step="1"
                                                 name="elementary_graduate" id="elementary_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('elementary_graduate'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': elementary_graduate.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500"
+                                                    x-show="elementary_graduate.errorMessage"
+                                                    x-text="elementary_graduate.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('elementary_graduate'){{$message}}@enderror</div>
                                         </div>
 
                                         {{-- SMP --}}
@@ -193,8 +225,15 @@
                                                 Sekolah</label>
                                             <input type="text" name="junior_name" id="junior_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('junior_grade'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': junior_name.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="junior_name.errorMessage"
+                                                    x-text="junior_name.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('junior_grade'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_province"
@@ -276,7 +315,8 @@
                                                 <option name="junior_province" value="Sumatra Utara">Sumatra Utara
                                                 </option>
                                             </select>
-                                            <div class="error">@error('junior_province'){{$message}}@enderror</div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('junior_province'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_city"
@@ -284,8 +324,15 @@
                                                 Kabupaten</label>
                                             <input type="text" name="junior_city" id="junior_city"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('junior_city'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': junior_city.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="junior_city.errorMessage"
+                                                    x-text="junior_city.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('junior_city'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_enter"
@@ -294,8 +341,15 @@
                                             <input type="number" min="1990" max="2021" step="1" name="junior_enter"
                                                 id="junior_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('junior_enter'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': junior_enter.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="junior_enter.errorMessage"
+                                                    x-text="junior_enter.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('junior_enter'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="junior_graduate"
@@ -304,8 +358,15 @@
                                             <input type="number" min="1990" max="2021" step="1" name="junior_graduate"
                                                 id="junior_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('junior_graduate'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': junior_graduate.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="junior_graduate.errorMessage"
+                                                    x-text="junior_graduate.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('junior_graduate'){{$message}}@enderror</div>
                                         </div>
 
                                         {{-- SMA --}}
@@ -321,8 +382,15 @@
                                                 Sekolah</label>
                                             <input type="text" name="high_name" id="high_name"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('high_name'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': high_name.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="high_name.errorMessage"
+                                                    x-text="high_name.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('high_name'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_province"
@@ -404,7 +472,8 @@
                                                 <option name="high_province" value="Sumatra Utara">Sumatra Utara
                                                 </option>
                                             </select>
-                                            <div class="error">@error('high_province'){{$message}}@enderror</div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('high_province'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_city"
@@ -412,8 +481,15 @@
                                                 Kabupaten</label>
                                             <input type="text" name="high_city" id="high_city"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('high_city'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': high_city.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="high_city.errorMessage"
+                                                    x-text="high_city.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('high_city'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_enter"
@@ -422,8 +498,15 @@
                                             <input type="number" min="1990" max="2021" step="1" name="high_enter"
                                                 id="high_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('high_enter'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': high_enter.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="high_enter.errorMessage"
+                                                    x-text="high_enter.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('high_enter'){{$message}}@enderror</div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="high_graduate"
@@ -432,8 +515,15 @@
                                             <input type="number" min="1990" max="2021" step="1" name="high_graduate"
                                                 id="high_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                required>
-                                            <div class="error">@error('high_graduate'){{$message}}@enderror</div>
+                                                :class="{'border border-primary-color ring-1 ring-primary-color': high_graduate.errorMessage}"
+                                                data-rules='["required"]'>
+                                            <div class="h-3">
+                                                <p class="text-xs text-red-500" x-show="high_graduate.errorMessage"
+                                                    x-text="high_graduate.errorMessage" x-transition>
+                                                </p>
+                                            </div>
+                                            <div class="error text-xs text-red-500">
+                                                @error('high_graduate'){{$message}}@enderror</div>
                                         </div>
                                     </div>
                                 </div>
