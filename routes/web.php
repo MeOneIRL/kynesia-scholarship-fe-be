@@ -94,6 +94,7 @@ Route::prefix('/registration')->group(function(){
     Route::get('/logout', 'AuthController@logoutAccount')->name('logoutAccount');
     
     Route::get('/test', 'UserController@onlineTest')->name('onlineTest');
+    Route::get('/test/done/{id}', 'UserController@doneOnlineTest')->name('doneOnlineTest');
     Route::get('/interview', 'UserController@onlineInterview')->name('onlineInterview');
 
     // Biodata
@@ -152,5 +153,5 @@ Route::prefix('/admin')->group(function(){
 });
 
 Route::get('testing', function(){
-    return view('admin.pendaftaran.wawancara');
+    return view('portal.riwayatPencairan');
 });

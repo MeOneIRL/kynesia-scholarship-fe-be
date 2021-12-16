@@ -58,9 +58,11 @@
                     <a class="text-lg text-primary-color underline" href="{{$scholarship->onlineTest}}" target="_blank">Link menuju halaman tes online</a>
                 </div>
                 <div class="relative">
-                    <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
-                        Tandai Sebagai Selesai
-                    </button>
+                    <a href="{{route('doneOnlineTest',$scholarship->id)}}">
+                        <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
+                            Tandai Sebagai Selesai
+                        </button>
+                    </a>
                 </div>
             </div>
             @include('layouts.footer ')

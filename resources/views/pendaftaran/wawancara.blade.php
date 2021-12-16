@@ -29,9 +29,9 @@
                             <tbody class="text-secondary-color">
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">
-                                        7 Juli 2021
+                                        {{$registered->interviewDate}}
                                     </td>
-                                    <td class="p-0.5 border border-gray-300">16.00</td>
+                                    <td class="p-0.5 border border-gray-300">{{$registered->interviewTime}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -55,12 +55,7 @@
                     </ol>
                 </div>
                 <div class="mb-8">
-                    <a class="text-lg text-primary-color underline" href="#">Link menuju halaman online meeting</a>
-                </div>
-                <div class="relative">
-                    <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
-                        Tandai Sebagai Selesai
-                    </button>
+                    <a class="text-lg text-primary-color underline" href="{{$registered->onlineInterview}}">Link menuju halaman online meeting</a>
                 </div>
             </div>
             @include('layouts.footer ')

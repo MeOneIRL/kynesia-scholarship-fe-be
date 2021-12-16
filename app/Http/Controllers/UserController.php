@@ -25,7 +25,12 @@ class UserController extends Controller
     // Biodata
     public function biodataForm(){
         $scholarship = Scholarship::where('status' , '=' , 1)->first();
-        if(Biodata::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
+        $registered = Registered::where([['scholarship_id', '=', $scholarship->id],
+                                        ['user_id', '=', Auth::user()->id]])->first();
+        if($registered->statusOne != "Proses Pendaftaran"){
+            return redirect()->back()->with(['message' => "Anda Sudah Tidak Dapat Mengganti Data Administrasi"]);
+        }
+        elseif(Biodata::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
             return redirect()->route('updateBiodataForm',Auth::user()->id);
         }
         return view('pendaftaran.formDataPribadi')->with([
@@ -106,11 +111,7 @@ class UserController extends Controller
                 'tiktok' => $request->tiktok,
             ]);
 
-            Registered::create([
-                'user_id' => Auth::user()->id,
-                'scholarship_id' => $request->scholarship_id,
-                'statusOne' => "Proses Pendaftaran",
-            ]);
+
 
             $user = User::find(Auth::user()->id);
             $user->name = $request->full_name;
@@ -194,11 +195,6 @@ class UserController extends Controller
             'tiktok' => $request->tiktok,
         ]);
 
-        Registered::create([
-            'user_id' => Auth::user()->id,
-            'scholarship_id' => $request->scholarship_id,
-            'statusOne' => "Proses Pendaftaran",
-        ]);
 
         $user = User::find(Auth::user()->id);
         $user->name = $request->full_name;
@@ -264,7 +260,12 @@ class UserController extends Controller
     // Family
     public function familyForm(){
         $scholarship = Scholarship::where('status' , '=' , 1)->first();
-        if(Networth::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
+        $registered = Registered::where([['scholarship_id', '=', $scholarship->id],
+                        ['user_id', '=', Auth::user()->id]])->first();
+        if($registered->statusOne != "Proses Pendaftaran"){
+            return redirect()->back()->with(['message' => "Anda Sudah Tidak Dapat Mengganti Data Administrasi"]);
+        }
+        elseif(Networth::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
             return redirect()->route('updateFamilyForm',Auth::user()->id);
         }
         return view('pendaftaran.formDataKeluarga')->with([
@@ -439,7 +440,12 @@ class UserController extends Controller
     // Education
     public function educationForm(){
         $scholarship = Scholarship::where('status' , '=' , 1)->first();
-        if(Education::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
+        $registered = Registered::where([['scholarship_id', '=', $scholarship->id],
+                        ['user_id', '=', Auth::user()->id]])->first();
+        if($registered->statusOne != "Proses Pendaftaran"){
+            return redirect()->back()->with(['message' => "Anda Sudah Tidak Dapat Mengganti Data Administrasi"]);
+        }
+        elseif(Education::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() != NULL){
             return redirect()->route('updateEducationForm',Auth::user()->id);
         }
         return view('pendaftaran.formDataPendidikan')->with([
@@ -518,20 +524,6 @@ class UserController extends Controller
         $count = count($request->training_name);
         for($i = 0; $i < $count; $i++){
             if($request->training_name[$i] != NULL){
-                $message = [
-                    'required' => "Data Ini Harus Diisi",
-                ];
-        
-                $validator = Validator::make($request->all(),[
-                    'training_period' => ('required'),
-                    'training_year' => ('required'),
-                    'training_year' => ('required'),
-                    'training_certificate' => ('required'),
-                ],$message);
-        
-                if($validator->fails()){
-                    return back()->withErrors($validator)->withInput();
-                }
 
                 Training::create([
                     'user_id' => Auth::user()->id,
@@ -539,7 +531,7 @@ class UserController extends Controller
                     'name' => $request->training_name[$i],
                     'period' => $request->training_period[$i],
                     'year' => $request->training_year[$i],
-                    'organizer' => $request->training_year[$i],
+                    'organizer' => $request->training_organizer[$i],
                     'certificate' => $request->training_certificate[$i],
                 ]);
             }
@@ -550,18 +542,6 @@ class UserController extends Controller
         $count = count($request->achievement_name);
         for($i = 0; $i < $count; $i++){
             if($request->achievement_name[$i] != NULL){
-                $message = [
-                    'required' => "Data Ini Harus Diisi",
-                ];
-        
-                $validator = Validator::make($request->all(),[
-                    'achievement_organizer' => ('required'),
-                    'achievement_level' => ('required'),
-                ],$message);
-        
-                if($validator->fails()){
-                    return back()->withErrors($validator)->withInput();
-                }
 
                 Achievement::create([
                     'user_id' => Auth::user()->id,
@@ -578,20 +558,7 @@ class UserController extends Controller
         $count = count($request->language);
         for($i = 0; $i < $count; $i++){
             if($request->language[$i] != NULL){
-                $message = [
-                    'required' => "Data Ini Harus Diisi",
-                ];
-        
-                $validator = Validator::make($request->all(),[
-                    'language_talk' => ('required'),
-                    'language_write' => ('required'),
-                    'language_read' => ('required'),
-                    'language_listen' => ('required'),
-                ],$message);
-        
-                if($validator->fails()){
-                    return back()->withErrors($validator)->withInput();
-                }
+
 
                 Language::create([
                     'user_id' => Auth::user()->id,
@@ -610,20 +577,7 @@ class UserController extends Controller
         $count = count($request->organization_name);
         for($i = 0; $i < $count; $i++){
             if($request->organization_name[$i] != NULL){
-                $message = [
-                    'required' => "Data Ini Harus Diisi",
-                ];
-        
-                $validator = Validator::make($request->all(),[
-                    'organization_period' => ('required'),
-                    'language_write' => ('required'),
-                    'language_read' => ('required'),
-                    'language_listen' => ('required'),
-                ],$message);
-        
-                if($validator->fails()){
-                    return back()->withErrors($validator)->withInput();
-                }
+
 
                 Organization::create([
                     'user_id' => Auth::user()->id,
@@ -644,7 +598,7 @@ class UserController extends Controller
                 Talent::create([
                     'user_id' => Auth::user()->id,
                     'scholarship_id' => $request->scholarship_id,
-                    'name' => $request->talent_name
+                    'name' => $request->talent_name[$i]
                 ]);
             }
         }
@@ -722,7 +676,7 @@ class UserController extends Controller
                         'name' => $request->training_name[$i],
                         'period' => $request->training_period[$i],
                         'year' => $request->training_year[$i],
-                        'organizer' => $request->training_year[$i],
+                        'organizer' => $request->training_organizer[$i],
                         'certificate' => $request->training_certificate[$i],
                     ]);
                 }
@@ -840,7 +794,7 @@ class UserController extends Controller
                     Talent::create([
                         'user_id' => Auth::user()->id,
                         'scholarship_id' => $request->scholarship_id,
-                        'name' => $request->talent_name
+                        'name' => $request->talent_name[$i]
                     ]);
                 }
             }
@@ -854,6 +808,11 @@ class UserController extends Controller
     // Downloadable
     public function downloadableForm(){
         $scholarship = Scholarship::where('status' , '=' , 1)->first();
+        $registered = Registered::where([['scholarship_id', '=', $scholarship->id],
+                        ['user_id', '=', Auth::user()->id]])->first();
+        if($registered->statusOne != "Proses Pendaftaran"){
+            return redirect()->back()->with(['message' => "Anda Sudah Tidak Dapat Mengganti Data Administrasi"]);
+        }
         return view('pendaftaran.formUnduhan')->with([
             'scholarship' => $scholarship
         ]);
@@ -869,7 +828,7 @@ class UserController extends Controller
         elseif(Education::where('scholarship_id', '=', $request->scholarship_id)->where('user_id', '=', Auth::user()->id)->count() == 0){
             return redirect()->route('educationForm')->with(['message' => "Anda Belum Mengisi Data Pendidikan"]);
         }
-
+        else{
         $messages = [
             'required' => "File belum terupload",
             'mimes' => "Format file salah",
@@ -877,12 +836,12 @@ class UserController extends Controller
         ];
 
         $validator = Validator::make($request->all(),[
-            'id'=>('required|mimes:jpg,jpeg,png|max:1000'),
-            'graduate_pass'=>('required|mimes:pdf|max:1000'),
-            'university'=>('required|mimes:jpg,jpeg,png|max:1000'),
-            'motivation_letter'=>('required|mimes:pdf|max:1000'),
+            'id'=>('required|mimes:jpg,jpeg,png|max:20000'),
+            'graduate_pass'=>('required|mimes:pdf|max:20000'),
+            'university_pass'=>('required|mimes:jpg,jpeg,png|max:20000'),
+            'motivation_letter'=>('required|mimes:pdf|max:20000'),
         ], $messages);
-
+        // dd($validator->fails());
         if($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
@@ -918,21 +877,39 @@ class UserController extends Controller
         $registered->save();
 
         return redirect()->route('homeAccount');
+        }
 
     }
     // End Downloadable
 
     public function onlineTest(){
+
         $scholarship = Scholarship::where('status','=',1)->first();
+        $registered = Registered::where([['scholarship_id', '=', $scholarship->id],
+                                        ['user_id', '=', Auth::user()->id]])->first();
+        if($registered->statusOne != "Melakukan Test"){
+            return redirect()->back()->with(['message' => "Anda Tidak Dapat Mengakses Halaman Ini"]);
+        }
         return view('pendaftaran.tesOnline')->with([
             'scholarship' => $scholarship
         ]);
     }
 
+    public function doneOnlineTest($id){
+        Registered::where([['scholarship_id', '=', $id],
+                           ['user_id', '=', Auth::user()->id]])
+                  ->update(['statusOne' => "Proses Seleksi"]);
+        
+        return redirect()->route('homeAccount')->with(['message' => 'Silahkan Menunggu Hasil Seleksi Tahap 1']);
+    }
+
     public function onlineInterview(){
         $scholarship = Scholarship::where('status','=',1)->first();
         $registered = Registered::where('scholarship_id','=',$scholarship->id)->where('user_id','=',Auth::user()->id)->first();
-        return view('pendaftaran.wawancara');
+        if($registered->statusTwo != "Proses Seleksi"){
+            return redirect()->back()->with(['message' => "Anda Tidak Dapat Mengakses Halaman Ini"]);
+        }
+        return view('pendaftaran.wawancara')->with(['registered' => $registered]);
     }
 
 

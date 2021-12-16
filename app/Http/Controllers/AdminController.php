@@ -7,6 +7,7 @@ use Auth;
 use App\Scholarship;
 use App\User;
 use App\Registered;
+use App\Profile;
 use DB;
 
 class AdminController extends Controller
@@ -175,6 +176,27 @@ class AdminController extends Controller
 
         User::find($user->id)->update([
             'role' => 2
+        ]);
+
+        $biodata = Biodata::where([['user_id', '=', $registered->user_id],
+                                    'scholarship_id', '=', $registered->scholarship_id])->first();
+
+        Profile::create([
+            'user_id' => $registered->user_id,
+            'scholarship_id' => $registered->scholarship_id,
+            'name' => $biodata->name,
+            'email' => $biodata->email,
+            'nik' => $biodata->idNumber,
+            'birthplace' => $biodata->birthplace,
+            'birthdate' => $biodata->birthdate,
+            'address' => $biodata->addressLiving,
+            'postalCode' => $biodata->postCodeLiving,
+            'district' => $biodata->districtLiving,
+            'city' => $biodata->cityLiving,
+            'province' => $biodata->provinceLiving,
+            'phoneNumber' => $biodata->telephone,
+            'university' => $biodata->university,
+            'major' => $biodata->major,
         ]);
 
         return redirect()->route('registeredAdmin');

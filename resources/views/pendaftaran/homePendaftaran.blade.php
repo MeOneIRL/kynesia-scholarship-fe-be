@@ -10,6 +10,7 @@
         <div class="md:w-3/4">
             @include('layouts.navbarPendaftaran')
             <div class="px-5 md:px-12 py-12">
+                @include('layouts.sessionFlashMessage')
                 <div class="mb-8">
                     <h3 class="text-3xl text-primary-color mb-4">
                         Selamat Datang di Portal Pendaftaran Kynesia Scholarship!

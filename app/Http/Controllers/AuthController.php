@@ -15,6 +15,20 @@ class AuthController extends Controller
     public function homePageAccount(){
         if(Auth::user()->role == 0){
             $scholarship = Scholarship::where('status' , '=' , 1)->first();
+
+            if(Registered::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first() == NULL){
+                $registered =Registered::create([
+                    'user_id' => Auth::user()->id,
+                    'scholarship_id' => $scholarship->id,
+                    'statusOne' => "Proses Pendaftaran",
+                ]);
+                
+                return view('pendaftaran.homePendaftaran')->with([
+                    'scholarship' => $scholarship,
+                    'registered' => $registered,
+                ]);
+            }
+
             $registered = Registered::where('user_id' , '=' , Auth::user()->id)->where('scholarship_id','=',$scholarship->id)->first();
             return view('pendaftaran.homePendaftaran')->with([
                 'scholarship' => $scholarship,
