@@ -39,74 +39,25 @@
                                 </tr>
                             </thead>
                             <tbody class="text-secondary-color text-center">
+                                @foreach($fundings as $funding)
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">
-                                        September 2021
+                                        {{$funding->date}}
                                     </td>
                                     <td class="p-0.5 border border-gray-300">
-                                        01/09/2021
+                                        {{$funding->date}}
                                     </td>
                                     <td class="p-0.5 border border-gray-300">
-                                        Pencairan Dana September 2021
+                                        {{$funding->detail}}
                                     </td>
                                     <td class="p-0.5 border border-gray-300">
-                                        5000000
+                                        Rp. {{$funding->total}}
                                     </td>
                                     <td class="p-0.5 border border-gray-300">
                                         Sudah dibayar
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Oktober 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        01/10/2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Pencairan Dana Oktober 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        5000000
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Sudah dibayar
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="p-0.5 border border-gray-300">
-                                        November 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        01/11/2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Pencairan Dana November 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        5000000
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Sudah dibayar
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Desember 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        01/12/2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Pencairan Dana Desember 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        5000000
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">
-                                        Sudah dibayar
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -15,7 +15,7 @@
         </a>
     </div>
     <div>
-        <a href="/portal/home">
+        <a href="{{route('homePortal')}}">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('portal/home') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
                 <svg class="mr-5 inline-block {{ request()->is('portal/home') ? 'filter brightness-0 invert' : ''}}"
@@ -29,7 +29,7 @@
                 </p>
             </button>
         </a>
-        <a class="mb-5" href="/portal/profile">
+        <a class="mb-5" href="{{route('profilePortal')}}">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('portal/profile') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
                 <svg class="mr-5 inline-block {{ request()->is('portal/profile') ? 'filter brightness-0 invert' : ''}}"
@@ -43,7 +43,7 @@
                 </p>
             </button>
         </a>
-        <a class="mb-5" href="/portal/riwayat-pencairan-dana">
+        <a class="mb-5" href="{{route('fundingPortal')}}">
             <button
                 class="mb-5 py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('portal/riwayat-pencairan-dana') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
                 <svg class="mr-5 inline-block {{ request()->is('portal/riwayat-pencairan-dana') ? 'filter brightness-0 invert' : ''}}"

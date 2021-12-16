@@ -39,6 +39,9 @@ class AuthController extends Controller
         elseif(Auth::user()->role == 1){
             return redirect()->route('homeAdmin');
         }
+        elseif(Auth::user()->role == 2){
+            return redirect()->route('homePortal');
+        }
     }
 
     // register

@@ -7,7 +7,9 @@ use Auth;
 use App\Scholarship;
 use App\User;
 use App\Registered;
+use App\Biodata;
 use App\Profile;
+use App\Fund;
 use DB;
 
 class AdminController extends Controller
@@ -169,21 +171,18 @@ class AdminController extends Controller
 
     public function stepTwoAdminAccept($id){
         Registered::find($id)->update([
-            'statusTwo' => "Lolos"
+            'statusTwo' => "Lolos",
+            'role' => 2,
         ]);
 
         $user = Registered::find($id);
 
-        User::find($user->id)->update([
-            'role' => 2
-        ]);
-
-        $biodata = Biodata::where([['user_id', '=', $registered->user_id],
-                                    'scholarship_id', '=', $registered->scholarship_id])->first();
+        $biodata = Biodata::where([['user_id', '=', $user->user_id],
+                                   ['scholarship_id', '=', $user->scholarship_id]])->first();
 
         Profile::create([
-            'user_id' => $registered->user_id,
-            'scholarship_id' => $registered->scholarship_id,
+            'user_id' => $user->user_id,
+            'scholarship_id' => $user->scholarship_id,
             'name' => $biodata->name,
             'email' => $biodata->email,
             'nik' => $biodata->idNumber,
@@ -211,9 +210,55 @@ class AdminController extends Controller
     }
     // Selection End
 
+    // Pencairan Dana
     public function fundingAdmin(){
-        return view('admin.page.fundingAdmin');
+        $fundings = DB::table('funds')
+                    ->join('users','funds.user_id','=','users.id')
+                    ->join('scholarships','funds.scholarship_id','=','scholarships.id')
+                    ->select('funds.*','users.name as userName','scholarships.name as scholarshipName')->get();
+        // dd($fundings);
+        return view('admin.page.fundingAdmin')->with(['fundings' => $fundings]);
     }
+
+    public function fundingOneForm(){
+        $users = Profile::get();
+        return view('admin.page.fundingOneForm')->with(['users' => $users]);
+    }
+
+    public function fundingOnePost(Request $request){
+        // dd($request->all());
+        $user = Profile::find($request->user_id);
+        Fund::create([
+            'user_id' => $user->user_id,
+            'scholarship_id' => $user->scholarship_id,
+            'date' => $request->date,
+            'detail' => $request->detail,
+            'total' => $request->total,
+            'status' => $request->status,
+        ]);
+        return redirect()->route('fundingAdmin');
+    }
+
+    public function fundingBulkForm(){
+        $scholarships = Scholarship::get();
+        return view('admin.page.fundingBulkForm')->with(['scholarships' => $scholarships]);
+    }
+
+    public function fundingBulkPost(Request $request){
+        $users = Profile::where('scholarship_id', '=', $request->scholarship_id)->get();
+        foreach($users as $user){
+            Fund::create([
+                'user_id' => $user->user_id,
+                'scholarship_id' => $request->scholarship_id,
+                'date' => $request->date,
+                'detail' => $request->detail,
+                'total' => $request->total,
+                'status' => $request->status,
+            ]);
+        }
+        return redirect()->route('fundingAdmin');
+    }
+    // End Pencairan Dana
 
     public function postAdmin(){
         return view('admin.page.postAdmin');

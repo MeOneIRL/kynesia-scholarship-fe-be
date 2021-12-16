@@ -148,10 +148,21 @@ Route::prefix('/admin')->group(function(){
     Route::post('/registered/stepTwo/accept/{id}', 'AdminController@stepTwoAdminAccept')->name('stepTwoAdminAccept');
     Route::post('/registered/stepTwo/deny/{id}', 'AdminController@stepTwoAdminDeny')->name('stepTwoAdminDeny');
     // Seleksi End
+
+    // Pencairan Dana
     Route::get('/funding', 'AdminController@fundingAdmin')->name('fundingAdmin');
+    Route::get('/funding/one', 'AdminController@fundingOneForm')->name('fundingOneForm');
+    Route::post('/funding/one', 'AdminController@fundingOnePost')->name('fundingOnePost');
+    Route::get('/funding/bulk', 'AdminController@fundingBulkForm')->name('fundingBulkForm');
+    Route::post('/funding/bulk', 'AdminController@fundingBulkPost')->name('fundingBulkPost');
+    // End Pencairan Dana
     Route::get('/post', 'AdminController@postAdmin')->name('postAdmin');
 });
 
-Route::get('testing', function(){
-    return view('portal.riwayatPencairan');
+// Portal
+Route::prefix('/portal')->group(function(){
+    Route::get('/home', 'PortalController@homePortal')->name('homePortal');
+    Route::get('/profile', 'PortalController@profilePortal')->name('profilePortal');
+    Route::post('/profile', 'PortalController@profilePortalPost')->name('profilePortalPost');
+    Route::get('/funding', 'PortalController@fundingPortal')->name('fundingPortal');
 });

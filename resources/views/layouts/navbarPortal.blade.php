@@ -63,8 +63,8 @@
                         <p class="block px-4 py-2 text-sm font-semibold tracking-wide text-secondary-color">
                             Anda Masuk Sebagai</p>
                         <p class="block px-4 py-2 text-sm text-gray-700 border-b broder-gray-300">
-                            user@mail.com</p>
-                        <a href="#" class="block px-4 py-2 text-sm text-red-500 font-semibold" role="menuitem"
+                            {{Auth::user()->email}}</p>
+                        <a href="{{route('logoutAccount')}}" class="block px-4 py-2 text-sm text-red-500 font-semibold" role="menuitem"
                             tabindex="-1" id="user-menu-item-2">Keluar</a>
                     </div>
                 </div>
@@ -74,13 +74,13 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="open" :class="{'md:hidden': open, 'hidden': !open}">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="/portal/home"
+            <a href="{{route('homePortal')}}"
                 class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('portal/home') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}"
                 aria-current="page">Home</a>
-            <a href="/portal/profile"
+            <a href="{{route('profilePortal')}}"
                 class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('portal/profile') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">
                 Profile</a>
-            <a href="/portal/riwayat-pencairan-dana"
+            <a href="{{route('fundingPortal')}}"
                 class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('portal/riwayat-pencairan-dana') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">
                 Riwayat Pencairan Dana</a>
             <a href="/bantuan"

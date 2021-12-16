@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title', 'Pencairan Dana')
 
@@ -12,60 +12,130 @@
             <div class="px-5 md:px-12 py-12">
                 <div class="mb-8">
                     <h3 class="text-3xl text-primary-color mb-4">
-                        Informasi Wawancara
+                        Riwayat Pencairan Dana
                     </h3>
-                    <div class="">
-                        <table class="border-collapse border border-gray-300 rounded-md w-full">
-                            <thead class="text-left bg-accent-color text-secondary-color">
-                                <tr>
-                                    <th class="w-1/2 p-1 border border-gray-300">
-                                        Tanggal Wawancara
-                                    </th>
-                                    <th class="w-1/2 p-1 border border-gray-300">
-                                        Jam Wawancara
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-secondary-color">
-                                <tr>
-                                    <td class="p-0.5 border border-gray-300">
-                                        7 Juli 2021
-                                    </td>
-                                    <td class="p-0.5 border border-gray-300">16.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="mb-8">
-                    <h3 class="text-3xl text-primary-color mb-4">
-                        Aturan Wawancara
-                    </h3>
-                    <p class="text-lg text-secondary-color text-justify mb-4">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi reiciendis delectus molestias
-                        suscipit obcaecati rerum ipsum vitae blanditiis aut eveniet vel error earum maxime eaque dicta
-                        et officiis, veniam dolor. Dolore iure adipisci minus quos facilis ullam quo quas ab:
-                    </p>
-                    <ol class="text-lg text-secondary-color list-decimal list-inside">
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, dolor.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia?</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, officia.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, dignissimos.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quas.</li>
-                    </ol>
-                </div>
-                <div class="mb-8">
-                    <a class="text-lg text-primary-color underline" href="#">Link menuju halaman online meeting</a>
+                    <table class="divide-y divide-gray-300" id="dataTable">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    No
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Beasiswa
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Nama
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Jumlah
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Tanggal Pencairan
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Keterangan
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Status
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Ubah Status
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-500">
+                            @foreach($fundings as $funding)
+                            <tr class="whitespace-nowrap">
+                                <td class="px-6 py-4 text-sm text-center text-gray-500">
+                                    {{$loop->index+1}}
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                    {{$funding->scholarshipName}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                    {{$funding->userName}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                    Rp. {{$funding->total}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                    {{$funding->date}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                    {{$funding->detail}}
+                                    </div>
+                                </td>
+                                @if($funding->status == 0)
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                        Belum Cair
+                                    </div>
+                                </td>
+                                @elseif($funding->status == 1)
+                                <td class="px-6 py-4 text-center">
+                                    <div class="text-sm text-gray-900">
+                                        Sudah Cair
+                                    </div>
+                                </td>
+                                @endif
+                                @if($funding->status == 0)
+                                <td class="px-6 py-4 text-center">
+                                    <a href="" class="px-4 py-1 text-sm text-green-600 bg-green-200 rounded-full">
+                                        Cairkan
+                                    </a>
+                                </td>
+                                @elseif($funding->status == 1)
+                                <td class="px-6 py-4 text-center">
+                                    -
+                                </td>
+                                @endif
+                                <td class="px-6 py-4 text-center">
+                                    Delete
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="relative">
-                    <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
-                        Tandai Sebagai Selesai
-                    </button>
+                    <a href="{{route('fundingOneForm')}}">
+                        <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
+                            Per Orangan
+                        </button>
+                    </a>
+                </div>
+                <br>
+                <br>
+                <div class="relative">
+                    <a href="{{route('fundingBulkForm')}}">
+                        <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
+                            Per Beasiswa
+                        </button>
+                    </a>
                 </div>
             </div>
             @include('admin.layouts.footer ')
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+
+        });
+    </script>
 </section>
 
 @endsection
