@@ -38,9 +38,16 @@
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6">
-                                    <h3 class="text-primary-color text-lg font-bold ">Form Data Keluarga</h3>
-                                    <p class="text-secondary-color text-sm">Berisikan form informasi data keluarga anda
-                                        beserta pendapatan total orang tua</p>
+                                    <h3 class="text-primary-color text-xl font-bold ">Formulir Data Keluarga</h3>
+                                    <p class="text-secondary-color text-base font-medium">Berisikan formulir informasi
+                                        data keluarga anda beserta pendapatan total orang tua</p>
+                                    <div class="w-32 p-1 bg-accent-color"></div>
+                                </div>
+
+                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                                    <p class="text-primary-color font-bold">Informasi Orang Tua</p>
+                                    <p class="text-secondary-color text-sm">Wajib diisi dengan data kedua orang tua anda
+                                    </p>
                                 </div>
 
                                 {{-- Ayah --}}
@@ -48,8 +55,8 @@
                                 <div class="col-span-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
-                                            <p class="text-secondary-color font-bold">Ayah</p>
-                                            <p class="text-gray-300 text-sm">Isi identitas ayah anda</p>
+                                            <p class="text-secondary-color text-sm font-semibold">Ayah</p>
+                                            <p class="text-gray-300 text-xs">Isi identitas ayah anda</p>
                                         </div>
                                         <input type="hidden" name="father" value="Ayah">
                                         <div class="col-span-6 sm:col-span-3">
@@ -154,8 +161,8 @@
                                 <div class="col-span-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
-                                            <p class="text-secondary-color font-bold">Ibu</p>
-                                            <p class="text-gray-300 text-sm">Isi identitas ibu anda</p>
+                                            <p class="text-secondary-color text-sm font-semibold">Ibu</p>
+                                            <p class="text-gray-300 text-xs">Isi identitas ibu anda</p>
                                         </div>
                                         <input type="hidden" name="mother" value="Ibu">
                                         <div class="col-span-6 sm:col-span-3">
@@ -253,6 +260,12 @@
                                                 @error('mother_job'){{$message}}@enderror</div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                                    <p class="text-primary-color font-bold">Informasi Anak</p>
+                                    <p class="text-secondary-color text-sm">Wajib diisi dengan data anak yang ada pada
+                                        keluarga anda</p>
                                 </div>
 
                                 {{-- Anak --}}

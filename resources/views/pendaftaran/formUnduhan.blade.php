@@ -38,10 +38,11 @@
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6">
-                                    <h3 class="text-primary-color text-lg font-bold ">Form Unduhan</h3>
-                                    <p class="text-secondary-color text-sm">Berisikan form terkait file yang perlu
-                                        dikirimkan
+                                    <h3 class="text-primary-color text-xl font-bold ">Formulir Unduhan</h3>
+                                    <p class="text-secondary-color text-base font-medium">Berisikan formulir terkait
+                                        file yang perlu dikirimkan
                                     </p>
+                                    <div class="w-32 p-1 bg-accent-color"></div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">

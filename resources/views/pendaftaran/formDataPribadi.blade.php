@@ -28,12 +28,21 @@
                     @submit="submit" onsubmit="return confirm('Apakah anda yakin ingin mengirimkan data anda?')">
                     @csrf
                     <input type="hidden" name="scholarship_id" value="{{$scholarship->id}}">
-                    <div class="overflow-hidden">
+                    <div class="sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-0">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6">
-                                    <h3 class="text-primary-color text-lg font-bold ">Form Data Pribadi</h3>
-                                    <p class="text-secondary-color text-sm">Beiriskan form informasi mengenai data diri
+                                    <h3 class="text-primary-color text-xl font-bold ">Formulir Data Pribadi</h3>
+                                    <p class="text-secondary-color text-base font-medium">Beirisikan formulir informasi
+                                        terkait data
+                                        diri
+                                    </p>
+                                    <div class="w-32 p-1 bg-accent-color"></div>
+                                </div>
+
+                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                                    <p class="text-primary-color font-bold">Informasi Diri</p>
+                                    <p class="text-secondary-color text-sm">Wajib diisi dengan data diri yang sebenarnya
                                     </p>
                                 </div>
 
@@ -504,8 +513,23 @@
 
                                 <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
                                     <p class="text-primary-color font-bold">Program Studi Yang Diterima</p>
-                                    <p class="text-secondary-color text-sm">Isi informasi program studi yang diterima
+                                    <p class="text-secondary-color text-sm">Wajib diisi dengan data program studi anda
+                                        terima
                                     </p>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="entrance_type"
+                                        class="block text-sm font-medium text-secondary-color">Jalur Masuk</label>
+                                    <select id="entrance_type" name="entrance_type"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
+                                        required>
+                                        <option name="entrance_type" disabled selected hidden>Pilih</option>
+                                        <option name="entrance_type" value="SNPMTN">SNPMTN</option>
+                                        <option name="entrance_type" value="SBMPTN">SBMPTN</option>
+                                    </select>
+                                    <div class="error text-xs text-red-500">@error('entrance_type'){{$message}}@enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -521,20 +545,6 @@
                                         </p>
                                     </div>
                                     <div class="error text-xs text-red-500">@error('text_id'){{$message}}@enderror</div>
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="entrance_type"
-                                        class="block text-sm font-medium text-secondary-color">Jalur Masuk</label>
-                                    <select id="entrance_type" name="entrance_type"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm"
-                                        required>
-                                        <option name="entrance_type" disabled selected hidden>Pilih</option>
-                                        <option name="entrance_type" value="SNPMTN">SNPMTN</option>
-                                        <option name="entrance_type" value="SBMPTN">SBMPTN</option>
-                                    </select>
-                                    <div class="error text-xs text-red-500">@error('entrance_type'){{$message}}@enderror
-                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
