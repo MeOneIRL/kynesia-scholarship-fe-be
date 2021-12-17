@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Profile;
 use App\Fund;
+use App\Post;
+use App\PostImage;
+use DB;
 
 class PortalController extends Controller
 {
     //
     public function homePortal(){
-        return view('portal.homePortal');
+        $posts = DB::table('posts')
+                    ->join('post_images','posts.id','=','post_images.post_id')
+                    ->select('posts.*', 'post_images.imagePath', 'posts.id as id')
+                    ->get();
+        $posts = $posts->groupBy('id');
+        // dd($posts);
+        return view('portal.homePortal')->with(['posts' => $posts]);
     }
 
     // Profile
@@ -51,4 +60,13 @@ class PortalController extends Controller
         return view('portal.riwayatPencairan')->with(['fundings' => $fundings]);
     }
     // End Pencairan Dana
+
+    // Post
+    public function detailPost($id){
+        $post = Post::find($id);
+        $images = PostImage::where('post_id','=',$id)->get();
+        // dd($images);
+        return view('portal.postPortal')->with(['post' => $post, 'images' => $images]);
+    }
+    // End Post
 }

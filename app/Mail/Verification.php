@@ -16,9 +16,13 @@ class Verification extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $token;
+
+    public function __construct($token)
     {
         //
+        $this->token = $token;
     }
 
     /**
@@ -26,11 +30,11 @@ class Verification extends Mailable
      *
      * @return $this
      */
-    public function build($token)
+    public function build()
     {
         return $this->from('no-reply@kynesia.id')
                     ->subject('Verifikasi Akun')
                     ->view('mail.verification')
-                    ->with(['token' => $token]);
+                    ->with(['token' => $this->token]);
     }
 }

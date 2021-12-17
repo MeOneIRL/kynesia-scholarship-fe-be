@@ -11,30 +11,21 @@
             @include('layouts.navbarPortal')
             <div class="px-5 md:px-12 py-12">
                 <div class="w-full mx-auto py-5">
+                    @foreach($images as $image)
                     <div class="mx-5">
                         <img class="inset-0 h-full w-full object-cover object-center"
-                            src="https://picsum.photos/640/360" />
+                            src="{{asset($image->imagePath)}}" />
                     </div>
+                    @endforeach
                     <h3 class="w-full text-primary-color text-lg md:text-4xl px-5 font-bold leading-none">
-                        Pengumuman Kynesia Foundation Scholarship
+                        {{$post->title}}
                     </h3>
                     <p
                         class="w-full text-xs md:text-sm text-accent-color uppercase tracking-wide font-semibold px-5 pt-3">
-                        Sunday, 18 July 2021
+                        {{$post->date}}
                     </p>
                     <div class="px-5 w-full text-sm md:text-base text-justify text-secondary-color mx-auto">
-                        <p class="my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis rerum est,
-                            doloribus assumenda incidunt consectetur accusantium cupiditate qui voluptates nostrum.</p>
-                        <p class="my-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente laudantium
-                            quisquam debitis unde optio consectetur architecto, nesciunt, quia esse asperiores corporis
-                            soluta nam incidunt, alias dicta libero ex sunt reiciendis.</p>
-                        <p class="my-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo eligendi
-                            quaerat qui, pariatur quos eius vitae odio provident iure, voluptatem id hic veritatis est?
-                            Excepturi.</p>
-                        <p class="my-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. At, incidunt? Nostrum
-                            libero sequi eius veritatis dolorum praesentium non rem, et doloremque magnam a hic veniam
-                            beatae numquam ratione voluptates fugit repellat, architecto sapiente, expedita dolorem
-                            obcaecati nam. Corrupti, facere earum.</p>
+                        <p class="my-5">{{$post->content}}</p>
                     </div>
                 </div>
 

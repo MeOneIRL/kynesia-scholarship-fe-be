@@ -32,7 +32,7 @@
             <p>Harap konfirmasi akun kamu dengan menekan tombol dibawah ini</p>
         </div>
         <div>
-            <a href="">
+            <a href="{{route('verifyAccount',$token)}}">
                 <button type="button"
                     class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color">
                     Verifikasi Akun
@@ -40,8 +40,8 @@
             </a>
         </div>
         <div>
-            <p class="text-secondary-color">Atau copy/paste tautan dibawah berikut ke browser kamu:</p>
-            <a class="text-blue-500 underline" href="">Link verifikasi</a>
+            <p class="text-secondary-color">Atau copy/paste tautan dibawah berikut ke browser kamu: {{$token}}</p>
+            <a class="text-blue-500 underline" href="{{route('verifyAccount',$token)}}">{{route('verifyAccount',$token)}}</a>
         </div>
         <div class="text-secondary-color">
             <p>

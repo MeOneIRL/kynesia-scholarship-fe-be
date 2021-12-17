@@ -173,6 +173,7 @@ Route::prefix('/portal')->group(function(){
     Route::get('/profile', 'PortalController@profilePortal')->name('profilePortal');
     Route::post('/profile', 'PortalController@profilePortalPost')->name('profilePortalPost');
     Route::get('/funding', 'PortalController@fundingPortal')->name('fundingPortal');
+    Route::get('/post/{id}', 'PortalController@detailPost')->name('detailPost');
 });
 
 Route::get('/email', function(){

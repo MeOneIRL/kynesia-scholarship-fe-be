@@ -174,10 +174,13 @@ class AdminController extends Controller
     public function stepTwoAdminAccept($id){
         Registered::find($id)->update([
             'statusTwo' => "Lolos",
-            'role' => 2,
         ]);
 
         $user = Registered::find($id);
+
+        User::find($user->user_id)->update([
+            'role' => 2
+        ]);
 
         $biodata = Biodata::where([['user_id', '=', $user->user_id],
                                    ['scholarship_id', '=', $user->scholarship_id]])->first();
@@ -282,11 +285,12 @@ class AdminController extends Controller
         ]);
 
         foreach($request->images as $image){
-            $path =  $image->move(public_path('/Post/Image/'),$image);
+            $name = $image->getClientOriginalName();
+            $path =  $image->move(public_path('/Post/Image/'),$name);
 
             PostImage::create([
                 'post_id' => $post->id,
-                'imagePath' => $path,
+                'imagePath' => '/Post/Image/'.$name,
             ]);
         }
 

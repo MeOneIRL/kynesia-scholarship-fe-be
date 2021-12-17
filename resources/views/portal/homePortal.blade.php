@@ -29,25 +29,25 @@
                         <div class="flex flex-col md:flex-row overflow-hidden bg-white rounded-lg shadow-xl mt-4 w-100">
                             <div class="h-52 w-auto md:w-1/2">
                                 <img class="inset-0 h-full w-full object-cover object-center"
-                                    src="{{asset($post->imagePath[0])}}" />
+                                    src="{{asset($post[0]->imagePath)}}">
                             </div>
                             <div class="w-full py-4 px-6 text-gray-800 flex flex-col space-y-2">
                                 <div>
-                                    <a href="{{route('detailPost',$post->id)}}">
+                                    <a href="{{route('detailPost',$post[0]->id)}}">
                                         <h3 class="font-semibold text-base md:text-lg text-primary-color leading-tight">
-                                            {{$post->title}}
+                                            {{$post[0]->title}}
                                         </h3>
                                     </a>
                                     <p
                                         class="text-xs md:text-sm text-gray-700 text-accent-color uppercase tracking-wide font-semibold">
-                                        {{$post->date}}
+                                        {{$post[0]->date}}
                                     </p>
                                 </div>
                                 <p class="text-sm md:text-base text-secondary-color">
-                                    {{$post->content}}
+                                    {{$post[0]->content}}
                                 </p>
                                 <div class="text-right">
-                                    <a class="inline-block" href="{{route('detailPost',$post->id)}}">
+                                    <a class="inline-block" href="{{route('detailPost',$post[0]->id)}}">
                                         <button
                                             class="p-1 bg-transparent border-2 border-primary-color text-primary-color text-xs md:text-sm rounded-lg hover:bg-primary-color hover:text-bg-color focus:border-4 focus:border-primary-color">
                                             Selengkapnya
