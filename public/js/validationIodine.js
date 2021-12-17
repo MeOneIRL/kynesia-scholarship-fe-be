@@ -35,7 +35,7 @@ function form() {
         getErrorMessage: function (ele) {
             //Return any server errors if they're present
             // if (this[ele.name].serverErrors.length > 0) {
-            //   return input.serverErrors[0];
+            //   return this[ele.name].serverErrors[0];
             // }
             //Check using iodine and return the error message only if the element has not been blurred
             const error = Iodine.is(ele.value, JSON.parse(ele.dataset.rules));
