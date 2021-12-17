@@ -180,11 +180,10 @@
                                             <label for="elementary_enter"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Masuk</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="elementary_enter"
-                                                id="elementary_enter"
+                                            <input type="text" name="elementary_enter" id="elementary_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 :class="{'border border-primary-color ring-1 ring-primary-color': elementary_enter.errorMessage}"
-                                                data-rules='["required"]'>
+                                                data-rules='["required", "numeric", "min:1900", "max:2021"]'>
                                             <div class="h-3">
                                                 <p class="text-xs text-red-500" x-show="elementary_enter.errorMessage"
                                                     x-text="elementary_enter.errorMessage" x-transition>
@@ -197,11 +196,10 @@
                                             <label for="elementary_graduate"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Keluar</label>
-                                            <input type="number" min="1990" max="2021" step="1"
-                                                name="elementary_graduate" id="elementary_graduate"
+                                            <input type="text" name="elementary_graduate" id="elementary_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 :class="{'border border-primary-color ring-1 ring-primary-color': elementary_graduate.errorMessage}"
-                                                data-rules='["required"]'>
+                                                data-rules='["required", "numeric", "min:1900", "max:2021"]'>
                                             <div class="h-3">
                                                 <p class="text-xs text-red-500"
                                                     x-show="elementary_graduate.errorMessage"
@@ -338,11 +336,10 @@
                                             <label for="junior_enter"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Masuk</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="junior_enter"
-                                                id="junior_enter"
+                                            <input type="text" name="junior_enter" id="junior_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 :class="{'border border-primary-color ring-1 ring-primary-color': junior_enter.errorMessage}"
-                                                data-rules='["required"]'>
+                                                data-rules='["required", "numeric", "min:1900", "max:2021"]'>
                                             <div class="h-3">
                                                 <p class="text-xs text-red-500" x-show="junior_enter.errorMessage"
                                                     x-text="junior_enter.errorMessage" x-transition>
@@ -355,11 +352,10 @@
                                             <label for="junior_graduate"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Keluar</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="junior_graduate"
-                                                id="junior_graduate"
+                                            <input type="text" name="junior_graduate" id="junior_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 :class="{'border border-primary-color ring-1 ring-primary-color': junior_graduate.errorMessage}"
-                                                data-rules='["required"]'>
+                                                data-rules='["required", "numeric", "min:1900", "max:2021"]'>
                                             <div class="h-3">
                                                 <p class="text-xs text-red-500" x-show="junior_graduate.errorMessage"
                                                     x-text="junior_graduate.errorMessage" x-transition>
@@ -495,11 +491,10 @@
                                             <label for="high_enter"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Masuk</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="high_enter"
-                                                id="high_enter"
+                                            <input type="text" name="high_enter" id="high_enter"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 :class="{'border border-primary-color ring-1 ring-primary-color': high_enter.errorMessage}"
-                                                data-rules='["required"]'>
+                                                data-rules='["required", "numeric", "min:1900", "max:2021"]'>
                                             <div class="h-3">
                                                 <p class="text-xs text-red-500" x-show="high_enter.errorMessage"
                                                     x-text="high_enter.errorMessage" x-transition>
@@ -512,11 +507,10 @@
                                             <label for="high_graduate"
                                                 class="block text-sm font-medium text-secondary-color">Tahun
                                                 Keluar</label>
-                                            <input type="number" min="1990" max="2021" step="1" name="high_graduate"
-                                                id="high_graduate"
+                                            <input type="text" name="high_graduate" id="high_graduate"
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 :class="{'border border-primary-color ring-1 ring-primary-color': high_graduate.errorMessage}"
-                                                data-rules='["required"]'>
+                                                data-rules='["required", "numeric", "min:1900", "max:2021"]'>
                                             <div class="h-3">
                                                 <p class="text-xs text-red-500" x-show="high_graduate.errorMessage"
                                                     x-text="high_graduate.errorMessage" x-transition>
@@ -566,8 +560,8 @@
                                                 <label for="training_year"
                                                     class="block text-sm font-medium text-secondary-color">Tahun
                                                     Diselenggarakan</label>
-                                                <input x-model="field.training_year" type="number"
-                                                    name="training_year[]" id="training_year"
+                                                <input x-model="field.training_year" type="text" name="training_year[]"
+                                                    id="training_year"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 <div class="error">@error('training_year'){{$message}}@enderror</div>
                                             </div>

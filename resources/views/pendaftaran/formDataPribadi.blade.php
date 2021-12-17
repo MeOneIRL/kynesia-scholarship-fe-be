@@ -119,10 +119,10 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="telephone" class="block text-sm font-medium text-secondary-color">
                                         Telephone</label>
-                                    <input type="number" name="telephone" id="telephone"
+                                    <input type="text" name="telephone" id="telephone"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': telephone.errorMessage}"
-                                        data-rules='["required"]'>
+                                        data-rules='["required", "numeric", "minLength:10", "maxLength:13"]'>
                                     <div class="h-3">
                                         <p class="text-xs text-red-500" x-show="telephone.errorMessage"
                                             x-text="telephone.errorMessage" x-transition>
@@ -164,10 +164,10 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="id_number" class="block text-sm font-medium text-secondary-color">Nomor
                                         Identitas</label>
-                                    <input type="number" name="id_number" id="id_number"
+                                    <input type="text" name="id_number" id="id_number"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': id_number.errorMessage}"
-                                        data-rules='["required"]'>
+                                        data-rules='["required", "numeric", "minLength:5", "maxLength:16"]'>
                                     <div class="h-3">
                                         <p class="text-xs text-red-500" x-show="id_number.errorMessage"
                                             x-text="id_number.errorMessage" x-transition>
@@ -511,7 +511,7 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="text_id" class="block text-sm font-medium text-secondary-color">
                                         Nomor Peserta</label>
-                                    <input type="number" name="text_id" id="text_id"
+                                    <input type="text" name="text_id" id="text_id"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': text_id.errorMessage}"
                                         data-rules='["required", "numeric"]'>
