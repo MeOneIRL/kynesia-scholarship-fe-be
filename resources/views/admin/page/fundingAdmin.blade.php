@@ -92,9 +92,11 @@
                                 @endif
                                 @if($funding->status == 0)
                                 <td class="px-6 py-4 text-center">
-                                    <a href="" class="px-4 py-1 text-sm text-green-600 bg-green-200 rounded-full">
-                                        Cairkan
-                                    </a>
+                                    <form action="{{route('fundingPencairan',$funding->id)}}" method=POST>
+                                        @csrf
+                                        <button type="submit"
+                                        class="px-4 py-1 text-sm text-green-400 bg-green-200 rounded-full">Cairkan</button>
+                                    </form>
                                 </td>
                                 @elseif($funding->status == 1)
                                 <td class="px-6 py-4 text-center">
@@ -102,7 +104,12 @@
                                 </td>
                                 @endif
                                 <td class="px-6 py-4 text-center">
-                                    Delete
+                                    <form action="{{route('fundingDelete',$funding->id)}}" method=POST>
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        <button type="submit"
+                                        class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

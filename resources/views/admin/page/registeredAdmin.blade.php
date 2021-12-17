@@ -76,7 +76,7 @@
                                         </form>
                                     </td>
                                     <td class="px-6 py-4 text-center">
-                                        <a href="" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">
+                                        <a href="{{route('detailAdmin',$list->id)}}" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">
                                             Detail
                                         </a>
                                     </td>
@@ -167,7 +167,7 @@
                                         </form>
                                     </td>
                                     <td class="px-6 py-4 text-center">
-                                        <a href="" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">
+                                        <a href="{{route('detailAdmin',$list->id)}}" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">
                                             Detail
                                         </a>
                                     </td>
@@ -247,7 +247,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 text-center">
-                                        <a href="" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">
+                                        <a href="{{route('detailAdmin',$list->id)}}" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">
                                             Detail
                                         </a>
                                     </td>

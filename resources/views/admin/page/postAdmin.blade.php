@@ -48,20 +48,22 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    Delete
+                                    <form action="{{route('postDeleteAdminPost',$post->id)}}" method=POST>
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        <button type="submit"
+                                        class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <div class="mb-8">
-                    <a class="text-lg text-primary-color underline" href="#">Link menuju halaman online meeting</a>
-                </div>
                 <div class="relative">
                     <a href="{{route('postAdminForm')}}">
                         <button class="bg-primary-color text-bg-color p-2.5 rounded-md absolute right-0">
-                            Tandai Sebagai Selesai
+                            Tambah Postingan
                         </button>
                     </a>
                 </div>

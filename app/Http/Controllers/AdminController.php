@@ -3,15 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Scholarship;
 use App\User;
 use App\Registered;
-use App\Biodata;
 use App\Profile;
 use App\Fund;
 use App\Post;
 use App\PostImage;
+use App\Achievement;
+use App\Biodata;
+use App\Downloadable;
+use App\Education;
+use App\Family;
+use App\Language;
+use App\Networth;
+use App\Organization;
+use App\SocialMedia;
+use App\Talent;
+use App\Training;
 use DB;
 
 class AdminController extends Controller
@@ -213,6 +224,37 @@ class AdminController extends Controller
 
         return redirect()->route('registeredAdmin');
     }
+
+    public function detailAdmin($id){
+        $user = Registered::find($id);
+
+        $achievements = Achievement::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+        $biodata = Biodata::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->first();
+        $downloadable = Downloadable::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->first();
+        $educations = Education::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+        $families = Family::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+        $languages = Language::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+        $networth = Networth::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->first();
+        $organizations = Organization::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+        $socialMedia = SocialMedia::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->first();
+        $talents = Talent::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+        $trainings = Training::where([['user_id', '=', $user->user_id],['scholarship_id', '=', $user->scholarship_id]])->get();
+
+        return view('admin.page.detailadmin')->with([
+            'achievements' => $achievements,
+            'biodata' => $biodata,
+            'downloadable' => $downloadable,
+            'educations' => $educations,
+            'families' => $families,
+            'languages' => $languages,
+            'networth' => $networth,
+            'organizations' => $organizations,
+            'socialMedia' => $socialMedia,
+            'talents' => $talents,
+            'trainings' => $trainings,
+        ]);
+
+    }
     // Selection End
 
     // Pencairan Dana
@@ -263,6 +305,20 @@ class AdminController extends Controller
         }
         return redirect()->route('fundingAdmin');
     }
+
+    public function fundingPencairan($id){
+        Fund::find($id)->update([
+            'status' => 1,
+        ]);
+
+        return redirect()->route('fundingAdmin');
+    }
+
+    public function fundingDelete($id){
+        Fund::find($id)->delete();
+
+        return redirect()->route('fundingAdmin');
+    }
     // End Pencairan Dana
 
     // Post
@@ -305,8 +361,14 @@ class AdminController extends Controller
 
     }
 
-    public function postDeleteAdminPost(){
+    public function postDeleteAdminPost($id){
+        $images = PostImage::where('post_id','=',$id)->get();
+        foreach($images as $image){
+            Storage::delete(asset($image->imagePath));
+        }
+        Post::find($id)->delete();
 
+        return redirect()->route('postAdmin');
     }
     // End Post
 }

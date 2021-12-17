@@ -147,6 +147,7 @@ Route::prefix('/admin')->group(function(){
     Route::post('/registered/stepOne/deny/{id}', 'AdminController@stepOneAdminDeny')->name('stepOneAdminDeny');
     Route::post('/registered/stepTwo/accept/{id}', 'AdminController@stepTwoAdminAccept')->name('stepTwoAdminAccept');
     Route::post('/registered/stepTwo/deny/{id}', 'AdminController@stepTwoAdminDeny')->name('stepTwoAdminDeny');
+    Route::get('/registered/detail/{id}', 'AdminController@detailAdmin')->name('detailAdmin');
     // Seleksi End
 
     // Pencairan Dana
@@ -155,6 +156,8 @@ Route::prefix('/admin')->group(function(){
     Route::post('/funding/one', 'AdminController@fundingOnePost')->name('fundingOnePost');
     Route::get('/funding/bulk', 'AdminController@fundingBulkForm')->name('fundingBulkForm');
     Route::post('/funding/bulk', 'AdminController@fundingBulkPost')->name('fundingBulkPost');
+    Route::post('/funding/cairkan/{id}', 'AdminController@fundingPencairan')->name('fundingPencairan');
+    Route::delete('/funding/delete/{id}', 'AdminController@fundingDelete')->name('fundingDelete');
     // End Pencairan Dana
 
     // Post
@@ -163,7 +166,7 @@ Route::prefix('/admin')->group(function(){
     Route::post('/post/create', 'AdminController@postAdminPost')->name('postAdminPost');
     Route::get('/post/edit/{id}', 'AdminController@postEditAdminForm')->name('postEditAdminForm');
     Route::post('/post/edit/{id}', 'AdminController@postEditAdminPost')->name('postEditAdminPost');
-    Route::post('/post/delete/{id}', 'AdminController@postDeleteAdminPost')->name('postDeleteAdminPost');
+    Route::delete('/post/delete/{id}', 'AdminController@postDeleteAdminPost')->name('postDeleteAdminPost');
     // End Post
 });
 
@@ -175,6 +178,7 @@ Route::prefix('/portal')->group(function(){
     Route::get('/funding', 'PortalController@fundingPortal')->name('fundingPortal');
     Route::get('/post/{id}', 'PortalController@detailPost')->name('detailPost');
 });
+// End Portal
 
 Route::get('/email', function(){
     return view('mail.verification');
