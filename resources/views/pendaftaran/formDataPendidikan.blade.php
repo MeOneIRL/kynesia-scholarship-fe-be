@@ -554,7 +554,6 @@
                                                 <input x-model="field.training_period" type="text"
                                                     name="training_period[]" id="training_period"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <div class="error">@error('training_period'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_year"
@@ -563,7 +562,6 @@
                                                 <input x-model="field.training_year" type="text" name="training_year[]"
                                                     id="training_year"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <div class="error">@error('training_year'){{$message}}@enderror</div>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="training_organizer"
@@ -571,389 +569,366 @@
                                                 <input x-model="field.training_organizer" type="text"
                                                     name="training_organizer[]" id="training_organizer"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <div class="error">@error('training_organizer'){{$message}}@enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="training_certificate"
-                                                    class="block text-sm font-medium text-secondary-color">Sertifikat</label>
-                                                <select x-model="field.training_certificate" id="training_certificate"
-                                                    name="training_certificate[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="training_certificate[]">Pilih</option>
-                                                    <option name="training_certificate[]" value="Ya">
-                                                        Ya</option>
-                                                    <option name="training_certificate[]" value="Tidak">
-                                                        Tidak</option>
-                                                </select>
-                                                <div class="error">@error('training_certificate'){{$message}}@enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <button
-                                                    class="float-right inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                    type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldTraining(index)">
-                                                    Hapus Pendidikan Non-Formal
-                                                </button>
                                             </div>
                                         </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="training_certificate"
+                                                class="block text-sm font-medium text-secondary-color">Sertifikat</label>
+                                            <select x-model="field.training_certificate" id="training_certificate"
+                                                name="training_certificate[]"
+                                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                                <option name="training_certificate[]">Pilih</option>
+                                                <option name="training_certificate[]" value="Ya">
+                                                    Ya</option>
+                                                <option name="training_certificate[]" value="Tidak">
+                                                    Tidak</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </template>
+                                    <div class="col-span-6">
+                                        <button
+                                            class="float-right inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                            type="button" :class="{'hidden': index == 0, 'block': index > 0}"
+                                            @click="removeFieldTraining(index)">
+                                            Hapus Pendidikan Non-Formal
+                                        </button>
+                                    </div>
+                            </div>
+                        </div>
+                        </template>
+                        <div class="col-span-6">
+                            <button type="button"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
+                                @click="addNewFieldTraining()">
+                                Tambah Pendidikan Non-Formal
+                            </button>
+                        </div>
+
+
+                        {{-- Prestasi Akademik --}}
+
+                        <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                            <p class="text-primary-color font-bold">Prestasi Akademik</p>
+                            <p class="text-secondary-color text-sm">Isi informasi terkait prestasi akademik anda
+                                (opsional)</p>
+                        </div>
+                        <template x-for="(field, index) in achievementForm" :key="index">
+                            <div class="col-span-6">
+                                <div class="grid grid-cols-6 gap-6">
+                                    <div class="col-span-6">
+                                        <p class="text-secondary-color text-sm font-semibold">Prestasi Akademik
+                                            <span x-text="index + 1"></span>
+                                        </p>
+                                        <p class="text-gray-300 text-xs">Isi informasi prestasi akademik
+                                            <span x-text="index + 1"></span> anda
+                                        </p>
+                                    </div>
+                                    <div class="col-span-6">
+                                        <label for="achievement_name"
+                                            class="block text-sm font-medium text-secondary-color">Nama
+                                            Prestasi Akademik</label>
+                                        <input x-model="field.achievement_name" type="text" name="achievement_name[]"
+                                            id="achievement_name"
+                                            class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="achievement_organizer"
+                                            class="block text-sm font-medium text-secondary-color">Istitusi
+                                            Penyelenggara</label>
+                                        <input x-model="field.achievement_organizer" type="text"
+                                            name="achievement_organizer[]" id="achievement_organizer"
+                                            class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="achievement_level"
+                                        class="block text-sm font-medium text-secondary-color">Tingkat</label>
+                                    <select x-model="field.achievement_level" id="achievement_level"
+                                        name="achievement_level[]"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                        <option name="achievement_level[]">Pilih</option>
+                                        <option name="achievement_level[]" value="Regional">
+                                            Regional</option>
+                                        <option name="achievement_level[]" value="Nasional">
+                                            Nasional</option>
+                                        <option name="achievement_level[]" value="Internasional">
+                                            Internasional</option>
+                                    </select>
+                                </div>
                                 <div class="col-span-6">
-                                    <button type="button"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
-                                        @click="addNewFieldTraining()">
-                                        Tambah Pendidikan Non-Formal
+                                    <button
+                                        class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                        type="button" :class="{'hidden': index == 0, 'block': index > 0}"
+                                        @click="removeFieldAchievement(index)">
+                                        Hapus Prestasi Akademik
                                     </button>
                                 </div>
+                            </div>
+                    </div>
+                    </template>
+                    <div class="col-span-6">
+                        <button type="button"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
+                            @click="addNewFieldAchievement()">
+                            Tambah Prestasi Akademik
+                        </button>
+                    </div>
 
+                    {{-- Bahasa Asing --}}
 
-                                {{-- Prestasi Akademik --}}
-
-                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
-                                    <p class="text-primary-color font-bold">Prestasi Akademik</p>
-                                    <p class="text-secondary-color text-sm">Isi informasi terkait prestasi akademik anda
-                                        (opsional)</p>
-                                </div>
-                                <template x-for="(field, index) in achievementForm" :key="index">
-                                    <div class="col-span-6">
-                                        <div class="grid grid-cols-6 gap-6">
-                                            <div class="col-span-6">
-                                                <p class="text-secondary-color text-sm font-semibold">Prestasi Akademik
-                                                    <span x-text="index + 1"></span>
-                                                </p>
-                                                <p class="text-gray-300 text-xs">Isi informasi prestasi akademik
-                                                    <span x-text="index + 1"></span> anda
-                                                </p>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <label for="achievement_name"
-                                                    class="block text-sm font-medium text-secondary-color">Nama
-                                                    Prestasi Akademik</label>
-                                                <input x-model="field.achievement_name" type="text"
-                                                    name="achievement_name[]" id="achievement_name"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="achievement_organizer"
-                                                    class="block text-sm font-medium text-secondary-color">Istitusi
-                                                    Penyelenggara</label>
-                                                <input x-model="field.achievement_organizer" type="text"
-                                                    name="achievement_organizer[]" id="achievement_organizer"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <div class="error">@error('achievement_organizer'){{$message}}@enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="achievement_level"
-                                                    class="block text-sm font-medium text-secondary-color">Tingkat</label>
-                                                <select x-model="field.achievement_level" id="achievement_level"
-                                                    name="achievement_level[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="achievement_level[]">Pilih</option>
-                                                    <option name="achievement_level[]" value="Regional">
-                                                        Regional</option>
-                                                    <option name="achievement_level[]" value="Nasional">
-                                                        Nasional</option>
-                                                    <option name="achievement_level[]" value="Internasional">
-                                                        Internasional</option>
-                                                </select>
-                                                <div class="error">@error('achivement_level'){{$message}}@enderror</div>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <button
-                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                    type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldAchievement(index)">
-                                                    Hapus Prestasi Akademik
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
+                    <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                        <p class="text-primary-color font-bold">Bahasa Asing</p>
+                        <p class="text-secondary-color text-sm">Isi informasi terkait bahasa asing yang anda
+                            kuasai (opsional)</p>
+                    </div>
+                    <template x-for="(field, index) in languageForm" :key="index">
+                        <div class="col-span-6">
+                            <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6">
-                                    <button type="button"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
-                                        @click="addNewFieldAchievement()">
-                                        Tambah Prestasi Akademik
-                                    </button>
+                                    <p class="text-secondary-color text-sm font-semibold">Bahasa Asing
+                                        <span x-text="index + 1"></span>
+                                    </p>
+                                    <p class="text-gray-300 text-xs">Isi tingkat kemampuan bahasa asing
+                                        <span x-text="index + 1"></span> anda
+                                    </p>
                                 </div>
-
-                                {{-- Bahasa Asing --}}
-
-                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
-                                    <p class="text-primary-color font-bold">Bahasa Asing</p>
-                                    <p class="text-secondary-color text-sm">Isi informasi terkait bahasa asing yang anda
-                                        kuasai (opsional)</p>
-                                </div>
-                                <template x-for="(field, index) in languageForm" :key="index">
-                                    <div class="col-span-6">
-                                        <div class="grid grid-cols-6 gap-6">
-                                            <div class="col-span-6">
-                                                <p class="text-secondary-color text-sm font-semibold">Bahasa Asing
-                                                    <span x-text="index + 1"></span>
-                                                </p>
-                                                <p class="text-gray-300 text-xs">Isi tingkat kemampuan bahasa asing
-                                                    <span x-text="index + 1"></span> anda
-                                                </p>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <label for="language"
-                                                    class="block text-sm font-medium text-secondary-color">Bahasa
-                                                    Asing</label>
-                                                <select x-model="field.language" id="language" name="language[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="language[]">Pilih</option>
-                                                    <option name="language[]" value="Inggris">Inggris</option>
-                                                    <option name="language[]" value="Mandarin">Mandarin</option>
-                                                    <option name="language[]" value="Jepang">Jepang</option>
-                                                    <option name="language[]" value="Korea">Korea</option>
-                                                    <option name="language[]" value="India">India</option>
-                                                    <option name="language[]" value="Perancis">Perancis</option>
-                                                    <option name="language[]" value="Belanda">Belanda</option>
-                                                    <option name="language[]" value="Jerman">Jerman</option>
-                                                    <option name="language[]" value="Rusia">Rusia</option>
-                                                    <option name="language[]" value="Arab">Arab</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="language_talk"
-                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
-                                                    Berbicara</label>
-                                                <select x-model="field.language_talk" id="language_talk"
-                                                    name="language_talk[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="language_talk[]">Pilih</option>
-                                                    <option name="language_talk[]" value="Beginner">Beginner</option>
-                                                    <option name="language_talk[]" value="Intermediate">Intermediate
-                                                    </option>
-                                                    <option name="language_talk[]" value="Advance">Advance</option>
-                                                </select>
-                                                <div class="error">@error('language_talk'){{$message}}@enderror</div>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="language_write"
-                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
-                                                    Menulis</label>
-                                                <select x-model="field.language_write" id="language_write"
-                                                    name="language_write[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="language_write[]">Pilih</option>
-                                                    <option name="language_write[]" value="Beginner">Beginner</option>
-                                                    <option name="language_write[]" value="Intermediate">Intermediate
-                                                    </option>
-                                                    <option name="language_write[]" value="Advance">Advance</option>
-                                                </select>
-                                                <div class="error">@error('language_write'){{$message}}@enderror</div>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="language_read"
-                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
-                                                    Membaca</label>
-                                                <select x-model="field.language_read" id="language_read"
-                                                    name="language_read[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="language_read[]">Pilih</option>
-                                                    <option name="language_read[]" value="Beginner">Beginner</option>
-                                                    <option name="language_read[]" value="Intermediate">Intermediate
-                                                    </option>
-                                                    <option name="language_read[]" value="Advance">Advance</option>
-                                                </select>
-                                                <div class="error">@error('language_read'){{$message}}@enderror</div>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="language_listen"
-                                                    class="block text-sm font-medium text-secondary-color">Kemampuan
-                                                    Mendengarkan</label>
-                                                <select x-model="field.language_listen" id="language_listen"
-                                                    name="language_listen[]"
-                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
-                                                    <option name="language_listen[]" value="Beginner">Beginner</option>
-                                                    <option name="language_listen[]" value="Intermediate">Intermediate
-                                                    </option>
-                                                    <option name="language_listen[]" value="Advance">Advance</option>
-                                                </select>
-                                                <div class="error">@error('language_listen'){{$message}}@enderror</div>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <button
-                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                    type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldLanguage(index)">
-                                                    Hapus Bahasa Asing
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
                                 <div class="col-span-6">
-                                    <button type="button"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
-                                        @click="addNewFieldLanguage()">
-                                        Tambah Bahasa Asing
-                                    </button>
+                                    <label for="language" class="block text-sm font-medium text-secondary-color">Bahasa
+                                        Asing</label>
+                                    <select x-model="field.language" id="language" name="language[]"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                        <option name="language[]">Pilih</option>
+                                        <option name="language[]" value="Inggris">Inggris</option>
+                                        <option name="language[]" value="Mandarin">Mandarin</option>
+                                        <option name="language[]" value="Jepang">Jepang</option>
+                                        <option name="language[]" value="Korea">Korea</option>
+                                        <option name="language[]" value="India">India</option>
+                                        <option name="language[]" value="Perancis">Perancis</option>
+                                        <option name="language[]" value="Belanda">Belanda</option>
+                                        <option name="language[]" value="Jerman">Jerman</option>
+                                        <option name="language[]" value="Rusia">Rusia</option>
+                                        <option name="language[]" value="Arab">Arab</option>
+                                    </select>
                                 </div>
-
-                                {{-- Pengalaman Organisasi --}}
-
-                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
-                                    <p class="text-primary-color font-bold">Pengalaman Organisasi</p>
-                                    <p class="text-secondary-color text-sm">Isi informasi terkait pengalaman organisai
-                                        anda (opsional)</p>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="language_talk"
+                                        class="block text-sm font-medium text-secondary-color">Kemampuan
+                                        Berbicara</label>
+                                    <select x-model="field.language_talk" id="language_talk" name="language_talk[]"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                        <option name="language_talk[]">Pilih</option>
+                                        <option name="language_talk[]" value="Beginner">Beginner</option>
+                                        <option name="language_talk[]" value="Intermediate">Intermediate
+                                        </option>
+                                        <option name="language_talk[]" value="Advance">Advance</option>
+                                    </select>
                                 </div>
-                                <template x-for="(field, index) in organizationForm" :key="index">
-                                    <div class="col-span-6">
-                                        <div class="grid grid-cols-6 gap-6">
-                                            <div class="col-span-6">
-                                                <p class="text-secondary-color text-sm font-semibold">Pengalaman
-                                                    Organisasi
-                                                    <span x-text="index + 1"></span>
-                                                </p>
-                                                <p class="text-gray-300 text-xs">Isi informasi pengalaman organisasi
-                                                    <span x-text="index + 1"></span> anda
-                                                </p>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <label for="organization_name"
-                                                    class="block text-sm font-medium text-secondary-color">Nama
-                                                    Organisasi</label>
-                                                <input x-model="field.organization_name" type="text"
-                                                    name="organization_name[]" id="organization_name"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="organization_period"
-                                                    class="block text-sm font-medium text-secondary-color">Periode
-                                                    Mengurus</label>
-                                                <input x-model="field.organization_period" type="text"
-                                                    name="organization_period[]" id="organization_period"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    placeholder="e.g. 2020-2021">
-                                                <div class="error">@error('organization_period'){{$message}}@enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <label for="organization_position"
-                                                    class="block text-sm font-medium text-secondary-color">Posisi
-                                                    Mengurus</label>
-                                                <input x-model="field.organization_position" type="text"
-                                                    name="organization_position[]" id="organization_position"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <div class="error">@error('organization_position'){{$message}}@enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <label for="organization_detail"
-                                                    class="block text-sm font-medium text-secondary-color">Keterangan</label>
-                                                <p class="text-xs text-gray-300">Maksimal 100 kata</p>
-                                                <textarea x-model="field.organization_detail"
-                                                    name="organization_detail[]" id="organization_detail" cols="30"
-                                                    rows="5"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
-                                                <div class="error">@error('organization_detail'){{$message}}@enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <button
-                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                    type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldOrganization(index)">
-                                                    Hapus Pengalaman Organisasi
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="language_write"
+                                        class="block text-sm font-medium text-secondary-color">Kemampuan
+                                        Menulis</label>
+                                    <select x-model="field.language_write" id="language_write" name="language_write[]"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                        <option name="language_write[]">Pilih</option>
+                                        <option name="language_write[]" value="Beginner">Beginner</option>
+                                        <option name="language_write[]" value="Intermediate">Intermediate
+                                        </option>
+                                        <option name="language_write[]" value="Advance">Advance</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="language_read"
+                                        class="block text-sm font-medium text-secondary-color">Kemampuan
+                                        Membaca</label>
+                                    <select x-model="field.language_read" id="language_read" name="language_read[]"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                        <option name="language_read[]">Pilih</option>
+                                        <option name="language_read[]" value="Beginner">Beginner</option>
+                                        <option name="language_read[]" value="Intermediate">Intermediate
+                                        </option>
+                                        <option name="language_read[]" value="Advance">Advance</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="language_listen"
+                                        class="block text-sm font-medium text-secondary-color">Kemampuan
+                                        Mendengarkan</label>
+                                    <select x-model="field.language_listen" id="language_listen"
+                                        name="language_listen[]"
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color sm:text-sm">
+                                        <option name="language_listen[]" value="Beginner">Beginner</option>
+                                        <option name="language_listen[]" value="Intermediate">Intermediate
+                                        </option>
+                                        <option name="language_listen[]" value="Advance">Advance</option>
+                                    </select>
+                                </div>
                                 <div class="col-span-6">
-                                    <button type="button"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
-                                        @click="addNewFieldOrganization()">
-                                        Tambah Pengalaman Organisasi
-                                    </button>
-                                </div>
-
-                                {{-- Special Talent --}}
-
-                                <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
-                                    <p class="text-primary-color font-bold">Special Talent Information</p>
-                                    <p class="text-secondary-color text-sm">Isi informasi terkait bakat yang anda miliki
-                                        (opsional)</p>
-                                </div>
-                                <template x-for="(field, index) in talentForm" :key="index">
-                                    <div class="col-span-6">
-                                        <div class="grid grid-cols-6 gap-6">
-                                            <div class="col-span-6">
-                                                <p class="text-secondary-color text-sm font-semibold">Special Talent
-                                                    <span x-text="index + 1"></span>
-                                                </p>
-                                                <p class="text-gray-300 text-xs">Isi informasi kemampuan bakat
-                                                    <span x-text="index + 1"></span> anda
-                                                </p>
-                                            </div>
-                                            <div class="col-span-6">
-                                                <label for="talent_name"
-                                                    class="block text-sm font-medium text-secondary-color">Nama
-                                                    Bakat</label>
-                                                <input x-model="field.talent_name" type="text" name="talent_name[]"
-                                                    id="talent_name"
-                                                    class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            <div class="col-span-6">
-                                                <button
-                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                    type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldSpecial(index)">
-                                                    Hapus Talent
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
-                                <div class="col-span-6">
-                                    <button type="button"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
-                                        @click="addNewFieldSpecial()">
-                                        Tambah Talent
+                                    <button
+                                        class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                        type="button" :class="{'hidden': index == 0, 'block': index > 0}"
+                                        @click="removeFieldLanguage(index)">
+                                        Hapus Bahasa Asing
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="sm:mt-4 px-4 py-3 text-right sm:px-0">
-                            <button type="submit"
-                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color">
-                                Simpan
-                            </button>
-                        </div>
+                    </template>
+                    <div class="col-span-6">
+                        <button type="button"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
+                            @click="addNewFieldLanguage()">
+                            Tambah Bahasa Asing
+                        </button>
                     </div>
-                </form>
-                <div class="sm:mt-4 px-4 py-3 flex justify-between sm:px-0">
-                    <a href="/pendaftaran/form-data-keluarga">
-                        <button
-                            class="inline-flex justify-center items-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-secondary-color bg-bg-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-color hover:bg-gray-100 hover:shadow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M14.71 15.88L10.83 12L14.71 8.12001C15.1 7.73001 15.1 7.10001 14.71 6.71001C14.32 6.32001 13.69 6.32001 13.3 6.71001L8.70998 11.3C8.31998 11.69 8.31998 12.32 8.70998 12.71L13.3 17.3C13.69 17.69 14.32 17.69 14.71 17.3C15.09 16.91 15.1 16.27 14.71 15.88Z"
-                                    fill="#1E335F" />
-                            </svg>
-                            Form Data Keluarga
+
+                    {{-- Pengalaman Organisasi --}}
+
+                    <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                        <p class="text-primary-color font-bold">Pengalaman Organisasi</p>
+                        <p class="text-secondary-color text-sm">Isi informasi terkait pengalaman organisai
+                            anda (opsional)</p>
+                    </div>
+                    <template x-for="(field, index) in organizationForm" :key="index">
+                        <div class="col-span-6">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6">
+                                    <p class="text-secondary-color text-sm font-semibold">Pengalaman
+                                        Organisasi
+                                        <span x-text="index + 1"></span>
+                                    </p>
+                                    <p class="text-gray-300 text-xs">Isi informasi pengalaman organisasi
+                                        <span x-text="index + 1"></span> anda
+                                    </p>
+                                </div>
+                                <div class="col-span-6">
+                                    <label for="organization_name"
+                                        class="block text-sm font-medium text-secondary-color">Nama
+                                        Organisasi</label>
+                                    <input x-model="field.organization_name" type="text" name="organization_name[]"
+                                        id="organization_name"
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="organization_period"
+                                        class="block text-sm font-medium text-secondary-color">Periode
+                                        Mengurus</label>
+                                    <input x-model="field.organization_period" type="text" name="organization_period[]"
+                                        id="organization_period"
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                        placeholder="e.g. 2020-2021">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="organization_position"
+                                        class="block text-sm font-medium text-secondary-color">Posisi
+                                        Mengurus</label>
+                                    <input x-model="field.organization_position" type="text"
+                                        name="organization_position[]" id="organization_position"
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                                <div class="col-span-6">
+                                    <label for="organization_detail"
+                                        class="block text-sm font-medium text-secondary-color">Keterangan</label>
+                                    <p class="text-xs text-gray-300">Maksimal 100 kata</p>
+                                    <textarea x-model="field.organization_detail" name="organization_detail[]"
+                                        id="organization_detail" cols="30" rows="5"
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                </div>
+                                <div class="col-span-6">
+                                    <button
+                                        class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                        type="button" :class="{'hidden': index == 0, 'block': index > 0}"
+                                        @click="removeFieldOrganization(index)">
+                                        Hapus Pengalaman Organisasi
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="col-span-6">
+                        <button type="button"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
+                            @click="addNewFieldOrganization()">
+                            Tambah Pengalaman Organisasi
                         </button>
-                    </a>
-                    <a href="/pendaftaran/form-unduhan">
-                        <button
-                            class="inline-flex justify-center items-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-secondary-color bg-bg-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-color hover:bg-gray-100 hover:shadow">
-                            Form Unduhan
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="#1E335F" />
-                            </svg>
+                    </div>
+
+                    {{-- Special Talent --}}
+
+                    <div class="mt-2.5 pb-2.5 col-span-6 border-b border-gray-300">
+                        <p class="text-primary-color font-bold">Special Talent Information</p>
+                        <p class="text-secondary-color text-sm">Isi informasi terkait bakat yang anda miliki
+                            (opsional)</p>
+                    </div>
+                    <template x-for="(field, index) in talentForm" :key="index">
+                        <div class="col-span-6">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6">
+                                    <p class="text-secondary-color text-sm font-semibold">Special Talent
+                                        <span x-text="index + 1"></span>
+                                    </p>
+                                    <p class="text-gray-300 text-xs">Isi informasi kemampuan bakat
+                                        <span x-text="index + 1"></span> anda
+                                    </p>
+                                </div>
+                                <div class="col-span-6">
+                                    <label for="talent_name" class="block text-sm font-medium text-secondary-color">Nama
+                                        Bakat</label>
+                                    <input x-model="field.talent_name" type="text" name="talent_name[]" id="talent_name"
+                                        class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                                <div class="col-span-6">
+                                    <button
+                                        class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                        type="button" :class="{'hidden': index == 0, 'block': index > 0}"
+                                        @click="removeFieldSpecial(index)">
+                                        Hapus Talent
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="col-span-6">
+                        <button type="button"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300"
+                            @click="addNewFieldSpecial()">
+                            Tambah Talent
                         </button>
-                    </a>
-                </div>
+                    </div>
             </div>
-            @include('layouts.footer ')
         </div>
+        <div class="sm:mt-4 px-4 py-3 text-right sm:px-0">
+            <button type="submit"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color">
+                Simpan
+            </button>
+        </div>
+    </div>
+    </form>
+    <div class="sm:mt-4 px-4 py-3 flex justify-between sm:px-0">
+        <a href="/pendaftaran/form-data-keluarga">
+            <button
+                class="inline-flex justify-center items-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-secondary-color bg-bg-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-color hover:bg-gray-100 hover:shadow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.71 15.88L10.83 12L14.71 8.12001C15.1 7.73001 15.1 7.10001 14.71 6.71001C14.32 6.32001 13.69 6.32001 13.3 6.71001L8.70998 11.3C8.31998 11.69 8.31998 12.32 8.70998 12.71L13.3 17.3C13.69 17.69 14.32 17.69 14.71 17.3C15.09 16.91 15.1 16.27 14.71 15.88Z"
+                        fill="#1E335F" />
+                </svg>
+                Form Data Keluarga
+            </button>
+        </a>
+        <a href="/pendaftaran/form-unduhan">
+            <button
+                class="inline-flex justify-center items-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-secondary-color bg-bg-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-color hover:bg-gray-100 hover:shadow">
+                Form Unduhan
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="#1E335F" />
+                </svg>
+            </button>
+        </a>
+    </div>
+    </div>
+    @include('layouts.footer ')
+    </div>
     </div>
 </section>
 
