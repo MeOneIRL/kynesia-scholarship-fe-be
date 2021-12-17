@@ -156,7 +156,15 @@ Route::prefix('/admin')->group(function(){
     Route::get('/funding/bulk', 'AdminController@fundingBulkForm')->name('fundingBulkForm');
     Route::post('/funding/bulk', 'AdminController@fundingBulkPost')->name('fundingBulkPost');
     // End Pencairan Dana
+
+    // Post
     Route::get('/post', 'AdminController@postAdmin')->name('postAdmin');
+    Route::get('/post/create', 'AdminController@postAdminForm')->name('postAdminForm');
+    Route::post('/post/create', 'AdminController@postAdminPost')->name('postAdminPost');
+    Route::get('/post/edit/{id}', 'AdminController@postEditAdminForm')->name('postEditAdminForm');
+    Route::post('/post/edit/{id}', 'AdminController@postEditAdminPost')->name('postEditAdminPost');
+    Route::post('/post/delete/{id}', 'AdminController@postDeleteAdminPost')->name('postDeleteAdminPost');
+    // End Post
 });
 
 // Portal
@@ -165,4 +173,8 @@ Route::prefix('/portal')->group(function(){
     Route::get('/profile', 'PortalController@profilePortal')->name('profilePortal');
     Route::post('/profile', 'PortalController@profilePortalPost')->name('profilePortalPost');
     Route::get('/funding', 'PortalController@fundingPortal')->name('fundingPortal');
+});
+
+Route::get('/email', function(){
+    return view('mail.verification');
 });

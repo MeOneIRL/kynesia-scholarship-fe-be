@@ -9,6 +9,8 @@ use App\User;
 use App\Scholarship;
 use App\Registered;
 use Validator;
+use App\Mail\Verification;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -70,10 +72,12 @@ class AuthController extends Controller
             'name' => $request->email,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'verify_token' => sha1(time()),
+            'verify_token' => sha1(time()), 
             'status' => 0,
             'role' => 0,
         ]);
+
+        Mail::to($user->email)->send(new Verification($user->verify_token));
 
         return redirect()->route('loginAccountForm')->with(['message' => "Cek Email Untuk Verifikasi Akun"]);
     }

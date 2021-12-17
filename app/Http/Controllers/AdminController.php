@@ -10,6 +10,8 @@ use App\Registered;
 use App\Biodata;
 use App\Profile;
 use App\Fund;
+use App\Post;
+use App\PostImage;
 use DB;
 
 class AdminController extends Controller
@@ -260,7 +262,47 @@ class AdminController extends Controller
     }
     // End Pencairan Dana
 
+    // Post
     public function postAdmin(){
-        return view('admin.page.postAdmin');
+        $posts = Post::get();
+        return view('admin.page.postAdmin')->with(['posts' => $posts]);
     }
+
+    public function postAdminForm(){
+        return view('admin.page.postForm');
+    }
+
+    public function postAdminPost(Request $request){
+        // dd($request->all());
+
+        $post = Post::create([
+            "title" => $request->title,
+            "content" => $request->content,
+            "date" => date('Y-m-d'),
+        ]);
+
+        foreach($request->images as $image){
+            $path =  $image->move(public_path('/Post/Image/'),$image);
+
+            PostImage::create([
+                'post_id' => $post->id,
+                'imagePath' => $path,
+            ]);
+        }
+
+        return redirect()->route('postAdmin');
+    }
+
+    public function postEditAdminForm(){
+
+    }
+
+    public function postEditAdminPost(){
+
+    }
+
+    public function postDeleteAdminPost(){
+
+    }
+    // End Post
 }
