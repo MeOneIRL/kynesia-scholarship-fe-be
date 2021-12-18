@@ -82,9 +82,6 @@
             <div class="greet gap">
                 <h3>
                     Halo,
-                    <span>
-                        Muhammad Fahmi Alwan
-                    </span>
                 </h3>
             </div>
             <div class="gap text-secondary-color">
