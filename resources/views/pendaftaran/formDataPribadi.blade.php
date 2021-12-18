@@ -330,7 +330,7 @@
                                                     autocomplete="living_address"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     :class="{'border border-primary-color ring-1 ring-primary-color': living_address.errorMessage}"
-                                                    data-rules='["required"]'>
+                                                    data-rules='[]'>
                                                 <div class="h-3">
                                                     <p class="text-xs text-red-500" x-show="living_address.errorMessage"
                                                         x-text="living_address.errorMessage" x-transition>
@@ -347,7 +347,7 @@
                                                 <input type="text" name="living_code" id="living_code"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     :class="{'border border-primary-color ring-1 ring-primary-color': living_code.errorMessage}"
-                                                    data-rules='["required", "numeric"]'>
+                                                    data-rules='[, "numeric"]'>
                                                 <div class="h-3">
                                                     <p class="text-xs text-red-500" x-show="living_code.errorMessage"
                                                         x-text="living_code.errorMessage" x-transition>
@@ -363,7 +363,7 @@
                                                 <input type="text" name="living_district" id="living_district"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     :class="{'border border-primary-color ring-1 ring-primary-color': living_district.errorMessage}"
-                                                    data-rules='["required"]'>
+                                                    data-rules='[]'>
                                                 <div class="h-3">
                                                     <p class="text-xs text-red-500"
                                                         x-show="living_district.errorMessage"
@@ -380,7 +380,7 @@
                                                 <input type="text" name="living_city" id="living_city"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     :class="{'border border-primary-color ring-1 ring-primary-color': living_city.errorMessage}"
-                                                    data-rules='["required"]'>
+                                                    data-rules='[]'>
                                                 <div class="h-3">
                                                     <p class="text-xs text-red-500" x-show="living_city.errorMessage"
                                                         x-text="living_city.errorMessage" x-transition>
