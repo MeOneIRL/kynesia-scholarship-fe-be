@@ -14,9 +14,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('landingPage');
-})->name('home');
+Route::middleware('guest')->group(function(){
+    Route::get('/', function () {
+        return view('landingPage');
+    })->name('home');
+});
 
 Route::get('/bantuan', function () {
     return view('bantuan');
@@ -60,25 +62,25 @@ Route::get('/bantuan', function () {
 // });
 
 // Portal
-Route::get('/portal/masuk', function () {
-    return view('portal.masukPortal');
-});
+// Route::get('/portal/masuk', function () {
+//     return view('portal.masukPortal');
+// });
 
-Route::get('/portal/home', function () {
-    return view('portal.homePortal');
-});
+// Route::get('/portal/home', function () {
+//     return view('portal.homePortal');
+// });
 
-Route::get('/portal/profile', function () {
-    return view('portal.profilePortal');
-});
+// Route::get('/portal/profile', function () {
+//     return view('portal.profilePortal');
+// });
 
-Route::get('/portal/riwayat-pencairan-dana', function () {
-    return view('portal.riwayatPencairan');
-});
+// Route::get('/portal/riwayat-pencairan-dana', function () {
+//     return view('portal.riwayatPencairan');
+// });
 
-Route::get('/portal/detail-post', function () {
-    return view('portal.postPortal');
-});
+// Route::get('/portal/detail-post', function () {
+//     return view('portal.postPortal');
+// });
 
 // Routing Ghema
 
@@ -86,97 +88,109 @@ Route::get('/portal/detail-post', function () {
 Route::prefix('/registration')->group(function(){
 
     Route::get('/home', 'AuthController@homePageAccount')->name('homeAccount');
-    Route::get('/register', 'AuthController@registerAccountForm')->name('registerAccountForm');
-    Route::post('/register', 'AuthController@registerAccountPost')->name('registerAccountPost');
-    Route::get('/verification/{verify_token}', 'AuthController@verifyAccount')->name('verifyAccount');
-    Route::get('/login', 'AuthController@loginAccountForm')->name('loginAccountForm');
-    Route::post('/login', 'AuthController@loginAccountPost')->name('loginAccountPost');
-    Route::get('/logout', 'AuthController@logoutAccount')->name('logoutAccount');
+
+    Route::middleware('guest')->group(function(){
+        Route::get('/register', 'AuthController@registerAccountForm')->name('registerAccountForm');
+        Route::post('/register', 'AuthController@registerAccountPost')->name('registerAccountPost');
+        Route::get('/verification/{verify_token}', 'AuthController@verifyAccount')->name('verifyAccount');
+        Route::get('/login', 'AuthController@loginAccountForm')->name('loginAccountForm');
+        Route::post('/login', 'AuthController@loginAccountPost')->name('loginAccountPost');
+    });
+
+    Route::middleware('auth')->group(function(){
+        Route::get('/logout', 'AuthController@logoutAccount')->name('logoutAccount');
+    });
     
-    Route::get('/test', 'UserController@onlineTest')->name('onlineTest');
-    Route::get('/test/done/{id}', 'UserController@doneOnlineTest')->name('doneOnlineTest');
-    Route::get('/interview', 'UserController@onlineInterview')->name('onlineInterview');
-
-    // Biodata
-    Route::get('/biodata', 'UserController@biodataForm')->name('biodataForm');
-    Route::post('/biodata', 'UserController@biodataPost')->name('biodataPost');
-    Route::get('/update/biodata/{user_id}', 'UserController@updateBiodataForm')->name('updateBiodataForm');
-    Route::post('/update/biodata/{user_id}', 'UserController@updateBiodataPost')->name('updateBiodataPost');
-    // End Biodata
-
-    // Family
-    Route::get('/family', 'UserController@familyForm')->name('familyForm');
-    Route::post('/family', 'UserController@familyPost')->name('familyPost');
-    Route::get('/update/family/{user_id}', 'UserController@updateFamilyForm')->name('updateFamilyForm');
-    Route::post('/update/family/{user_id}', 'UserController@updateFamilyPost')->name('updateFamilyPost');
-    // End Family
-
-    // Education
-    Route::get('/education', 'UserController@educationForm')->name('educationForm');
-    Route::post('/education', 'UserController@educationPost')->name('educationPost');
-    Route::get('/update/education/{user_id}', 'UserController@updateEducationForm')->name('updateEducationForm');
-    Route::post('/update/education/{user_id}', 'UserController@updateEducationPost')->name('updateEducationPost');
-    // End Education
-
-    // Downloadable
-    Route::get('/downloadable', 'UserController@downloadableForm')->name('downloadableForm');
-    Route::post('/downloadable', 'UserController@downloadablePost')->name('downloadablePost');
-    // End Downloadable
+    Route::middleware(['auth','user'])->group(function(){
+        Route::get('/test', 'UserController@onlineTest')->name('onlineTest');
+        Route::get('/test/done/{id}', 'UserController@doneOnlineTest')->name('doneOnlineTest');
+        Route::get('/interview', 'UserController@onlineInterview')->name('onlineInterview');
+    
+        // Biodata
+        Route::get('/biodata', 'UserController@biodataForm')->name('biodataForm');
+        Route::post('/biodata', 'UserController@biodataPost')->name('biodataPost');
+        Route::get('/update/biodata/{user_id}', 'UserController@updateBiodataForm')->name('updateBiodataForm');
+        Route::post('/update/biodata/{user_id}', 'UserController@updateBiodataPost')->name('updateBiodataPost');
+        // End Biodata
+    
+        // Family
+        Route::get('/family', 'UserController@familyForm')->name('familyForm');
+        Route::post('/family', 'UserController@familyPost')->name('familyPost');
+        Route::get('/update/family/{user_id}', 'UserController@updateFamilyForm')->name('updateFamilyForm');
+        Route::post('/update/family/{user_id}', 'UserController@updateFamilyPost')->name('updateFamilyPost');
+        // End Family
+    
+        // Education
+        Route::get('/education', 'UserController@educationForm')->name('educationForm');
+        Route::post('/education', 'UserController@educationPost')->name('educationPost');
+        Route::get('/update/education/{user_id}', 'UserController@updateEducationForm')->name('updateEducationForm');
+        Route::post('/update/education/{user_id}', 'UserController@updateEducationPost')->name('updateEducationPost');
+        // End Education
+    
+        // Downloadable
+        Route::get('/downloadable', 'UserController@downloadableForm')->name('downloadableForm');
+        Route::post('/downloadable', 'UserController@downloadablePost')->name('downloadablePost');
+        // End Downloadable
+    });
 
 });
 
 // Admin
-Route::prefix('/admin')->group(function(){
-    Route::get('/home', 'AdminController@homeAdmin')->name('homeAdmin');
-
-    // Scholarship
-    Route::get('/scholarship', 'AdminController@scholarshipAdmin')->name('scholarshipAdmin');
-    Route::get('/scholarship/create', 'AdminController@scholarshipAdminForm')->name('scholarshipAdminForm');
-    Route::post('/scholarship/create', 'AdminController@scholarshipAdminPost')->name('scholarshipAdminPost');
-    Route::get('/scholarship/activate/{id}', 'AdminController@scholarshipAdminActivate')->name('scholarshipAdminActivate');
-    Route::get('/scholarship/deactivate/{id}', 'AdminController@scholarshipAdminDeactivate')->name('scholarshipAdminDeactivate');
-    Route::get('/scholarship/update/{id}', 'AdminController@scholarshipAdminUpdateForm')->name('scholarshipAdminUpdateForm');
-    Route::post('/scholarship/update/{id}', 'AdminController@scholarshipAdminUpdatePost')->name('scholarshipAdminUpdatePost');
-    Route::delete('/scholarship/delete/{id}', 'AdminController@scholarshipAdminDelete')->name('scholarshipAdminDelete');
-    // Scholarship End
-
-    // Seleksi
-    Route::get('/registered', 'AdminController@registeredAdmin')->name('registeredAdmin');
-    Route::get('/registered/stepOne/accept/{id}', 'AdminController@stepOneAdminForm')->name('stepOneAdminForm');
-    Route::post('/registered/stepOne/accept/{id}', 'AdminController@stepOneAdminAccept')->name('stepOneAdminAccept');
-    Route::post('/registered/stepOne/deny/{id}', 'AdminController@stepOneAdminDeny')->name('stepOneAdminDeny');
-    Route::post('/registered/stepTwo/accept/{id}', 'AdminController@stepTwoAdminAccept')->name('stepTwoAdminAccept');
-    Route::post('/registered/stepTwo/deny/{id}', 'AdminController@stepTwoAdminDeny')->name('stepTwoAdminDeny');
-    Route::get('/registered/detail/{id}', 'AdminController@detailAdmin')->name('detailAdmin');
-    // Seleksi End
-
-    // Pencairan Dana
-    Route::get('/funding', 'AdminController@fundingAdmin')->name('fundingAdmin');
-    Route::get('/funding/one', 'AdminController@fundingOneForm')->name('fundingOneForm');
-    Route::post('/funding/one', 'AdminController@fundingOnePost')->name('fundingOnePost');
-    Route::get('/funding/bulk', 'AdminController@fundingBulkForm')->name('fundingBulkForm');
-    Route::post('/funding/bulk', 'AdminController@fundingBulkPost')->name('fundingBulkPost');
-    Route::post('/funding/cairkan/{id}', 'AdminController@fundingPencairan')->name('fundingPencairan');
-    Route::delete('/funding/delete/{id}', 'AdminController@fundingDelete')->name('fundingDelete');
-    // End Pencairan Dana
-
-    // Post
-    Route::get('/post', 'AdminController@postAdmin')->name('postAdmin');
-    Route::get('/post/create', 'AdminController@postAdminForm')->name('postAdminForm');
-    Route::post('/post/create', 'AdminController@postAdminPost')->name('postAdminPost');
-    Route::get('/post/edit/{id}', 'AdminController@postEditAdminForm')->name('postEditAdminForm');
-    Route::post('/post/edit/{id}', 'AdminController@postEditAdminPost')->name('postEditAdminPost');
-    Route::delete('/post/delete/{id}', 'AdminController@postDeleteAdminPost')->name('postDeleteAdminPost');
-    // End Post
+Route::middleware(['admin','auth'])->group(function(){
+    Route::prefix('/admin')->group(function(){
+        Route::get('/home', 'AdminController@homeAdmin')->name('homeAdmin');
+    
+        // Scholarship
+        Route::get('/scholarship', 'AdminController@scholarshipAdmin')->name('scholarshipAdmin');
+        Route::get('/scholarship/create', 'AdminController@scholarshipAdminForm')->name('scholarshipAdminForm');
+        Route::post('/scholarship/create', 'AdminController@scholarshipAdminPost')->name('scholarshipAdminPost');
+        Route::get('/scholarship/activate/{id}', 'AdminController@scholarshipAdminActivate')->name('scholarshipAdminActivate');
+        Route::get('/scholarship/deactivate/{id}', 'AdminController@scholarshipAdminDeactivate')->name('scholarshipAdminDeactivate');
+        Route::get('/scholarship/update/{id}', 'AdminController@scholarshipAdminUpdateForm')->name('scholarshipAdminUpdateForm');
+        Route::post('/scholarship/update/{id}', 'AdminController@scholarshipAdminUpdatePost')->name('scholarshipAdminUpdatePost');
+        Route::delete('/scholarship/delete/{id}', 'AdminController@scholarshipAdminDelete')->name('scholarshipAdminDelete');
+        // Scholarship End
+    
+        // Seleksi
+        Route::get('/registered', 'AdminController@registeredAdmin')->name('registeredAdmin');
+        Route::get('/registered/stepOne/accept/{id}', 'AdminController@stepOneAdminForm')->name('stepOneAdminForm');
+        Route::post('/registered/stepOne/accept/{id}', 'AdminController@stepOneAdminAccept')->name('stepOneAdminAccept');
+        Route::post('/registered/stepOne/deny/{id}', 'AdminController@stepOneAdminDeny')->name('stepOneAdminDeny');
+        Route::post('/registered/stepTwo/accept/{id}', 'AdminController@stepTwoAdminAccept')->name('stepTwoAdminAccept');
+        Route::post('/registered/stepTwo/deny/{id}', 'AdminController@stepTwoAdminDeny')->name('stepTwoAdminDeny');
+        Route::get('/registered/detail/{id}', 'AdminController@detailAdmin')->name('detailAdmin');
+        // Seleksi End
+    
+        // Pencairan Dana
+        Route::get('/funding', 'AdminController@fundingAdmin')->name('fundingAdmin');
+        Route::get('/funding/one', 'AdminController@fundingOneForm')->name('fundingOneForm');
+        Route::post('/funding/one', 'AdminController@fundingOnePost')->name('fundingOnePost');
+        Route::get('/funding/bulk', 'AdminController@fundingBulkForm')->name('fundingBulkForm');
+        Route::post('/funding/bulk', 'AdminController@fundingBulkPost')->name('fundingBulkPost');
+        Route::post('/funding/cairkan/{id}', 'AdminController@fundingPencairan')->name('fundingPencairan');
+        Route::delete('/funding/delete/{id}', 'AdminController@fundingDelete')->name('fundingDelete');
+        // End Pencairan Dana
+    
+        // Post
+        Route::get('/post', 'AdminController@postAdmin')->name('postAdmin');
+        Route::get('/post/create', 'AdminController@postAdminForm')->name('postAdminForm');
+        Route::post('/post/create', 'AdminController@postAdminPost')->name('postAdminPost');
+        Route::get('/post/edit/{id}', 'AdminController@postEditAdminForm')->name('postEditAdminForm');
+        Route::post('/post/edit/{id}', 'AdminController@postEditAdminPost')->name('postEditAdminPost');
+        Route::delete('/post/delete/{id}', 'AdminController@postDeleteAdminPost')->name('postDeleteAdminPost');
+        // End Post
+    });
 });
 
 // Portal
-Route::prefix('/portal')->group(function(){
-    Route::get('/home', 'PortalController@homePortal')->name('homePortal');
-    Route::get('/profile', 'PortalController@profilePortal')->name('profilePortal');
-    Route::post('/profile', 'PortalController@profilePortalPost')->name('profilePortalPost');
-    Route::get('/funding', 'PortalController@fundingPortal')->name('fundingPortal');
-    Route::get('/post/{id}', 'PortalController@detailPost')->name('detailPost');
+Route::middleware(['auth','portal'])->group(function(){
+    Route::prefix('/portal')->group(function(){
+        Route::get('/home', 'PortalController@homePortal')->name('homePortal');
+        Route::get('/profile', 'PortalController@profilePortal')->name('profilePortal');
+        Route::post('/profile', 'PortalController@profilePortalPost')->name('profilePortalPost');
+        Route::get('/funding', 'PortalController@fundingPortal')->name('fundingPortal');
+        Route::get('/post/{id}', 'PortalController@detailPost')->name('detailPost');
+    });
 });
 // End Portal
 
