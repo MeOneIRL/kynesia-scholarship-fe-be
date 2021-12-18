@@ -48,12 +48,12 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="id" class="block text-sm font-medium text-secondary-color">KTP/ Paspor/
                                         KK</label>
-                                    <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
+                                    <p class="text-gray-500 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="id" id="id"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': id.errorMessage}"
-                                        data-rules='["required"]'>
+                                        accept="image/jpeg, image/png" data-rules='["required"]'>
                                     <div class="h-3">
                                         <p class="text-xs text-red-500" x-show="id.errorMessage"
                                             x-text="id.errorMessage" x-transition>
@@ -68,12 +68,12 @@
                                     <label for="graduate_pass"
                                         class="block text-sm font-medium text-secondary-color">Surat Keterangan Lulus/
                                         Ijazah</label>
-                                    <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
+                                    <p class="text-gray-500 text-xs">Kirim dengan PDF (Maks. 1MB)
                                     </p>
                                     <input type="file" name="graduate_pass" id="graduate_pass"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': graduate_pass.errorMessage}"
-                                        data-rules='["required"]'>
+                                        accept="application/pdf" data-rules='["required"]'>
                                     <div class="h-3">
                                         <p class="text-xs text-red-500" x-show="graduate_pass.errorMessage"
                                             x-text="graduate_pass.errorMessage" x-transition>
@@ -87,12 +87,12 @@
                                     <label for="university_pass"
                                         class="block text-sm font-medium text-secondary-color">Bukti Diterima Di
                                         Perguruan Tinggi</label>
-                                    <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
+                                    <p class="text-gray-500 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
                                     </p>
                                     <input type="file" name="university_pass" id="university_pass"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': university_pass.errorMessage}"
-                                        data-rules='["required"]'>
+                                        accept="image/jpeg, image/png" data-rules='["required"]'>
                                     <div class="h-3">
                                         <p class="text-xs text-red-500" x-show="university_pass.errorMessage"
                                             x-text="university_pass.errorMessage" x-transition>
@@ -105,12 +105,12 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="motivation_letter"
                                         class="block text-sm font-medium text-secondary-color">Motivation Letter</label>
-                                    <p class="text-gray-300 text-xs">Scan dengan format JPG, JPEG, atau PNG (Maks. 1MB)
+                                    <p class="text-gray-500 text-xs">Kirim dengan format PDF (Maks. 1MB)
                                     </p>
                                     <input type="file" name="motivation_letter" id="motivation_letter"
                                         class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         :class="{'border border-primary-color ring-1 ring-primary-color': motivation_letter.errorMessage}"
-                                        data-rules='["required"]'>
+                                        accept="application/pdf" data-rules='["required"]'>
                                     <div class="h-3">
                                         <p class="text-xs text-red-500" x-show="motivation_letter.errorMessage"
                                             x-text="motivation_letter.errorMessage" x-transition>
