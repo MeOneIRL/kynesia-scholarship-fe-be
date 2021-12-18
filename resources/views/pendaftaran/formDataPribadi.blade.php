@@ -347,7 +347,7 @@
                                                 <input type="text" name="living_code" id="living_code"
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     :class="{'border border-primary-color ring-1 ring-primary-color': living_code.errorMessage}"
-                                                    data-rules='[, "numeric"]'>
+                                                    data-rules='[]'>
                                                 <div class="h-3">
                                                     <p class="text-xs text-red-500" x-show="living_code.errorMessage"
                                                         x-text="living_code.errorMessage" x-transition>
