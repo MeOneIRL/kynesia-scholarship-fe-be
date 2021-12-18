@@ -56,7 +56,7 @@
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
                                             <p class="text-secondary-color text-sm font-semibold">Ayah</p>
-                                            <p class="text-gray-300 text-xs">Isi identitas ayah anda</p>
+                                            <p class="text-gray-500 text-xs">Isi identitas ayah anda</p>
                                         </div>
                                         <input type="hidden" name="father" value="Ayah">
                                         <div class="col-span-6 sm:col-span-3">
@@ -162,7 +162,7 @@
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
                                             <p class="text-secondary-color text-sm font-semibold">Ibu</p>
-                                            <p class="text-gray-300 text-xs">Isi identitas ibu anda</p>
+                                            <p class="text-gray-500 text-xs">Isi identitas ibu anda</p>
                                         </div>
                                         <input type="hidden" name="mother" value="Ibu">
                                         <div class="col-span-6 sm:col-span-3">
