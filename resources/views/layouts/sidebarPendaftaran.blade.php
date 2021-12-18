@@ -18,8 +18,8 @@
         <div class="mb-2">
             <a href="{{route('homeAccount')}}">
                 <button
-                    class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('homeAccount')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                    <svg class="mr-5 inline-block {{ request()->is(route('homeAccount')) ? 'filter brightness-0 invert' : ''}}"
+                    class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('registration/home') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
+                    <svg class="mr-5 inline-block {{ request()->is('registration/home') ? 'filter brightness-0 invert' : ''}}"
                         width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M15 7.1125L21.25 12.7375V22.5H18.75V15H11.25V22.5H8.75V12.7375L15 7.1125ZM15 3.75L2.5 15H6.25V25H13.75V17.5H16.25V25H23.75V15H27.5L15 3.75Z"
@@ -33,12 +33,12 @@
         </div>
         <p class="px-5 mb-2 tracking-widest uppercase text-gray-300">Form Administrasi</p>
         <ul class="pl-8 mb-2">
+            @if(Request::is('registration/biodata'))
             <li class="pb-2 pl-2.5 border-l border-gray-300">
                 <a href="{{route('biodataForm')}}">
-                    <button
-                        class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('biodataForm')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                        <svg class="mr-5 inline-block {{ request()->is(route('biodataForm')) ? 'filter brightness-0 invert' : ''}}"
-                            width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button class="py-2.5 px-5 flex items-center w-full rounded-md bg-primary-color text-bg-color'">
+                        <svg class="mr-5 inline-block filter brightness-0 invert" width="30" height="30"
+                            viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M50 25C54.5833 25 58.3333 28.75 58.3333 33.3333C58.3333 37.9167 54.5833 41.6667 50 41.6667C45.4167 41.6667 41.6667 37.9167 41.6667 33.3333C41.6667 28.75 45.4167 25 50 25ZM50 62.5C61.25 62.5 74.1667 67.875 75 70.8333V75H25V70.875C25.8333 67.875 38.75 62.5 50 62.5ZM50 16.6667C40.7917 16.6667 33.3333 24.125 33.3333 33.3333C33.3333 42.5417 40.7917 50 50 50C59.2083 50 66.6667 42.5417 66.6667 33.3333C66.6667 24.125 59.2083 16.6667 50 16.6667ZM50 54.1666C38.875 54.1666 16.6667 59.75 16.6667 70.8333V83.3333H83.3333V70.8333C83.3333 59.75 61.125 54.1666 50 54.1666Z"
                                 fill="#1E335F" />
@@ -49,12 +49,46 @@
                     </button>
                 </a>
             </li>
+            @elseif(Request::is('registration/update/biodata/*'))
+            <li class="pb-2 pl-2.5 border-l border-gray-300">
+                <a href="{{route('biodataForm')}}">
+                    <button class="py-2.5 px-5 flex items-center w-full rounded-md bg-primary-color text-bg-color">
+                        <svg class="mr-5 inline-block filter brightness-0 invert" width="30" height="30"
+                            viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M50 25C54.5833 25 58.3333 28.75 58.3333 33.3333C58.3333 37.9167 54.5833 41.6667 50 41.6667C45.4167 41.6667 41.6667 37.9167 41.6667 33.3333C41.6667 28.75 45.4167 25 50 25ZM50 62.5C61.25 62.5 74.1667 67.875 75 70.8333V75H25V70.875C25.8333 67.875 38.75 62.5 50 62.5ZM50 16.6667C40.7917 16.6667 33.3333 24.125 33.3333 33.3333C33.3333 42.5417 40.7917 50 50 50C59.2083 50 66.6667 42.5417 66.6667 33.3333C66.6667 24.125 59.2083 16.6667 50 16.6667ZM50 54.1666C38.875 54.1666 16.6667 59.75 16.6667 70.8333V83.3333H83.3333V70.8333C83.3333 59.75 61.125 54.1666 50 54.1666Z"
+                                fill="#1E335F" />
+                        </svg>
+                        <p class="inline-block text-base">
+                            Data Pribadi
+                        </p>
+                    </button>
+                </a>
+            </li>
+            @else
+            <li class="pb-2 pl-2.5 border-l border-gray-300">
+                <a href="{{route('biodataForm')}}">
+                    <button
+                        class="py-2.5 px-5 flex items-center w-full rounded-md bg-bg-color text-secondary-color hover:bg-gray-200">
+                        <svg class="mr-5 inline-block" width="30" height="30" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M50 25C54.5833 25 58.3333 28.75 58.3333 33.3333C58.3333 37.9167 54.5833 41.6667 50 41.6667C45.4167 41.6667 41.6667 37.9167 41.6667 33.3333C41.6667 28.75 45.4167 25 50 25ZM50 62.5C61.25 62.5 74.1667 67.875 75 70.8333V75H25V70.875C25.8333 67.875 38.75 62.5 50 62.5ZM50 16.6667C40.7917 16.6667 33.3333 24.125 33.3333 33.3333C33.3333 42.5417 40.7917 50 50 50C59.2083 50 66.6667 42.5417 66.6667 33.3333C66.6667 24.125 59.2083 16.6667 50 16.6667ZM50 54.1666C38.875 54.1666 16.6667 59.75 16.6667 70.8333V83.3333H83.3333V70.8333C83.3333 59.75 61.125 54.1666 50 54.1666Z"
+                                fill="#1E335F" />
+                        </svg>
+                        <p class="inline-block text-base">
+                            Data Pribadi
+                        </p>
+                    </button>
+                </a>
+            </li>
+            @endif
+            @if(Request::is('registration/family'))
             <li class="pb-2 pl-2.5 border-l border-gray-300">
                 <a href="{{route('familyForm')}}">
-                    <button
-                        class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('familyForm')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                        <svg class="mr-5 inline-block {{ request()->is(route('familyForm')) ? 'filter brightness-0 invert' : ''}}"
-                            width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button class="py-2.5 px-5 flex items-center w-full rounded-md bg-primary-color text-bg-color">
+                        <svg class="mr-5 inline-block filter brightness-0 invert" width="30" height="30"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M16.6699 13.13C18.0399 14.06 18.9999 15.32 18.9999 17V20H22.9999V17C22.9999 14.82 19.4299 13.53 16.6699 13.13Z"
                                 fill="#1E335F" />
@@ -68,19 +102,70 @@
                                 d="M9 13C6.33 13 1 14.34 1 17V20H17V17C17 14.34 11.67 13 9 13ZM15 18H3V17.01C3.2 16.29 6.3 15 9 15C11.7 15 14.8 16.29 15 17V18Z"
                                 fill="#1E335F" />
                         </svg>
-
                         <p class="inline-block text-base">
                             Data Keluarga
                         </p>
                     </button>
                 </a>
             </li>
+            @elseif(Request::is('registration/update/family/*'))
+            <li class="pb-2 pl-2.5 border-l border-gray-300">
+                <a href="{{route('familyForm')}}">
+                    <button class="py-2.5 px-5 flex items-center w-full rounded-md bg-primary-color text-bg-color">
+                        <svg class="mr-5 inline-block filter brightness-0 invert" width="30" height="30"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.6699 13.13C18.0399 14.06 18.9999 15.32 18.9999 17V20H22.9999V17C22.9999 14.82 19.4299 13.53 16.6699 13.13Z"
+                                fill="#1E335F" />
+                            <path
+                                d="M14.9999 12C17.2099 12 18.9999 10.21 18.9999 8C18.9999 5.79 17.2099 4 14.9999 4C14.5299 4 14.0899 4.1 13.6699 4.24C14.4999 5.27 14.9999 6.58 14.9999 8C14.9999 9.42 14.4999 10.73 13.6699 11.76C14.0899 11.9 14.5299 12 14.9999 12Z"
+                                fill="#1E335F" />
+                            <path
+                                d="M9 12C11.21 12 13 10.21 13 8C13 5.79 11.21 4 9 4C6.79 4 5 5.79 5 8C5 10.21 6.79 12 9 12ZM9 6C10.1 6 11 6.9 11 8C11 9.1 10.1 10 9 10C7.9 10 7 9.1 7 8C7 6.9 7.9 6 9 6Z"
+                                fill="#1E335F" />
+                            <path
+                                d="M9 13C6.33 13 1 14.34 1 17V20H17V17C17 14.34 11.67 13 9 13ZM15 18H3V17.01C3.2 16.29 6.3 15 9 15C11.7 15 14.8 16.29 15 17V18Z"
+                                fill="#1E335F" />
+                        </svg>
+                        <p class="inline-block text-base">
+                            Data Keluarga
+                        </p>
+                    </button>
+                </a>
+            </li>
+            @else
+            <li class="pb-2 pl-2.5 border-l border-gray-300">
+                <a href="{{route('familyForm')}}">
+                    <button
+                        class="py-2.5 px-5 flex items-center w-full rounded-md bg-bg-color text-secondary-color hover:bg-gray-200">
+                        <svg class="mr-5 inline-block " width="30" height="30" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.6699 13.13C18.0399 14.06 18.9999 15.32 18.9999 17V20H22.9999V17C22.9999 14.82 19.4299 13.53 16.6699 13.13Z"
+                                fill="#1E335F" />
+                            <path
+                                d="M14.9999 12C17.2099 12 18.9999 10.21 18.9999 8C18.9999 5.79 17.2099 4 14.9999 4C14.5299 4 14.0899 4.1 13.6699 4.24C14.4999 5.27 14.9999 6.58 14.9999 8C14.9999 9.42 14.4999 10.73 13.6699 11.76C14.0899 11.9 14.5299 12 14.9999 12Z"
+                                fill="#1E335F" />
+                            <path
+                                d="M9 12C11.21 12 13 10.21 13 8C13 5.79 11.21 4 9 4C6.79 4 5 5.79 5 8C5 10.21 6.79 12 9 12ZM9 6C10.1 6 11 6.9 11 8C11 9.1 10.1 10 9 10C7.9 10 7 9.1 7 8C7 6.9 7.9 6 9 6Z"
+                                fill="#1E335F" />
+                            <path
+                                d="M9 13C6.33 13 1 14.34 1 17V20H17V17C17 14.34 11.67 13 9 13ZM15 18H3V17.01C3.2 16.29 6.3 15 9 15C11.7 15 14.8 16.29 15 17V18Z"
+                                fill="#1E335F" />
+                        </svg>
+                        <p class="inline-block text-base">
+                            Data Keluarga
+                        </p>
+                    </button>
+                </a>
+            </li>
+            @endif
+            @if(Request::is('registration/education'))
             <li class="pb-2 pl-2.5 border-l border-gray-300">
                 <a href="{{route('educationForm')}}">
-                    <button
-                        class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('educationForm')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                        <svg class="mr-5 inline-block {{ request()->is(route('educationForm')) ? 'filter brightness-0 invert' : ''}}"
-                            width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button class="py-2.5 px-5 flex items-center w-full rounded-md bg-primary-color text-bg-color">
+                        <svg class="mr-5 inline-block filter brightness-0 invert" width="30" height="30"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM9 4H11V9L10 8.25L9 9V4ZM18 20H6V4H7V13L10 10.75L13 13V4H18V20Z"
                                 fill="#1E335F" />
@@ -91,11 +176,45 @@
                     </button>
                 </a>
             </li>
+            @elseif(Request::is('registration/update/education'))
+            <li class="pb-2 pl-2.5 border-l border-gray-300">
+                <a href="{{route('educationForm')}}">
+                    <button class="py-2.5 px-5 flex items-center w-full rounded-md bg-primary-color text-bg-color">
+                        <svg class="mr-5 inline-block filter brightness-0 invert" width="30" height="30"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM9 4H11V9L10 8.25L9 9V4ZM18 20H6V4H7V13L10 10.75L13 13V4H18V20Z"
+                                fill="#1E335F" />
+                        </svg>
+                        <p class="inline-block text-base">
+                            Data Pendidikan
+                        </p>
+                    </button>
+                </a>
+            </li>
+            @else
+            <li class="pb-2 pl-2.5 border-l border-gray-300">
+                <a href="{{route('educationForm')}}">
+                    <button
+                        class="py-2.5 px-5 flex items-center w-full rounded-md bg-bg-color text-secondary-color hover:bg-gray-200">
+                        <svg class="mr-5 inline-block" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM9 4H11V9L10 8.25L9 9V4ZM18 20H6V4H7V13L10 10.75L13 13V4H18V20Z"
+                                fill="#1E335F" />
+                        </svg>
+                        <p class="inline-block text-base">
+                            Data Pendidikan
+                        </p>
+                    </button>
+                </a>
+            </li>
+            @endif
             <li class="pl-2.5 border-l border-gray-300">
                 <a href="{{route('downloadableForm')}}">
                     <button
-                        class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('downloadableForm')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                        <svg class="mr-5 inline-block {{ request()->is(route('downloadableForm')) ? 'filter brightness-0 invert' : ''}}"
+                        class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('registration/downloadable') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
+                        <svg class="mr-5 inline-block {{ request()->is('registration/downloadable') ? 'filter brightness-0 invert' : ''}}"
                             width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M9.17 6L11.17 8H20V18H4V6H9.17ZM10 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6H12L10 4Z"
@@ -113,8 +232,8 @@
         <div class="mb-2">
             <a href="{{route('onlineTest')}}">
                 <button
-                    class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('onlineTest')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                    <svg class="mr-5 inline-block {{ request()->is(route('onlineTest')) ? 'filter brightness-0 invert' : ''}}"
+                    class="py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('registration/test') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
+                    <svg class="mr-5 inline-block {{ request()->is('registration/test') ? 'filter brightness-0 invert' : ''}}"
                         width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M17.575 11.275L18.725 12.425L7.4 23.75H6.25V22.6L17.575 11.275ZM22.075 3.75C21.7625 3.75 21.4375 3.875 21.2 4.1125L18.9125 6.4L23.6 11.0875L25.8875 8.8C26.375 8.3125 26.375 7.525 25.8875 7.0375L22.9625 4.1125C22.7125 3.8625 22.4 3.75 22.075 3.75ZM17.575 7.7375L3.75 21.5625V26.25H8.4375L22.2625 12.425L17.575 7.7375Z"
@@ -129,8 +248,8 @@
         <div>
             <a href="{{route('onlineInterview')}}">
                 <button
-                    class="mb-5 py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is(route('onlineInterview')) ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
-                    <svg class="mr-5 inline-block {{ request()->is(route('onlineInterview')) ? 'filter brightness-0 invert' : ''}}"
+                    class="mb-5 py-2.5 px-5 flex items-center w-full rounded-md {{ request()->is('registration/interview') ? 'bg-primary-color text-bg-color' : 'bg-bg-color text-secondary-color hover:bg-gray-200'}}">
+                    <svg class="mr-5 inline-block {{ request()->is('registration/interview') ? 'filter brightness-0 invert' : ''}}"
                         width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M25 2.5H15C7.975 2.5 2.5 8.325 2.5 15.35C2.5 21.875 8.1125 27.5 14.65 27.5C21.7375 27.5 27.5 22.025 27.5 15V5C27.5 3.625 26.375 2.5 25 2.5ZM21.25 18.75L17.5 16.25V18.75H8.75V11.25H17.5V13.75L21.25 11.25V18.75Z"

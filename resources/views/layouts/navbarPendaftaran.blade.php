@@ -19,26 +19,41 @@
             </div>
             <div class="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
                 <div class="flex-shrink-0 flex items-center hidden md:block">
-                    <p
-                        class="text-3xl text-secondary-color {{ request()->is(route('homeAccount')) ? 'block' : 'hidden'}}">
+                    @if(Request::is('registration/home'))
+                    <p class="text-3xl text-secondary-color">
                         Home
                     </p>
-                    <p
-                        class="text-3xl text-secondary-color {{ request()->is('pendaftaran/form-data-pribadi') ? 'block' : 'hidden'}} ">
+                    @elseif(Request::is('registration/biodata'))
+                    <p class="text-3xl text-secondary-color block">
                         Form Administrasi
                     </p>
-                    <p
-                        class="text-3xl text-secondary-color {{ request()->is('pendaftaran/form-data-keluarga') ? 'block' : 'hidden'}} ">
-                        Form Administrasi
+                    @elseif(Request::is('registration/update/biodata/*'))
+                    <p class="text-3xl text-secondary-color ">
+                        Form Adminstrasi
                     </p>
-                    <p
-                        class="text-3xl text-secondary-color {{ request()->is('pendaftaran/form-data-pendidikan') ? 'block' : 'hidden'}} ">
-                        Form Administrasi
+                    @elseif(Request::is('registration/family'))
+                    <p class="text-3xl text-secondary-color">
+                        Form Adminstrasi
                     </p>
-                    <p
-                        class="text-3xl text-secondary-color {{ request()->is('pendaftaran/form-unduhan') ? 'block' : 'hidden'}} ">
-                        Form Administrasi
+                    @elseif(Request::is('registration/update/family'))
+                    <p class="text-3xl text-secondary-color">
+                        Form Adminstrasi
                     </p>
+                    @elseif(Request::is('registration/education'))
+                    <p class="text-3xl text-secondary-color">
+                        Form Adminstrasi
+                    </p>
+                    @elseif(Request::is('registration/update/education/*'))
+                    <p class="text-3xl text-secondary-color">
+                        Form Adminstrasi
+                    </p>
+                    @elseif(Request::is('registration/downloadable'))
+                    <p class="text-3xl text-secondary-color">
+                        Form Adminstrasi
+                    </p>
+                    @else
+                    test
+                    @endif
                     <p
                         class="text-3xl text-secondary-color {{ request()->is('pendaftaran/tes-online') ? 'block' : 'hidden'}}">
                         Tes Online
@@ -93,35 +108,77 @@
     <div x-show="open" :class="{'md:hidden': open, 'hidden': !open}">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="{{route('homeAccount')}}"
-                class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is(route('homeAccount')) ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}"
+                class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('registration/home') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}"
                 aria-current="page">Home</a>
             <p class="px-3 py-2 text-gray-300 uppercase tracking-wider">Form Administrasi</p>
             <ul class="mx-5 pl-3 border-l border-gray-300">
+                @if(Request::is('registration/biodata'))
                 <li class="py-2">
-                    <a href="/pendaftaran/form-data-pribadi"
-                        class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('pendaftaran/form-data-pribadi') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Data
-                        Diri</a>
+                    <a href="{{route('biodataForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-primary-color text-bg-color">
+                        Data Diri</a>
                 </li>
+                @elseif(Request::is('registration/update/biodata/*'))
                 <li class="py-2">
-                    <a href="/pendaftaran/form-data-keluarga"
-                        class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('pendaftaran/form-data-keluarga') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Data
-                        Keluarga</a>
+                    <a href="{{route('biodataForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-primary-color text-bg-color">
+                        Data Diri</a>
                 </li>
+                @else
                 <li class="py-2">
-                    <a href="/pendaftaran/form-data-pendidikan"
-                        class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('pendaftaran/form-data-pendidikan') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Data
-                        Pendidikan</a>
+                    <a href="{{route('biodataForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-white text-secondary-color hover:bg-gray-300">
+                        Data Diri</a>
                 </li>
+                @endif
+                @if(Request::is('registration/family'))
+                <li class="py-2">
+                    <a href="{{route('familyForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-primary-color text-bg-color">
+                        Data Keluarga</a>
+                </li>
+                @elseif(Request::is('registration/update/family/*'))
+                <li class="py-2">
+                    <a href="{{route('familyForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-primary-color text-bg-color">
+                        Data Keluarga</a>
+                </li>
+                @else
+                <li class="py-2">
+                    <a href="{{route('familyForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-white text-secondary-color hover:bg-gray-300">
+                        Data Keluarga</a>
+                </li>
+                @endif
+                @if(Request::is('registration/education'))
+                <li class="py-2">
+                    <a href="{{route('educationForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-primary-color text-bg-color">
+                        Data Pendidikan</a>
+                </li>
+                @elseif(Request::is('registration/update/education/*'))
+                <li class="py-2">
+                    <a href="{{route('educationForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-primary-color text-bg-color">
+                        Data Pendidikan</a>
+                </li>
+                @else
+                <li class="py-2">
+                    <a href="{{route('educationForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium bg-white text-secondary-color hover:bg-gray-300">
+                        Data Pendidikan</a>
+                </li>
+                @endif
                 <li class="py-2" r>
-                    <a href="form-unduhan"
-                        class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('pendaftaran/form-unduhan') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Unduhan</a>
+                    <a href="{{route('downloadableForm')}}"
+                        class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('registration/downloadable') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Unduhan</a>
                 </li>
             </ul>
-            <a href="pendaftaran/tes-online"
-                class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('pendaftaran/tes-online') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Tes
+            <a href="{{route('onlineTest')}}"
+                class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('registration/test') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Tes
                 Online</a>
-            <a href="pendaftaran/wawancara"
-                class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('pendaftaran/wawancara') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Wawancara</a>
+            <a href="{{route('onlineInterview')}}"
+                class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('registration/interview') ? 'bg-primary-color text-bg-color' : 'bg-white text-secondary-color hover:bg-gray-300'}}">Wawancara</a>
             <a href="/bantuan"
                 class="text-secondary-color hover:bg-accent-color block px-3 py-2 rounded-md text-base font-medium">Bantuan</a>
         </div>
