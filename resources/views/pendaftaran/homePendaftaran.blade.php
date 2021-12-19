@@ -45,21 +45,27 @@
                                     <td class="p-0.5 border border-gray-300">
                                         Pendaftaran Beasiswa (Administrasi dan Tes Online)
                                     </td>
-                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->startStepOne))}} s/d {{date("d-M-Y", strtotime($scholarship->endStepOne))}}</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y",
+                                        strtotime($scholarship->startStepOne))}} s/d {{date("d-M-Y",
+                                        strtotime($scholarship->endStepOne))}}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">
                                         Pengumuman Beasiswa Tahap 1 (Adminisrasi dan Tes Online)</td>
-                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->announceStepOne))}}</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y",
+                                        strtotime($scholarship->announceStepOne))}}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">Proses Seleksi Tahap 2 (Wawancara Online)
                                     </td>
-                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->startStepTwo))}} s/d {{date("d-M-Y", strtotime($scholarship->endStepTwo))}}</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y",
+                                        strtotime($scholarship->startStepTwo))}} s/d {{date("d-M-Y",
+                                        strtotime($scholarship->endStepTwo))}}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-0.5 border border-gray-300">Pengumuman Penerima Beasiswa</td>
-                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y", strtotime($scholarship->announceStepTwo))}}</td>
+                                    <td class="p-0.5 border border-gray-300">{{date("d-M-Y",
+                                        strtotime($scholarship->announceStepTwo))}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -100,11 +106,38 @@
                                 <td class="p-0.5 border border-gray-300">
                                     Tahap 1 (Administrasi dan Tes Online)
                                 </td>
+                                @if($registered->statusOne == 'Proses Pendaftaran')
+                                <td class="p-0.5 text-primary-color border border-gray-300">{{$registered->statusOne}}
+                                </td>
+                                @elseif($registered->statusOne == 'Melakukan Test')
+                                <td class="p-0.5 text-primary-color border border-gray-300">{{$registered->statusOne}}
+                                </td>
+                                @elseif($registered->statusOne == 'Proses Seleksi')
+                                <td class="p-0.5 text-accent-color border border-gray-300">{{$registered->statusOne}}
+                                </td>
+                                @elseif($registered->statusOne == 'Lolos')
                                 <td class="p-0.5 text-green-400 border border-gray-300">{{$registered->statusOne}}</td>
+                                @elseif($registered->statusOne == 'Tidak Lolos')
+                                <td class="p-0.5 text-red-500 border border-gray-300">{{$registered->statusOne}}</td>
+                                @else
+                                <td class="p-0.5 text-secondary-color border border-gray-300">{{$registered->statusOne}}
+                                </td>
+                                @endif
                             </tr>
                             <tr>
                                 <td class="p-0.5 border border-gray-300">Tahap 2 (Wawancara Online)</td>
-                                <td class="p-0.5 text-yellow-400 border border-gray-300">{{$registered->statusTwo}}</td>
+                                @if ($registered->statusTwo == 'Proses Pendaftaran')
+                                <td class="p-0.5 text-primary-color border border-gray-300">{{$registered->statusTwo}}
+                                </td>
+                                @elseif ($registered->statusTwo == 'Lolos')
+                                <td class="p-0.5 text-green-400 border border-gray-300">{{$registered->statusTwo}}</td>
+                                @elseif ($registered->statusTwo == 'Tidak Lolos')
+                                <td class="p-0.5 text-accent-color border border-gray-300">{{$registered->statusTwo}}
+                                </td>
+                                @else
+                                <td class="p-0.5 text-secondary-color border border-gray-300">{{$registered->statusTwo}}
+                                </td>
+                                @endif
                             </tr>
                         </tbody>
                         @endif
