@@ -28,13 +28,6 @@
                     class="p-1 w-full text-secondary-color border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary-color focus:border-primary-color transition duration-500 rounded"
                     type="password" name="password" id="password">
             </div>
-            <div class="flex items-center mb-5">
-                <input class="h-5 w-5 mr-2.5 text-primary-color focus:ring-primary-color border-gray-300 rounded"
-                    type="checkbox" name="rememberMe" id="rememberMe">
-                <label class="text-secondary-color text-lg" for="rememberMe">
-                    Remember me
-                </label>
-            </div>
             <div class="mb-8 text-primary-color hover:underline">
                 <a href="{{route('emailForm')}}">Lupa password?</a>
             </div>
