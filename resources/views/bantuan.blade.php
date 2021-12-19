@@ -142,13 +142,14 @@
                 <div>
                     <div class="bg-white mx-auto" x-data="{selected:null}">
                         <ul class="">
+                            @foreach($faqs as $faq)
                             <li class="relative bg-primary-color rounded my-2.5 md:my-5">
                                 <button type="button"
                                     class="w-full px-2 py-1.5 md:px-3.5 md:py-2.5 text-left text-bg-color"
-                                    @click="selected !== 1 ? selected = 1 : selected = null">
+                                    @click="selected !== {{$loop->index+1}} ? selected = {{$loop->index+1}} : selected = null">
                                     <div class="flex items-center justify-between text-sm md:text-base">
                                         <span>
-                                            Should I use reCAPTCHA v2 or v3? </span>
+                                            {{$faq->title}} </span>
                                         <span>
                                             <svg class="w-5 h-5 md:w-7 md:h-7" width="30" height="30"
                                                 viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,104 +162,15 @@
                                 </button>
                                 <div class="relative overflow-hidden transition-all max-h-0 duration-700 bg-bg-color text-secondary-color"
                                     style="" x-ref="container1"
-                                    x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
+                                    x-bind:style="selected == {{$loop->index+1}} ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                     <div class="p-6 border-l-4 border-accent-color">
-                                        <p class="text-sm md:text-base">reCAPTCHA v2 is not going away! We will continue
-                                            to fully
-                                            support and improve security
-                                            and usability for v2. <br>
-                                            reCAPTCHA v3 is intended for power users, site owners that want more data
-                                            about their
-                                            traffic, and for use cases in which it is not appropriate to show a
-                                            challenge to the
-                                            user. <br>
-                                            For example, a registration page might still use reCAPTCHA v2 for a
-                                            higher-friction
-                                            challenge, whereas more common actions like sign-in, searches, comments, or
-                                            voting might
-                                            use reCAPTCHA v3. To see more details, see the reCAPTCHA v3 developer guide.
+                                        <p class="text-sm md:text-base">
+                                            {{$faq->content}}
                                         </p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="relative bg-primary-color rounded my-2.5 md:my-5">
-                                <button type="button"
-                                    class="w-full px-2 py-1.5 md:px-3.5 md:py-2.5 text-left text-bg-color"
-                                    @click="selected !== 2 ? selected = 2 : selected = null">
-                                    <div class="flex items-center justify-between text-sm md:text-base">
-                                        <span>
-                                            Should I use reCAPTCHA v2 or v3? </span>
-                                        <span>
-                                            <svg class="w-5 h-5 md:w-7 md:h-7" width="30" height="30"
-                                                viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M23.75 16.25H16.25V23.75H13.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25Z"
-                                                    fill="white" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </button>
-                                <div class="relative overflow-hidden transition-all max-h-0 duration-700 bg-bg-color text-secondary-color"
-                                    style="" x-ref="container1"
-                                    x-bind:style="selected == 2 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
-                                    <div class="p-6 border-l-4 border-accent-color">
-                                        <p class="text-sm md:text-base">reCAPTCHA v2 is not going away! We will continue
-                                            to fully
-                                            support and improve security
-                                            and usability for v2. <br>
-                                            reCAPTCHA v3 is intended for power users, site owners that want more data
-                                            about their
-                                            traffic, and for use cases in which it is not appropriate to show a
-                                            challenge to the
-                                            user. <br>
-                                            For example, a registration page might still use reCAPTCHA v2 for a
-                                            higher-friction
-                                            challenge, whereas more common actions like sign-in, searches, comments, or
-                                            voting might
-                                            use reCAPTCHA v3. To see more details, see the reCAPTCHA v3 developer guide.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="relative bg-primary-color rounded my-2.5 md:my-5">
-                                <button type="button"
-                                    class="w-full px-2 py-1.5 md:px-3.5 md:py-2.5 text-left text-bg-color"
-                                    @click="selected !== 3 ? selected = 3 : selected = null">
-                                    <div class="flex items-center justify-between text-sm md:text-base">
-                                        <span>
-                                            Should I use reCAPTCHA v2 or v3? </span>
-                                        <span>
-                                            <svg class="w-5 h-5 md:w-7 md:h-7" width="30" height="30"
-                                                viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M23.75 16.25H16.25V23.75H13.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25Z"
-                                                    fill="white" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </button>
-                                <div class="relative overflow-hidden transition-all max-h-0 duration-700 bg-bg-color text-secondary-color"
-                                    style="" x-ref="container1"
-                                    x-bind:style="selected == 3 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
-                                    <div class="p-6 border-l-4 border-accent-color">
-                                        <p class="text-sm md:text-base">reCAPTCHA v2 is not going away! We will continue
-                                            to fully
-                                            support and improve security
-                                            and usability for v2. <br>
-                                            reCAPTCHA v3 is intended for power users, site owners that want more data
-                                            about their
-                                            traffic, and for use cases in which it is not appropriate to show a
-                                            challenge to the
-                                            user. <br>
-                                            For example, a registration page might still use reCAPTCHA v2 for a
-                                            higher-friction
-                                            challenge, whereas more common actions like sign-in, searches, comments, or
-                                            voting might
-                                            use reCAPTCHA v3. To see more details, see the reCAPTCHA v3 developer guide.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

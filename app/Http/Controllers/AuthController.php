@@ -13,6 +13,7 @@ use App\Mail\Verification;
 use App\Mail\ResetPassword;
 use App\Mail\Help;
 use Illuminate\Support\Facades\Mail;
+use App\Faq;
 
 class AuthController extends Controller
 {
@@ -175,7 +176,8 @@ class AuthController extends Controller
 
     // Help
     public function helpForm(){
-        return view('bantuan');
+        $faqs = Faq::get();
+        return view('bantuan')->with(['faqs' => $faqs]);
     }
 
     public function helpPost(Request $request){
