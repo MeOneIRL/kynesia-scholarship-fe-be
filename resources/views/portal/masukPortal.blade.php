@@ -11,7 +11,8 @@
         <h3 class="mb-8 md:mb-12 text-2xl md:text-3xl text-secondary-color text-center">
             Masuk Akun Portal
         </h3>
-        <form class="flex flex-col" action="#">
+        <form class="flex flex-col" action="{{route('loginAccountPost')}}" method="POST">
+            @csrf
             <div class="mb-5">
                 <label class="c" for="email">Email</label>
                 <input
@@ -32,7 +33,7 @@
                 </label>
             </div>
             <div class="mb-8 text-primary-color hover:underline">
-                <a href="#">Lupa password?</a>
+                <a href="{{route('emailForm')}}">Lupa password?</a>
             </div>
             <div class="w-full mx-auto mb-5">
                 <button class="w-full p-1 bg-primary-color text-bg-color rounded" type="submit">

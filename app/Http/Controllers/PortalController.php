@@ -13,6 +13,10 @@ use DB;
 class PortalController extends Controller
 {
     //
+    public function loginPortal(){
+        return view('portal.masukPortal');
+    }
+
     public function homePortal(){
         $posts = DB::table('posts')
                     ->join('post_images','posts.id','=','post_images.post_id')

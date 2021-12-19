@@ -24,6 +24,10 @@ Route::get('/bantuan', function () {
     return view('bantuan');
 });
 
+
+
+
+
 // Pendaftaran
 // Route::get('/pendaftaran/masuk', function () {
 //     return view('pendaftaran.masukPendaftaran');
@@ -94,8 +98,8 @@ Route::prefix('/registration')->group(function(){
         Route::post('/register', 'AuthController@registerAccountPost')->name('registerAccountPost');
         Route::get('/verification/{verify_token}', 'AuthController@verifyAccount')->name('verifyAccount');
         Route::get('/login', 'AuthController@loginAccountForm')->name('loginAccountForm');
-        Route::post('/login', 'AuthController@loginAccountPost')->name('loginAccountPost');
     });
+    Route::post('/login', 'AuthController@loginAccountPost')->name('loginAccountPost');
 
     Route::middleware('auth')->group(function(){
         Route::get('/logout', 'AuthController@logoutAccount')->name('logoutAccount');
@@ -118,6 +122,7 @@ Route::prefix('/registration')->group(function(){
         Route::post('/family', 'UserController@familyPost')->name('familyPost');
         Route::get('/update/family/{user_id}', 'UserController@updateFamilyForm')->name('updateFamilyForm');
         Route::post('/update/family/{user_id}', 'UserController@updateFamilyPost')->name('updateFamilyPost');
+        Route::get('/delete/child/{id}', 'UserController@childDelete')->name('childDelete');
         // End Family
     
         // Education
@@ -125,6 +130,11 @@ Route::prefix('/registration')->group(function(){
         Route::post('/education', 'UserController@educationPost')->name('educationPost');
         Route::get('/update/education/{user_id}', 'UserController@updateEducationForm')->name('updateEducationForm');
         Route::post('/update/education/{user_id}', 'UserController@updateEducationPost')->name('updateEducationPost');
+        Route::get('/update/delete/training/{id}', 'UserController@deleteTraining')->name('deleteTraining');
+        Route::get('/update/delete/achievement/{id}', 'UserController@deleteAchievement')->name('deleteAchievement');
+        Route::get('/update/delete/language/{id}', 'UserController@deleteLanguage')->name('deleteLanguage');
+        Route::get('/update/delete/organization/{id}', 'UserController@deleteOrganization')->name('deleteOrganization');
+        Route::get('/update/delete/talent/{id}', 'UserController@deleteTalent')->name('deleteTalent');
         // End Education
     
         // Downloadable
@@ -183,6 +193,8 @@ Route::middleware(['admin','auth'])->group(function(){
 });
 
 // Portal
+Route::get('/portal/login', 'PortalController@loginPortal')->name('loginPortal');
+
 Route::middleware(['auth','portal'])->group(function(){
     Route::prefix('/portal')->group(function(){
         Route::get('/home', 'PortalController@homePortal')->name('homePortal');
@@ -197,3 +209,21 @@ Route::middleware(['auth','portal'])->group(function(){
 Route::get('/email', function(){
     return view('mail.verification');
 });
+
+// Reset Password
+Route::middleware('guest')->group(function(){
+    Route::prefix('/reset')->group(function(){
+        Route::get('/email','AuthController@emailForm')->name('emailForm');
+        Route::post('/email','AuthController@emailPost')->name('emailPost');
+        Route::get('/password/{token}','AuthController@passwordForm')->name('passwordForm');
+        Route::post('/password/{token}','AuthController@passwordPost')->name('passwordPost');
+    });
+});
+// End Reset Password
+
+// Help
+Route::prefix('/help')->group(function(){
+    Route::get('/question', 'AuthController@helpForm')->name('helpForm');
+    Route::post('/question', 'AuthController@helpPost')->name('helpPost');
+});
+// End Help

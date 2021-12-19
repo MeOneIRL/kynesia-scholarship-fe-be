@@ -10,6 +10,8 @@ use App\Scholarship;
 use App\Registered;
 use Validator;
 use App\Mail\Verification;
+use App\Mail\ResetPassword;
+use App\Mail\Help;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
@@ -131,4 +133,54 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
     // end logout
+
+    // Reset Password
+    public function emailForm(){
+        return view('pendaftaran.emailForm');
+    }
+
+    public function emailPost(Request $request){
+        $user = User::where('email', '=', $request->email)->first();
+
+        if($user == NULL){
+            return redirect()->back()->with(['message' => "Email Anda Tidak Terdaftar"]);
+        }
+
+        $user->password_token = sha1(time());
+        $user->save();
+
+        Mail::to($user->email)->send(new ResetPassword($user->password_token));
+
+        return redirect()->back()->with(['message' => "Silahkan Cek Email Anda Untuk Reset Password"]);
+    }
+
+    public function passwordForm($token){
+        return view('pendaftaran.passwordForm')->with(['token' => $token]);
+    }
+
+    public function passwordPost(Request $request, $token){
+        $user = User::where('password_token', '=', $token)->first();
+
+        if($user == NULL){
+            return redirect()->back()->with(['message' => 'Link Yang Anda Masukan Salah']);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->password_token = NULL;
+        $user->save();
+
+        return redirect()->route('loginAccountForm')->with(['message' => 'Silahkan Login Menggunakan Password Yang Baru']);
+    }
+    // End Password
+
+    // Help
+    public function helpForm(){
+        return view('bantuan');
+    }
+
+    public function helpPost(Request $request){
+        Mail::to("ghemaallan@gmail.com")->send(new Help($request->sender, $request->content, $request->name));
+        return redirect()->back();
+    }
+    // End Help
 }

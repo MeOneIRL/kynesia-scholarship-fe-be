@@ -435,6 +435,11 @@ class UserController extends Controller
 
         return redirect()->route('educationForm');
     }
+
+    public function deleteFamily($id){
+        Family::find($id)->delete();
+        return redirect()->back();
+    }
     // End Family
 
     // Education
@@ -802,6 +807,31 @@ class UserController extends Controller
         // End Talent
         
         return redirect()->route('downloadableForm');
+    }
+
+    public function deleteTraining($id){
+        Training::find($id)->delete();
+        return redirect()->back();
+    }
+    
+    public function deleteAchievement($id){
+        Achievement::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function deleteLanguage($id){
+        Language::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function deleteOrganization($id){
+        Organization::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function deleteTalent($id){
+        Talent::find($id)->delete();
+        return redirect()->back();
     }
     // End Education
 

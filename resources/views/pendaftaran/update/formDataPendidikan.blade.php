@@ -653,11 +653,13 @@
                                             </select>
                                         </div>
                                         <div class="col-span-6">
-                                            <button
-                                                class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                type="button">
-                                                Hapus Pendidikan Non-Formal
-                                            </button>
+                                            <a href="{{('deleteTraining',$training->id)}}">
+                                                <button
+                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                    type="button">
+                                                    Hapus Pendidikan Non-Formal
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -783,11 +785,13 @@
                                             </select>
                                         </div>
                                         <div class="col-span-6">
-                                            <button
-                                                class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                type="button">
-                                                Hapus Prestasi Akademik
-                                            </button>
+                                            <a href="{{('deleteAchievement',$achievement->id)}}">
+                                                <button
+                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                    type="button">
+                                                    Hapus Prestasi Akademik
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -962,11 +966,13 @@
                                             </select>
                                         </div>
                                         <div class="col-span-6">
-                                            <button
-                                                class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                type="button">
-                                                Hapus Bahasa Asing
-                                            </button>
+                                            <a href="{{('deleteLanguage',$language->id)}}">
+                                                <button
+                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                    type="button">
+                                                    Hapus Bahasa Asing
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1119,11 +1125,13 @@
                                                 class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                                         </div>
                                         <div class="col-span-6">
-                                            <button
-                                                class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                type="button">
-                                                Hapus Pengalaman Organisasi
-                                            </button>
+                                            <a href="{{('deleteOrganization',$organization->id)}}">
+                                                <button
+                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                    type="button">
+                                                    Hapus Pengalaman Organisasi
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1248,12 +1256,14 @@
                                                     class="mt-1 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                             <div class="col-span-6">
-                                                <button
-                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                    type="button" :class="{'hidden': index == 0, 'block': index > 0}"
-                                                    @click="removeFieldSpecial()">
-                                                    Hapus Talent
-                                                </button>
+                                                <a href="{{('deleteTalent',$talent->id)}}">
+                                                    <button
+                                                        class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                        type="button" :class="{'hidden': index == 0, 'block': index > 0}"
+                                                        @click="removeFieldSpecial()">
+                                                        Hapus Talent
+                                                    </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

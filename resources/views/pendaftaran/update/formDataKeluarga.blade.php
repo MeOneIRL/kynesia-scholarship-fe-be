@@ -286,11 +286,13 @@
                                                 required>
                                         </div>
                                         <div class="col-span-6">
-                                            <button
-                                                class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
-                                                type="button">
-                                                Hapus Anak
-                                            </button>
+                                            <a href="{{('childDelete',$family->id)}}">
+                                                <button
+                                                    class="float-right text-sm inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300"
+                                                    type="button">
+                                                    Hapus Anak
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

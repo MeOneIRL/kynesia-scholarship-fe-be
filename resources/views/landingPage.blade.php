@@ -63,7 +63,7 @@
             <h3 class="text-primary-color text-2xl font-medium">Portal Beasiswa</h3>
             <p class="text-secondary-color text-sm">Dashboard untuk para penerima beasiswa Kynesia Foundation
                 Scholarship</p>
-            <a href="">
+            <a href="{{route('loginPortal')}}">
                 <button class="w-full bg-primary-color text-bg-color rounded py-0.5 px-2">
                     <p class="inline-block text-lg">Klik untuk masuk</p>
                     <svg class="inline-block text-lg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -84,7 +84,7 @@
             <h3 class="text-primary-color text-2xl font-medium">Bantuan</h3>
             <p class="text-secondary-color text-sm">Portal bantuan Kynesia Foundation Scholarship dan kontak Kynesia
                 Foundation</p>
-            <a href="/bantuan">
+            <a href="{{route('helpForm')}}">
                 <button class="w-full bg-primary-color text-bg-color rounded py-0.5 px-2">
                     <p class="inline-block text-lg">Klik untuk bantuan</p>
                     <svg class="inline-block text-lg" width="24" height="24" viewBox="0 0 24 24" fill="none"

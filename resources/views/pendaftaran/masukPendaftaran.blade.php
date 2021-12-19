@@ -36,7 +36,7 @@
                 </label>
             </div>
             <div class="mb-8 text-primary-color hover:underline">
-                <a href="#">Lupa password?</a>
+                <a href="{{route('emailForm')}}">Lupa password?</a>
             </div>
             <div class="w-full mx-auto mb-5">
                 <button class="w-full p-1 bg-primary-color text-bg-color rounded" type="submit">

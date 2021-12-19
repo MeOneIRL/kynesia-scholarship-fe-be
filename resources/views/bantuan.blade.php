@@ -964,28 +964,31 @@
                     </div>
                 </div>
                 <div>
-                    <div>
-                        <span class="uppercase text-sm text-gray-600 font-bold">Full Name</span>
-                        <input
-                            class="mt-2 p-3 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            type="text" placeholder="" />
-                    </div>
-                    <div class="mt-8">
-                        <span class="uppercase text-sm text-gray-600 font-bold">Email</span>
-                        <input
-                            class="mt-2 p-3 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            type="text" />
-                    </div>
-                    <div class="mt-8">
-                        <span class="uppercase text-sm text-gray-600 font-bold">Message</span>
-                        <textarea
-                            class="w-full h-32 bg-bg-color border-gray-300 mt-2 p-3 rounded-lg focus:ring-primary-color focus:border-primary-color resize-none"></textarea>
-                    </div>
-                    <div class="mt-8">
-                        <button
-                            class="uppercase text-sm font-bold tracking-wide bg-primary-color text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">Send
-                            Message</button>
-                    </div>
+                    <form action="{{route('helpPost')}}" method="POST">
+                        @csrf
+                        <div>
+                            <span class="uppercase text-sm text-gray-600 font-bold">Full Name</span>
+                            <input name="name"
+                                class="mt-2 p-3 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                type="text" placeholder="" />
+                        </div>
+                        <div class="mt-8">
+                            <span class="uppercase text-sm text-gray-600 font-bold">Email</span>
+                            <input name="sender"
+                                class="mt-2 p-3 focus:ring-primary-color focus:border-primary-color block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                type="text" />
+                        </div>
+                        <div class="mt-8">
+                            <span class="uppercase text-sm text-gray-600 font-bold">Message</span>
+                            <textarea name="content"
+                                class="w-full h-32 bg-bg-color border-gray-300 mt-2 p-3 rounded-lg focus:ring-primary-color focus:border-primary-color resize-none"></textarea>
+                        </div>
+                        <div class="mt-8">
+                            <button type="submit"
+                                class="uppercase text-sm font-bold tracking-wide bg-primary-color text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">Send
+                                Message</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
